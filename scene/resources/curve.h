@@ -94,11 +94,17 @@ public:
 
 	Point get_point(int p_index) const;
 
-	real_t get_min_value() const { return _min_value; }
-	void set_min_value(real_t p_min);
+	real_t get_min_x_value() const { return _min_x_value; }
+	void set_min_x_value(real_t p_min);
 
-	real_t get_max_value() const { return _max_value; }
-	void set_max_value(real_t p_max);
+	real_t get_max_x_value() const { return _max_x_value; }
+	void set_max_x_value(real_t p_max);
+
+	real_t get_min_y_value() const { return _min_y_value; }
+	void set_min_y_value(real_t p_min);
+
+	real_t get_max_y_value() const { return _max_y_value; }
+	void set_max_y_value(real_t p_max);
 
 	real_t sample(real_t p_offset) const;
 	real_t sample_local_nocheck(int p_index, real_t p_local_offset) const;
@@ -147,8 +153,10 @@ private:
 	bool _baked_cache_dirty = false;
 	Vector<real_t> _baked_cache;
 	int _bake_resolution = 100;
-	real_t _min_value = 0.0;
-	real_t _max_value = 1.0;
+	real_t _min_x_value = 0.0;
+	real_t _max_x_value = 1.0;
+	real_t _min_y_value = 0.0;
+	real_t _max_y_value = 1.0;
 	int _minmax_set_once = 0b00; // Encodes whether min and max have been set a first time, first bit for min and second for max.
 };
 

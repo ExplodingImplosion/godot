@@ -54,11 +54,11 @@ void Curve::set_point_count(int p_count) {
 int Curve::_add_point(Vector2 p_position, real_t p_left_tangent, real_t p_right_tangent, TangentMode p_left_mode, TangentMode p_right_mode) {
 	// Add a point and preserve order
 
-	// Curve bounds is in 0..1
-	if (p_position.x > MAX_X) {
-		p_position.x = MAX_X;
-	} else if (p_position.x < MIN_X) {
-		p_position.x = MIN_X;
+	// Curve bounds is within minimum or maximum
+	if (p_position.x > _max_x_value) {
+		p_position.x = _max_x_value;
+	} else if (p_position.x < _min_x_value) {
+		p_position.x = _min_x_value;
 	}
 
 	int ret = -1;
@@ -290,26 +290,46 @@ void Curve::update_auto_tangents(int p_index) {
 	}
 }
 
-#define MIN_Y_RANGE 0.01
+#define MIN_RANGE 0.01
 
-void Curve::set_min_value(real_t p_min) {
-	if (_minmax_set_once & 0b11 && p_min > _max_value - MIN_Y_RANGE) {
-		_min_value = _max_value - MIN_Y_RANGE;
+void Curve::set_min_x_value(real_t p_min) {
+	if (_minmax_set_once & 0b11 && p_min > _max_x_value - MIN_RANGE) {
+		_min_x_value = _max_x_value - MIN_RANGE;
 	} else {
 		_minmax_set_once |= 0b10; // first bit is "min set"
-		_min_value = p_min;
+		_min_x_value = p_min;
+	}
+	// emit_signal(SNAME(SIGNAL_RANGE_CHANGED));
+}
+
+void Curve::set_max_x_value(real_t p_max) {
+	if (_minmax_set_once & 0b11 && p_max < _min_x_value + MIN_RANGE) {
+		_max_x_value = _min_x_value + MIN_RANGE;
+	} else {
+		_minmax_set_once |= 0b01; // second bit is "max set"
+		_max_x_value = p_max;
+	}
+	// emit_signal(SNAME(SIGNAL_RANGE_CHANGED));
+}
+
+void Curve::set_min_y_value(real_t p_min) {
+	if (_minmax_set_once & 0b11 && p_min > _max_y_value - MIN_RANGE) {
+		_min_y_value = _max_y_value - MIN_RANGE;
+	} else {
+		_minmax_set_once |= 0b10; // first bit is "min set"
+		_min_y_value = p_min;
 	}
 	// Note: min and max are indicative values,
 	// it's still possible that existing points are out of range at this point.
 	emit_signal(SNAME(SIGNAL_RANGE_CHANGED));
 }
 
-void Curve::set_max_value(real_t p_max) {
-	if (_minmax_set_once & 0b11 && p_max < _min_value + MIN_Y_RANGE) {
-		_max_value = _min_value + MIN_Y_RANGE;
+void Curve::set_max_y_value(real_t p_max) {
+	if (_minmax_set_once & 0b11 && p_max < _min_y_value + MIN_RANGE) {
+		_max_y_value = _min_y_value + MIN_RANGE;
 	} else {
 		_minmax_set_once |= 0b01; // second bit is "max set"
-		_max_value = p_max;
+		_max_y_value = p_max;
 	}
 	emit_signal(SNAME(SIGNAL_RANGE_CHANGED));
 }
@@ -497,11 +517,11 @@ real_t Curve::sample_baked(real_t p_offset) const {
 }
 
 void Curve::ensure_default_setup(real_t p_min, real_t p_max) {
-	if (_points.size() == 0 && _min_value == 0 && _max_value == 1) {
+	if (_points.size() == 0 && _min_y_value == 0 && _max_y_value == 1) {
 		add_point(Vector2(0, 1));
 		add_point(Vector2(1, 1));
-		set_min_value(p_min);
-		set_max_value(p_max);
+		set_min_y_value(p_min);
+		set_max_y_value(p_max);
 	}
 }
 
@@ -606,10 +626,14 @@ void Curve::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("set_point_right_tangent", "index", "tangent"), &Curve::set_point_right_tangent);
 	ClassDB::bind_method(D_METHOD("set_point_left_mode", "index", "mode"), &Curve::set_point_left_mode);
 	ClassDB::bind_method(D_METHOD("set_point_right_mode", "index", "mode"), &Curve::set_point_right_mode);
-	ClassDB::bind_method(D_METHOD("get_min_value"), &Curve::get_min_value);
-	ClassDB::bind_method(D_METHOD("set_min_value", "min"), &Curve::set_min_value);
-	ClassDB::bind_method(D_METHOD("get_max_value"), &Curve::get_max_value);
-	ClassDB::bind_method(D_METHOD("set_max_value", "max"), &Curve::set_max_value);
+	ClassDB::bind_method(D_METHOD("get_min_x_value"), &Curve::get_min_x_value);
+	ClassDB::bind_method(D_METHOD("set_min_x_value", "min"), &Curve::set_min_x_value);
+	ClassDB::bind_method(D_METHOD("get_max_x_value"), &Curve::get_max_x_value);
+	ClassDB::bind_method(D_METHOD("set_max_x_value", "max"), &Curve::set_max_x_value);
+	ClassDB::bind_method(D_METHOD("get_min_y_value"), &Curve::get_min_y_value);
+	ClassDB::bind_method(D_METHOD("set_min_y_value", "min"), &Curve::set_min_y_value);
+	ClassDB::bind_method(D_METHOD("get_max_y_value"), &Curve::get_max_y_value);
+	ClassDB::bind_method(D_METHOD("set_max_y_value", "max"), &Curve::set_max_y_value);
 	ClassDB::bind_method(D_METHOD("clean_dupes"), &Curve::clean_dupes);
 	ClassDB::bind_method(D_METHOD("bake"), &Curve::bake);
 	ClassDB::bind_method(D_METHOD("get_bake_resolution"), &Curve::get_bake_resolution);
@@ -617,8 +641,10 @@ void Curve::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("_get_data"), &Curve::get_data);
 	ClassDB::bind_method(D_METHOD("_set_data", "data"), &Curve::set_data);
 
-	ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "min_value", PROPERTY_HINT_RANGE, "-1024,1024,0.01"), "set_min_value", "get_min_value");
-	ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "max_value", PROPERTY_HINT_RANGE, "-1024,1024,0.01"), "set_max_value", "get_max_value");
+	ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "min_x_value", PROPERTY_HINT_RANGE, "-1024,1024,0.01"), "set_min_x_value", "get_min_x_value");
+	ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "max_x_value", PROPERTY_HINT_RANGE, "-1024,1024,0.01"), "set_max_x_value", "get_max_x_value");
+	ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "min_y_value", PROPERTY_HINT_RANGE, "-1024,1024,0.01"), "set_min_y_value", "get_min_y_value");
+	ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "max_y_value", PROPERTY_HINT_RANGE, "-1024,1024,0.01"), "set_max_y_value", "get_max_y_value");
 	ADD_PROPERTY(PropertyInfo(Variant::INT, "bake_resolution", PROPERTY_HINT_RANGE, "1,1000,1"), "set_bake_resolution", "get_bake_resolution");
 	ADD_PROPERTY(PropertyInfo(Variant::INT, "_data", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_NO_EDITOR | PROPERTY_USAGE_INTERNAL), "_set_data", "_get_data");
 	ADD_ARRAY_COUNT("Points", "point_count", "set_point_count", "get_point_count", "point_");
