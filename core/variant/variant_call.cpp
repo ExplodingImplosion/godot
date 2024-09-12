@@ -862,18 +862,6 @@ struct _VariantCall {
 		return ret;
 	}
 
-	static Variant func_PackedByteArray_decode_var_noheader(PackedByteArray *p_instance, int64_t p_offset, bool p_allow_objects, uint32_t header) {
-		uint64_t size = p_instance->size();
-		ERR_FAIL_COND_V(p_offset < 0, Variant());
-		const uint8_t *r = p_instance->ptr();
-		Variant ret;
-		Error err = hehe(ret, r + p_offset, size - p_offset, nullptr, p_allow_objects, header);
-		if (err != OK) {
-			ret = Variant();
-		}
-		return ret;
-	}
-
 	static int64_t func_PackedByteArray_decode_var_size(PackedByteArray *p_instance, int64_t p_offset, bool p_allow_objects) {
 		uint64_t size = p_instance->size();
 		ERR_FAIL_COND_V(p_offset < 0, 0);
@@ -2376,7 +2364,6 @@ static void _register_variant_builtin_methods_array() {
 	bind_function(PackedByteArray, has_encoded_var, _VariantCall::func_PackedByteArray_has_encoded_var, sarray("byte_offset", "allow_objects"), varray(false));
 	bind_function(PackedByteArray, decode_var, _VariantCall::func_PackedByteArray_decode_var, sarray("byte_offset", "allow_objects"), varray(false));
 	bind_function(PackedByteArray, decode_var_size, _VariantCall::func_PackedByteArray_decode_var_size, sarray("byte_offset", "allow_objects"), varray(false));
-	bind_function(PackedByteArray, decode_var_noheader, _VariantCall::func_PackedByteArray_decode_var_noheader, sarray("byte_offset", "allow_objects", "type"), varray(false));
 
 	bind_function(PackedByteArray, to_int32_array, _VariantCall::func_PackedByteArray_decode_s32_array, sarray(), varray());
 	bind_function(PackedByteArray, to_int64_array, _VariantCall::func_PackedByteArray_decode_s64_array, sarray(), varray());
