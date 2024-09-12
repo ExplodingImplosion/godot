@@ -153,6 +153,7 @@ public:
 
 	void set_setting(const String &p_setting, const Variant &p_value);
 	Variant get_setting(const String &p_setting, const Variant &p_default_value = Variant()) const;
+	Variant get_setting_safe(const String &p_setting, const Variant &p_default_value = Variant());
 	TypedArray<Dictionary> get_global_class_list();
 	void refresh_global_class_list();
 	void store_global_class_list(const Array &p_classes);

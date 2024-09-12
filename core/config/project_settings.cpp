@@ -1198,6 +1198,15 @@ Variant ProjectSettings::get_setting(const String &p_setting, const Variant &p_d
 	}
 }
 
+Variant ProjectSettings::get_setting_safe(const String &p_setting, const Variant &p_default_value) {
+	if (has_setting(p_setting)) {
+		return get(p_setting);
+	} else {
+		set_setting(p_setting,p_default_value);
+		return p_default_value;
+	}
+}
+
 void ProjectSettings::refresh_global_class_list() {
 	// This is called after mounting a new PCK file to pick up class changes.
 	is_global_class_list_loaded = false; // Make sure we read from the freshly mounted PCK.
@@ -1365,6 +1374,7 @@ void ProjectSettings::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("has_setting", "name"), &ProjectSettings::has_setting);
 	ClassDB::bind_method(D_METHOD("set_setting", "name", "value"), &ProjectSettings::set_setting);
 	ClassDB::bind_method(D_METHOD("get_setting", "name", "default_value"), &ProjectSettings::get_setting, DEFVAL(Variant()));
+	ClassDB::bind_method(D_METHOD("get_setting_safe", "name", "default_value"), &ProjectSettings::get_setting_safe, DEFVAL(Variant()));
 	ClassDB::bind_method(D_METHOD("get_setting_with_override", "name"), &ProjectSettings::get_setting_with_override);
 	ClassDB::bind_method(D_METHOD("get_global_class_list"), &ProjectSettings::get_global_class_list);
 	ClassDB::bind_method(D_METHOD("set_order", "name", "position"), &ProjectSettings::set_order);
