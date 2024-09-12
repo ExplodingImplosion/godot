@@ -125,7 +125,11 @@ Error decode_variant(Variant &r_variant, const uint8_t *p_buffer, int p_len, int
 	if (r_len) {
 		*r_len = 4;
 	}
+	return hehe(r_variant, buf, len, r_len, p_allow_objects, p_depth, header);
+}
 
+
+Error hehe(Variant &r_variant, const uint8_t *buf, int len, int *r_len, bool p_allow_objects, int p_depth, uint32_t header){
 	// Note: We cannot use sizeof(real_t) for decoding, in case a different size is encoded.
 	// Decoding math types always checks for the encoded size, while encoding always uses compilation setting.
 	// This does lead to some code duplication for decoding, but compatibility is the priority.
