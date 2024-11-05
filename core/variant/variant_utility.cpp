@@ -759,6 +759,26 @@ int64_t VariantUtilityFunctions::clampi(int64_t x, int64_t min, int64_t max) {
 	return CLAMP(x, min, max);
 }
 
+int64_t VariantUtilityFunctions::flip_bit(int64_t num, int64_t bit_idx) {
+	ERR_FAIL_COND_MSG(bit_idx < 0 || bit_idx > 63, "bit_idx is out of range. Must be a number from 0 to 63.")
+	return num^(1<<bit_idx)
+}
+
+int64_t VariantUtilityFunctions::set_bit(int64_t num, int64_t bit_idx, bool on) {
+	ERR_FAIL_COND_MSG(bit_idx < 0 || bit_idx > 63, "bit_idx is out of range. Must be a number from 0 to 63.")
+	if (on) {
+		return num | (1<<bit_idx)
+	}
+	else {
+		return num & ~(1<<bit_idx)
+	}
+}
+
+bool VariantUtilityFunctions::get_bit(int64_t num, int64_t bit_idx) {
+	ERR_FAIL_COND_MSG(bit_idx < 0 || bit_idx > 63, "bit_idx is out of range. Must be a number from 0 to 63.")
+	return bool(num&(1<<bit_idx))
+}
+
 int64_t VariantUtilityFunctions::nearest_po2(int64_t x) {
 	return nearest_power_of_2_templated(uint64_t(x));
 }
@@ -1775,6 +1795,10 @@ void Variant::_register_variant_utility_functions() {
 	FUNCBINDVR3(clamp, sarray("value", "min", "max"), Variant::UTILITY_FUNC_TYPE_MATH);
 	FUNCBINDR(clampi, sarray("value", "min", "max"), Variant::UTILITY_FUNC_TYPE_MATH);
 	FUNCBINDR(clampf, sarray("value", "min", "max"), Variant::UTILITY_FUNC_TYPE_MATH);
+
+	FUNCBINDR(flip_bit,sarray("num","bit_idx") Variant::UTILITY_FUNC_TYPE_MATH);
+	FUNCBINDR(set_bit,sarray("num","bit_idx") Variant::UTILITY_FUNC_TYPE_MATH);
+	FUNCBINDR(get_bit,sarray("num","bit_idx") Variant::UTILITY_FUNC_TYPE_MATH);
 
 	FUNCBINDR(nearest_po2, sarray("value"), Variant::UTILITY_FUNC_TYPE_MATH);
 	FUNCBINDR(pingpong, sarray("value", "length"), Variant::UTILITY_FUNC_TYPE_MATH);
