@@ -760,23 +760,23 @@ int64_t VariantUtilityFunctions::clampi(int64_t x, int64_t min, int64_t max) {
 }
 
 int64_t VariantUtilityFunctions::flip_bit(int64_t num, int64_t bit_idx) {
-	ERR_FAIL_COND_MSG(bit_idx < 0 || bit_idx > 63, "bit_idx is out of range. Must be a number from 0 to 63.")
-	return num^(1<<bit_idx)
+	ERR_FAIL_COND_MSG(bit_idx < 0 || bit_idx > 63, "bit_idx is out of range. Must be a number from 0 to 63.");
+	return num^(1<<bit_idx);
 }
 
 int64_t VariantUtilityFunctions::set_bit(int64_t num, int64_t bit_idx, bool on) {
-	ERR_FAIL_COND_MSG(bit_idx < 0 || bit_idx > 63, "bit_idx is out of range. Must be a number from 0 to 63.")
+	ERR_FAIL_COND_MSG(bit_idx < 0 || bit_idx > 63, "bit_idx is out of range. Must be a number from 0 to 63.");
 	if (on) {
-		return num | (1<<bit_idx)
+		return num | (1<<bit_idx);
 	}
 	else {
-		return num & ~(1<<bit_idx)
+		return num & ~(1<<bit_idx);
 	}
 }
 
 bool VariantUtilityFunctions::get_bit(int64_t num, int64_t bit_idx) {
-	ERR_FAIL_COND_MSG(bit_idx < 0 || bit_idx > 63, "bit_idx is out of range. Must be a number from 0 to 63.")
-	return bool(num&(1<<bit_idx))
+	ERR_FAIL_COND_MSG(bit_idx < 0 || bit_idx > 63, "bit_idx is out of range. Must be a number from 0 to 63.");
+	return bool(num&(1<<bit_idx));
 }
 
 int64_t VariantUtilityFunctions::nearest_po2(int64_t x) {
