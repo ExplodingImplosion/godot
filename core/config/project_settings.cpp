@@ -1317,7 +1317,7 @@ Variant ProjectSettings::get_setting_safe(const String &p_setting, const Variant
 	if (has_setting(p_setting)) {
 		return get(p_setting);
 	} else {
-		set_setting(p_setting,p_default_value);
+		set_setting(p_setting, p_default_value);
 		return p_default_value;
 	}
 }
