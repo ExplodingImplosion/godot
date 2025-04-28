@@ -44,12 +44,3 @@ jobs:
     name: 🌐 Web
     needs: static-checks
     uses: ./.github/workflows/web_builds.yml
-  release:
-    name: Create Download Links
-    needs: [static-checks, linux-build]
-    uses: ncipollo/release-action/blob/440c8c1cb0ed28b9f43e4d1d670870f059653174/.github/workflows/release.yml@v1.16.0
-    with:
-      token: ${{ secrets.GITHUB_TOKEN }}
-      generateReleaseNotes: true
-      tag: ${{ github.ref_name }}
-      artifacts: ${{ steps.export.outputs.archive_directory }}/* # Added "/*" at the end is glob pattern match for this action
