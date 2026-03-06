@@ -1,0 +1,37 @@
+#include network.h
+#include hit_resolver.h
+#include hitbox.h
+#include debug_meshes.h
+#include multiplayer_level.h
+#include multiplayer_session.h
+#include bounding_box.h
+#include serializer.h
+#include owner_id.h
+#include player.h
+#include head_component.h
+#include player_character.h
+#include hit_request.h
+
+class HitResolver: public Node {
+GDCLASS(HitResolver, Node);
+public:
+Node3d mp_level;
+Array hit_requests;
+Dictionary hit_map;
+enum PhysicsPriority {
+SINGLETONS = -1,
+REGULAR = 0,
+BOUNDING_BOX = 1,
+SERIALIZER = 2,
+HIT_RESOLVER = 3,
+HISTORY_SAVER = 4,
+PERF_OVERLAY = 5,
+};
+static bool is_valid_hit_resolution_subject(Node node);
+void _init(Node3d mp_level);
+void _exit_tree();
+void _physics_process(float _delta);
+void resolve_hits();
+void request_hit(int player_id, Node requester, Callable callable, Array bounding_boxes, bool subtick);
+};
+VARIANT_ENUM_CAST(HitResolver::PhysicsPriority);
