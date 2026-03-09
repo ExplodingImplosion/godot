@@ -22,5 +22,5 @@ ClassDB::bind_method(D_METHOD("send", "input"), &RemoteConsoleCommandPacket::sen
 ClassDB::bind_method(D_METHOD("_execute", "sender_id"), &RemoteConsoleCommandPacket::_execute);
 ClassDB::bind_method(D_METHOD("is_script_valid_packet", "script"), &RemoteConsoleCommandPacket::is_script_valid_packet);
 ClassDB::bind_method(D_METHOD("_execute", "_sender_id"), &RemoteConsoleCommandPacket::_execute);
-ADD_PROPERTY(PropertyInfo(Variant::STRING, "input"))),"set_input","get_input"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::STRING, "input" , "get_input", "set_input")); // unfinished and u should prolly change this
 }

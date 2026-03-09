@@ -50,9 +50,9 @@ ClassDB::bind_method(D_METHOD("_execute", "sender_id"), &WorldStatePacket::_exec
 ClassDB::bind_method(D_METHOD("_to_string"), &WorldStatePacket::_to_string);
 ClassDB::bind_method(D_METHOD("is_script_valid_packet", "script"), &WorldStatePacket::is_script_valid_packet);
 ClassDB::bind_method(D_METHOD("_execute", "_sender_id"), &WorldStatePacket::_execute);
-ADD_PROPERTY(PropertyInfo(Variant::INT, "u32_frame"))),"set_u32_frame","get_u32_frame"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "u32_last_frame"))),"set_u32_last_frame","get_u32_last_frame"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "u32_input_signature"))),"set_u32_input_signature","get_u32_input_signature"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "u32_acked_signature"))),"set_u32_acked_signature","get_u32_acked_signature"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::PACKED_BYTE_ARRAY, "contents"))),"set_contents","get_contents"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "u32_frame" , "get_u32_frame", "set_u32_frame")); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "u32_last_frame" , "get_u32_last_frame", "set_u32_last_frame")); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "u32_input_signature" , "get_u32_input_signature", "set_u32_input_signature")); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "u32_acked_signature" , "get_u32_acked_signature", "set_u32_acked_signature")); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::PACKED_BYTE_ARRAY, "contents" , "get_contents", "set_contents")); // unfinished and u should prolly change this
 }

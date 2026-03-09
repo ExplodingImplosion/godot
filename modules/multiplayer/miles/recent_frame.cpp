@@ -32,6 +32,6 @@ ClassDB::bind_method(D_METHOD("merge", "frame"), &RecentFrame::merge);
 ClassDB::bind_method(D_METHOD("_init", "serialized_nodes", "frame_num"), &RecentFrame::_init);
 ClassDB::bind_method(D_METHOD("get_delta", "prev_frame", "receiver_id", "hostility_mask"), &RecentFrame::get_delta);
 ClassDB::bind_method(D_METHOD("decode_delta", "delta", "frame_num", "delta_frame_num"), &RecentFrame::decode_delta);
-ADD_PROPERTY(PropertyInfo(Variant::INT, "num"))),"set_num","get_num"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "serializations", 38, "int;RefCounted", 4096))),"set_serializations","get_serializations"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "num" , "get_num", "set_num")); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "serializations" , "get_serializations", "set_serializations", 38, "int;RefCounted", 4096)); // unfinished and u should prolly change this
 }

@@ -152,16 +152,16 @@ ClassDB::bind_method(D_METHOD("delta_decode_nodes", "buffer"), &Serializer::delt
 ClassDB::bind_method(D_METHOD("decode", "buffer", "vis_type"), &Serializer::decode);
 ClassDB::bind_method(D_METHOD("decode_delta", "buffer", "vis_type"), &Serializer::decode_delta);
 ClassDB::bind_method(D_METHOD("get_serialization_info", "scene", "scene_id", "state"), &Serializer::get_serialization_info);
-ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "serialization_properties", 23, "24/17:NetworkedNode", 4102))),"set_serialization_properties","get_serialization_properties"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "nodes", 23, "24/34:Node", 4102))),"set_nodes","get_nodes"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "test_dict", 23, "24/34:Node;24/17:NetworkedNode", 4102))),"set_test_dict","get_test_dict"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "update_frequency"))),"set_update_frequency","get_update_frequency"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "update_time_left"))),"set_update_time_left","get_update_time_left"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::BOOL, "updating"))),"set_updating","get_updating"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "uid"))),"set_uid","get_uid"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "scene_id"))),"set_scene_id","get_scene_id"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::BOOL, "has_serialized"))),"set_has_serialized","get_has_serialized"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "serialized"))),"set_serialized","get_serialized"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "serialization_properties" , "get_serialization_properties", "set_serialization_properties", 23, "24/17:NetworkedNode", 4102)); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "nodes" , "get_nodes", "set_nodes", 23, "24/34:Node", 4102)); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "test_dict" , "get_test_dict", "set_test_dict", 23, "24/34:Node;24/17:NetworkedNode", 4102)); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "update_frequency" , "get_update_frequency", "set_update_frequency")); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "update_time_left" , "get_update_time_left", "set_update_time_left")); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::BOOL, "updating" , "get_updating", "set_updating")); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "uid" , "get_uid", "set_uid")); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "scene_id" , "get_scene_id", "set_scene_id")); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::BOOL, "has_serialized" , "get_has_serialized", "set_has_serialized")); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "serialized" , "get_serialized", "set_serialized")); // unfinished and u should prolly change this
 BIND_ENUM_CONSTANT(SINGLETONS);
 BIND_ENUM_CONSTANT(REGULAR);
 BIND_ENUM_CONSTANT(BOUNDING_BOX);
