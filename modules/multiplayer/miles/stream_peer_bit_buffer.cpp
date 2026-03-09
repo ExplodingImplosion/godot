@@ -219,6 +219,24 @@ void StreamPeerBitBuffer::put_probabalistic_enum(int value) {
 int StreamPeerBitBuffer::get_probabalistic_enum(int enum_max) {
 	
 }
+int StreamPeerBitBuffer::get_bool_position() {
+	
+}
+int StreamPeerBitBuffer::set_bool_position(int bool_position) {
+	
+}
+int StreamPeerBitBuffer::get_num_allocated_bools() {
+	
+}
+int StreamPeerBitBuffer::set_num_allocated_bools(int num_allocated_bools) {
+	
+}
+int StreamPeerBitBuffer::get_bool_bytes() {
+	
+}
+int StreamPeerBitBuffer::set_bool_bytes(int bool_bytes) {
+	
+}
 void StreamPeerBitBuffer::_bind_methods(){
 ClassDB::bind_method(D_METHOD("_to_string"), &StreamPeerBitBuffer::_to_string);
 ClassDB::bind_method(D_METHOD("reset"), &StreamPeerBitBuffer::reset);
