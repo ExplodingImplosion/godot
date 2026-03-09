@@ -12,8 +12,8 @@ void AddPlayerRequestPacket::_execute(int _sender_id) {
 	
 }
 void AddPlayerRequestPacket::_bind_methods(){
-ClassDB::bind_method(D_METHOD("send"), &AddPlayerRequestPacket::send);
+ClassDB::bind_static_method("AddPlayerRequestPacket", D_METHOD("send"), &AddPlayerRequestPacket::send);
 ClassDB::bind_method(D_METHOD("_execute", "sender_id"), &AddPlayerRequestPacket::_execute);
-ClassDB::bind_method(D_METHOD("is_script_valid_packet", "script"), &AddPlayerRequestPacket::is_script_valid_packet);
+ClassDB::bind_static_method("AddPlayerRequestPacket", D_METHOD("is_script_valid_packet", "script"), &AddPlayerRequestPacket::is_script_valid_packet);
 ClassDB::bind_method(D_METHOD("_execute", "_sender_id"), &AddPlayerRequestPacket::_execute);
 }

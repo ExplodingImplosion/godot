@@ -76,10 +76,10 @@ ClassDB::bind_method(D_METHOD("release_mouse_control"), &HeadComponent::release_
 ClassDB::bind_method(D_METHOD("release_stick_control"), &HeadComponent::release_stick_control);
 ClassDB::bind_method(D_METHOD("aim", "direction"), &HeadComponent::aim);
 ClassDB::bind_method(D_METHOD("_process", "delta"), &HeadComponent::_process);
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "player"), "get_player," "set_player"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "camera"), "get_camera," "set_camera"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "transformer"), "get_transformer," "set_transformer"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::CALLABLE, "stick_aim_func"), "get_stick_aim_func," "set_stick_aim_func"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::CALLABLE, "release_mouse_aim"), "get_release_mouse_aim," "set_release_mouse_aim"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::CALLABLE, "release_stick_aim"), "get_release_stick_aim," "set_release_stick_aim"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "player"), "set_player," "get_player"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "camera"), "set_camera," "get_camera"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "transformer"), "set_transformer," "get_transformer"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::CALLABLE, "stick_aim_func"), "set_stick_aim_func," "get_stick_aim_func"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::CALLABLE, "release_mouse_aim"), "set_release_mouse_aim," "get_release_mouse_aim"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::CALLABLE, "release_stick_aim"), "set_release_stick_aim," "get_release_stick_aim"); // unfinished and u should prolly change this
 }

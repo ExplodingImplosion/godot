@@ -70,13 +70,13 @@ ClassDB::bind_method(D_METHOD("_init", "client_owner", "player_index"), &Player:
 ClassDB::bind_method(D_METHOD("get_input", "prev_frame_offset"), &Player::get_input);
 ClassDB::bind_method(D_METHOD("get_input_by_signature", "signature"), &Player::get_input_by_signature);
 ClassDB::bind_method(D_METHOD("apply_local_inputs"), &Player::apply_local_inputs);
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "client"), "get_client," "set_client"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "id"), "get_id," "set_id"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "idx"), "get_idx," "set_idx"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "team"), "get_team," "set_team"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::BOOL, "spectating"), "get_spectating," "set_spectating"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "camera"), "get_camera," "set_camera"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::STRING, "action_suffix"), "get_action_suffix," "set_action_suffix"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "input_buffer", 31, "RefCounted", 4096), "get_input_buffer," "set_input_buffer"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::VECTOR_2, "aim_angle"), "get_aim_angle," "set_aim_angle"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "client"), "set_client," "get_client"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "id"), "set_id," "get_id"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "idx"), "set_idx," "get_idx"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "team"), "set_team," "get_team"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::BOOL, "spectating"), "set_spectating," "get_spectating"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "camera"), "set_camera," "get_camera"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::STRING, "action_suffix"), "set_action_suffix," "get_action_suffix"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "input_buffer", 31, "RefCounted", 4096), "set_input_buffer," "get_input_buffer"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::VECTOR_2, "aim_angle"), "set_aim_angle," "get_aim_angle"); // unfinished and u should prolly change this
 }

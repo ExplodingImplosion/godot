@@ -104,21 +104,21 @@ ClassDB::bind_method(D_METHOD("was_deleted"), &SerializedNodeCollection::was_del
 ClassDB::bind_method(D_METHOD("_to_string"), &SerializedNodeCollection::_to_string);
 ClassDB::bind_method(D_METHOD("update_interpolation", "new_property_lists"), &SerializedNodeCollection::update_interpolation);
 ClassDB::bind_method(D_METHOD("duplicate"), &SerializedNodeCollection::duplicate);
-ClassDB::bind_method(D_METHOD("create_fresh", "uid", "scene_id", "owner_id", "team", "frame_created", "node_configs"), &SerializedNodeCollection::create_fresh);
+ClassDB::bind_static_method("SerializedNodeCollection", D_METHOD("create_fresh", "uid", "scene_id", "owner_id", "team", "frame_created", "node_configs"), &SerializedNodeCollection::create_fresh);
 ClassDB::bind_method(D_METHOD("_init", "property_lists", "uid", "scene_id", "owner_id", "team", "frame_created", "node_configs", "duplicate"), &SerializedNodeCollection::_init);
 ClassDB::bind_method(D_METHOD("encode_spawn", "buffer", "vis_type"), &SerializedNodeCollection::encode_spawn);
 ClassDB::bind_method(D_METHOD("decode_spawn", "buffer", "vis_type"), &SerializedNodeCollection::decode_spawn);
 ClassDB::bind_method(D_METHOD("encode_delta", "prev", "buffer", "vis_type"), &SerializedNodeCollection::encode_delta);
 ClassDB::bind_method(D_METHOD("decode_delta", "buffer", "vis_type"), &SerializedNodeCollection::decode_delta);
-ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "node_configs", 31, "NetworkedNode", 4096), "get_node_configs," "set_node_configs"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "property_lists", 31, "Array", 4096), "get_property_lists," "set_property_lists"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "prev_property_lists", 31, "Array", 4096), "get_prev_property_lists," "set_prev_property_lists"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "num_nodes"), "get_num_nodes," "set_num_nodes"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "uid"), "get_uid," "set_uid"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "scene_id"), "get_scene_id," "set_scene_id"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "owner_id"), "get_owner_id," "set_owner_id"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "team"), "get_team," "set_team"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "frame_created"), "get_frame_created," "set_frame_created"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "frame_deleted"), "get_frame_deleted," "set_frame_deleted"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "visibility"), "get_visibility," "set_visibility"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "node_configs", 31, "NetworkedNode", 4096), "set_node_configs," "get_node_configs"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "property_lists", 31, "Array", 4096), "set_property_lists," "get_property_lists"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "prev_property_lists", 31, "Array", 4096), "set_prev_property_lists," "get_prev_property_lists"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "num_nodes"), "set_num_nodes," "get_num_nodes"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "uid"), "set_uid," "get_uid"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "scene_id"), "set_scene_id," "get_scene_id"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "owner_id"), "set_owner_id," "get_owner_id"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "team"), "set_team," "get_team"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "frame_created"), "set_frame_created," "get_frame_created"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "frame_deleted"), "set_frame_deleted," "get_frame_deleted"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "visibility"), "set_visibility," "get_visibility"); // unfinished and u should prolly change this
 }

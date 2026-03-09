@@ -33,15 +33,15 @@ void MultiplayerSession::tick(Node history_saver) {
 	
 }
 void MultiplayerSession::_bind_methods(){
-ClassDB::bind_method(D_METHOD("send_states_to_clients", "history"), &MultiplayerSession::send_states_to_clients);
-ClassDB::bind_method(D_METHOD("reset"), &MultiplayerSession::reset);
-ClassDB::bind_method(D_METHOD("client_is_ready", "id"), &MultiplayerSession::client_is_ready);
-ClassDB::bind_method(D_METHOD("add_client", "id", "num_players"), &MultiplayerSession::add_client);
-ClassDB::bind_method(D_METHOD("add_local_client", "id", "num_players"), &MultiplayerSession::add_local_client);
-ClassDB::bind_method(D_METHOD("add_dummy_client", "id"), &MultiplayerSession::add_dummy_client);
-ClassDB::bind_method(D_METHOD("mark_client_ready", "id"), &MultiplayerSession::mark_client_ready);
-ClassDB::bind_method(D_METHOD("remove_client", "id"), &MultiplayerSession::remove_client);
-ClassDB::bind_method(D_METHOD("get_ready_clients"), &MultiplayerSession::get_ready_clients);
-ClassDB::bind_method(D_METHOD("are_clients_friendly", "cid1", "cid2"), &MultiplayerSession::are_clients_friendly);
-ClassDB::bind_method(D_METHOD("tick", "history_saver"), &MultiplayerSession::tick);
+ClassDB::bind_static_method("MultiplayerSession", D_METHOD("send_states_to_clients", "history"), &MultiplayerSession::send_states_to_clients);
+ClassDB::bind_static_method("MultiplayerSession", D_METHOD("reset"), &MultiplayerSession::reset);
+ClassDB::bind_static_method("MultiplayerSession", D_METHOD("client_is_ready", "id"), &MultiplayerSession::client_is_ready);
+ClassDB::bind_static_method("MultiplayerSession", D_METHOD("add_client", "id", "num_players"), &MultiplayerSession::add_client);
+ClassDB::bind_static_method("MultiplayerSession", D_METHOD("add_local_client", "id", "num_players"), &MultiplayerSession::add_local_client);
+ClassDB::bind_static_method("MultiplayerSession", D_METHOD("add_dummy_client", "id"), &MultiplayerSession::add_dummy_client);
+ClassDB::bind_static_method("MultiplayerSession", D_METHOD("mark_client_ready", "id"), &MultiplayerSession::mark_client_ready);
+ClassDB::bind_static_method("MultiplayerSession", D_METHOD("remove_client", "id"), &MultiplayerSession::remove_client);
+ClassDB::bind_static_method("MultiplayerSession", D_METHOD("get_ready_clients"), &MultiplayerSession::get_ready_clients);
+ClassDB::bind_static_method("MultiplayerSession", D_METHOD("are_clients_friendly", "cid1", "cid2"), &MultiplayerSession::are_clients_friendly);
+ClassDB::bind_static_method("MultiplayerSession", D_METHOD("tick", "history_saver"), &MultiplayerSession::tick);
 }

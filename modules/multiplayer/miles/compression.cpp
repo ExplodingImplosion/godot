@@ -27,13 +27,13 @@ PackedByteArray Compression::repeated_decompress(PackedByteArray bytes, int comp
 	
 }
 void Compression::_bind_methods(){
-ClassDB::bind_method(D_METHOD("is_compressed", "bytes"), &Compression::is_compressed);
-ClassDB::bind_method(D_METHOD("get_num_times_compressed", "bytes"), &Compression::get_num_times_compressed);
-ClassDB::bind_method(D_METHOD("get_begin_offset", "bytes", "big"), &Compression::get_begin_offset);
-ClassDB::bind_method(D_METHOD("get_contents_decompressed_size", "times_compressed", "bytes", "big"), &Compression::get_contents_decompressed_size);
-ClassDB::bind_method(D_METHOD("get_contents", "bytes", "big"), &Compression::get_contents);
-ClassDB::bind_method(D_METHOD("get_bytes_decompressed", "times_compressed", "bytes", "contents", "compression_mode", "big"), &Compression::get_bytes_decompressed);
-ClassDB::bind_method(D_METHOD("repeated_compress", "bytes", "compression_mode", "big"), &Compression::repeated_compress);
-ClassDB::bind_method(D_METHOD("add_compression", "final", "offset", "compressed_size", "big"), &Compression::add_compression);
-ClassDB::bind_method(D_METHOD("repeated_decompress", "bytes", "compression_mode", "big"), &Compression::repeated_decompress);
+ClassDB::bind_static_method("Compression", D_METHOD("is_compressed", "bytes"), &Compression::is_compressed);
+ClassDB::bind_static_method("Compression", D_METHOD("get_num_times_compressed", "bytes"), &Compression::get_num_times_compressed);
+ClassDB::bind_static_method("Compression", D_METHOD("get_begin_offset", "bytes", "big"), &Compression::get_begin_offset);
+ClassDB::bind_static_method("Compression", D_METHOD("get_contents_decompressed_size", "times_compressed", "bytes", "big"), &Compression::get_contents_decompressed_size);
+ClassDB::bind_static_method("Compression", D_METHOD("get_contents", "bytes", "big"), &Compression::get_contents);
+ClassDB::bind_static_method("Compression", D_METHOD("get_bytes_decompressed", "times_compressed", "bytes", "contents", "compression_mode", "big"), &Compression::get_bytes_decompressed);
+ClassDB::bind_static_method("Compression", D_METHOD("repeated_compress", "bytes", "compression_mode", "big"), &Compression::repeated_compress);
+ClassDB::bind_static_method("Compression", D_METHOD("add_compression", "final", "offset", "compressed_size", "big"), &Compression::add_compression);
+ClassDB::bind_static_method("Compression", D_METHOD("repeated_decompress", "bytes", "compression_mode", "big"), &Compression::repeated_decompress);
 }

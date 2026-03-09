@@ -45,10 +45,10 @@ void HitRequest::_bind_methods(){
 ClassDB::bind_method(D_METHOD("merge", "requester", "callable", "bounding_boxes", "subtick"), &HitRequest::merge);
 ClassDB::bind_method(D_METHOD("_init", "player_id", "requester", "callable", "bounding_boxes", "subtick"), &HitRequest::_init);
 ClassDB::bind_method(D_METHOD("resolve", "level"), &HitRequest::resolve);
-ClassDB::bind_method(D_METHOD("hitreg_debug_boxes", "show_hitreg", "serializer", "color", "time"), &HitRequest::hitreg_debug_boxes);
-ADD_PROPERTY(PropertyInfo(Variant::INT, "player_id"), "get_player_id," "set_player_id"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "requesters", 31, "Node", 4096), "get_requesters," "set_requesters"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "callables", 31, "Callable", 4096), "get_callables," "set_callables"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "bounding_boxes", 38, "StaticBody3D;Variant", 4096), "get_bounding_boxes," "set_bounding_boxes"); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::BOOL, "subtick"), "get_subtick," "set_subtick"); // unfinished and u should prolly change this
+ClassDB::bind_static_method("HitRequest", D_METHOD("hitreg_debug_boxes", "show_hitreg", "serializer", "color", "time"), &HitRequest::hitreg_debug_boxes);
+ADD_PROPERTY(PropertyInfo(Variant::INT, "player_id"), "set_player_id," "get_player_id"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "requesters", 31, "Node", 4096), "set_requesters," "get_requesters"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "callables", 31, "Callable", 4096), "set_callables," "get_callables"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "bounding_boxes", 38, "StaticBody3D;Variant", 4096), "set_bounding_boxes," "get_bounding_boxes"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::BOOL, "subtick"), "set_subtick," "get_subtick"); // unfinished and u should prolly change this
 }

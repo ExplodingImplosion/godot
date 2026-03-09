@@ -12,10 +12,10 @@ Vector3 Collision::get_center_of_mass(CollisionObject3d object) {
 	
 }
 void Collision::_bind_methods(){
-ClassDB::bind_method(D_METHOD("is_in_layer", "layers", "layer"), &Collision::is_in_layer);
-ClassDB::bind_method(D_METHOD("scale_shape", "shape", "scale"), &Collision::scale_shape);
-ClassDB::bind_method(D_METHOD("get_shape_extents", "shape"), &Collision::get_shape_extents);
-ClassDB::bind_method(D_METHOD("get_center_of_mass", "object"), &Collision::get_center_of_mass);
+ClassDB::bind_static_method("Collision", D_METHOD("is_in_layer", "layers", "layer"), &Collision::is_in_layer);
+ClassDB::bind_static_method("Collision", D_METHOD("scale_shape", "shape", "scale"), &Collision::scale_shape);
+ClassDB::bind_static_method("Collision", D_METHOD("get_shape_extents", "shape"), &Collision::get_shape_extents);
+ClassDB::bind_static_method("Collision", D_METHOD("get_center_of_mass", "object"), &Collision::get_center_of_mass);
 BIND_ENUM_CONSTANT(WORLD);
 BIND_ENUM_CONSTANT(PLAYER_COLLISION);
 BIND_ENUM_CONSTANT(DAMAGE);
