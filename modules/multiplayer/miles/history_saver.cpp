@@ -32,25 +32,25 @@ void HistorySaver::add_recent_frame(RefCounted frame) {
 Array HistorySaver::get_recent_frames() {
 	
 }
-Array HistorySaver::set_recent_frames(Array recent_frames) {
+Array HistorySaver::set_recent_frames(Array p_recent_frames) {
 	
 }
 RefCounted HistorySaver::get_history() {
 	
 }
-RefCounted HistorySaver::set_history(RefCounted history) {
+RefCounted HistorySaver::set_history(RefCounted p_history) {
 	
 }
 Node3d HistorySaver::get_level() {
 	
 }
-Node3d HistorySaver::set_level(Node3d level) {
+Node3d HistorySaver::set_level(Node3d p_level) {
 	
 }
 int HistorySaver::get_recent_frame_idx() {
 	
 }
-int HistorySaver::set_recent_frame_idx(int recent_frame_idx) {
+int HistorySaver::set_recent_frame_idx(int p_recent_frame_idx) {
 	
 }
 void HistorySaver::_bind_methods(){
@@ -64,8 +64,8 @@ ClassDB::bind_method(D_METHOD("get_recent_frame", "offset"), &HistorySaver::get_
 ClassDB::bind_method(D_METHOD("get_frame", "frame_num"), &HistorySaver::get_frame);
 ClassDB::bind_method(D_METHOD("get_frame_clamped", "frame_num"), &HistorySaver::get_frame_clamped);
 ClassDB::bind_method(D_METHOD("add_recent_frame", "frame"), &HistorySaver::add_recent_frame);
-ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "recent_frames" , "get_recent_frames", "set_recent_frames", 31, "RefCounted", 4096)); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "history" , "get_history", "set_history")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "level" , "get_level", "set_level")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "recent_frame_idx" , "get_recent_frame_idx", "set_recent_frame_idx")); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "recent_frames", 31, "RefCounted", 4096), "get_recent_frames," "set_recent_frames"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "history"), "get_history," "set_history"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "level"), "get_level," "set_level"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "recent_frame_idx"), "get_recent_frame_idx," "set_recent_frame_idx"); // unfinished and u should prolly change this
 }

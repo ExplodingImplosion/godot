@@ -155,121 +155,121 @@ void NetworkedNode::decode_delta_array_iter(Array array, StreamPeerBuffer buffer
 bool NetworkedNode::get_ready() {
 	
 }
-bool NetworkedNode::set_ready(bool ready) {
+bool NetworkedNode::set_ready(bool p_ready) {
 	
 }
 bool NetworkedNode::get_owner() {
 	
 }
-bool NetworkedNode::set_owner(bool owner) {
+bool NetworkedNode::set_owner(bool p_owner) {
 	
 }
 String NetworkedNode::get_owner_scene_path() {
 	
 }
-String NetworkedNode::set_owner_scene_path(String owner_scene_path) {
+String NetworkedNode::set_owner_scene_path(String p_owner_scene_path) {
 	
 }
 int NetworkedNode::get_num_props() {
 	
 }
-int NetworkedNode::set_num_props(int num_props) {
+int NetworkedNode::set_num_props(int p_num_props) {
 	
 }
 Script NetworkedNode::get_source_script() {
 	
 }
-Script NetworkedNode::set_source_script(Script source_script) {
+Script NetworkedNode::set_source_script(Script p_source_script) {
 	
 }
 StringName NetworkedNode::get_base_class() {
 	
 }
-StringName NetworkedNode::set_base_class(StringName base_class) {
+StringName NetworkedNode::set_base_class(StringName p_base_class) {
 	
 }
 Array NetworkedNode::get_properties() {
 	
 }
-Array NetworkedNode::set_properties(Array properties) {
+Array NetworkedNode::set_properties(Array p_properties) {
 	
 }
 PackedByteArray NetworkedNode::get_iter_all() {
 	
 }
-PackedByteArray NetworkedNode::set_iter_all(PackedByteArray iter_all) {
+PackedByteArray NetworkedNode::set_iter_all(PackedByteArray p_iter_all) {
 	
 }
 PackedByteArray NetworkedNode::get_iter_owner_only() {
 	
 }
-PackedByteArray NetworkedNode::set_iter_owner_only(PackedByteArray iter_owner_only) {
+PackedByteArray NetworkedNode::set_iter_owner_only(PackedByteArray p_iter_owner_only) {
 	
 }
 PackedByteArray NetworkedNode::get_iter_team_only() {
 	
 }
-PackedByteArray NetworkedNode::set_iter_team_only(PackedByteArray iter_team_only) {
+PackedByteArray NetworkedNode::set_iter_team_only(PackedByteArray p_iter_team_only) {
 	
 }
 PackedByteArray NetworkedNode::get_iter_physical() {
 	
 }
-PackedByteArray NetworkedNode::set_iter_physical(PackedByteArray iter_physical) {
+PackedByteArray NetworkedNode::set_iter_physical(PackedByteArray p_iter_physical) {
 	
 }
 Array NetworkedNode::get_iters() {
 	
 }
-Array NetworkedNode::set_iters(Array iters) {
+Array NetworkedNode::set_iters(Array p_iters) {
 	
 }
 Array NetworkedNode::get_iters_visible() {
 	
 }
-Array NetworkedNode::set_iters_visible(Array iters_visible) {
+Array NetworkedNode::set_iters_visible(Array p_iters_visible) {
 	
 }
 Dictionary NetworkedNode::get_bitmask_map() {
 	
 }
-Dictionary NetworkedNode::set_bitmask_map(Dictionary bitmask_map) {
+Dictionary NetworkedNode::set_bitmask_map(Dictionary p_bitmask_map) {
 	
 }
 bool NetworkedNode::get_is_fixed_size() {
 	
 }
-bool NetworkedNode::set_is_fixed_size(bool is_fixed_size) {
+bool NetworkedNode::set_is_fixed_size(bool p_is_fixed_size) {
 	
 }
 int NetworkedNode::get_num_bools() {
 	
 }
-int NetworkedNode::set_num_bools(int num_bools) {
+int NetworkedNode::set_num_bools(int p_num_bools) {
 	
 }
 int NetworkedNode::get_fixed_size_bytes() {
 	
 }
-int NetworkedNode::set_fixed_size_bytes(int fixed_size_bytes) {
+int NetworkedNode::set_fixed_size_bytes(int p_fixed_size_bytes) {
 	
 }
 GdScript NetworkedNode::get_type() {
 	
 }
-GdScript NetworkedNode::set_type(GdScript type) {
+GdScript NetworkedNode::set_type(GdScript p_type) {
 	
 }
 Callable NetworkedNode::get_get_plist_func() {
 	
 }
-Callable NetworkedNode::set_get_plist_func(Callable get_plist_func) {
+Callable NetworkedNode::set_get_plist_func(Callable p_get_plist_func) {
 	
 }
 Callable NetworkedNode::get_get_plist_short_func() {
 	
 }
-Callable NetworkedNode::set_get_plist_short_func(Callable get_plist_short_func) {
+Callable NetworkedNode::set_get_plist_short_func(Callable p_get_plist_short_func) {
 	
 }
 void NetworkedNode::_bind_methods(){
@@ -324,26 +324,26 @@ ClassDB::bind_method(D_METHOD("decode_array", "array", "buffer", "vis_type"), &N
 ClassDB::bind_method(D_METHOD("decode_array_iter", "array", "buffer", "iter"), &NetworkedNode::decode_array_iter);
 ClassDB::bind_method(D_METHOD("decode_delta_array", "array", "buffer", "vis_type"), &NetworkedNode::decode_delta_array);
 ClassDB::bind_method(D_METHOD("decode_delta_array_iter", "array", "buffer", "iter"), &NetworkedNode::decode_delta_array_iter);
-ADD_PROPERTY(PropertyInfo(Variant::BOOL, "ready" , "get_ready", "set_ready")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::BOOL, "owner" , "get_owner", "set_owner")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::STRING, "owner_scene_path" , "get_owner_scene_path", "set_owner_scene_path")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "num_props" , "get_num_props", "set_num_props")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "source_script" , "get_source_script", "set_source_script", 17, "Script", 4102)); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::STRING_NAME, "base_class" , "get_base_class", "set_base_class")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "properties" , "get_properties", "set_properties", 23, "24/17:Property", 4102)); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::PACKED_BYTE_ARRAY, "iter_all" , "get_iter_all", "set_iter_all")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::PACKED_BYTE_ARRAY, "iter_owner_only" , "get_iter_owner_only", "set_iter_owner_only")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::PACKED_BYTE_ARRAY, "iter_team_only" , "get_iter_team_only", "set_iter_team_only")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::PACKED_BYTE_ARRAY, "iter_physical" , "get_iter_physical", "set_iter_physical")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "iters" , "get_iters", "set_iters", 31, "PackedByteArray", 4096)); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "iters_visible" , "get_iters_visible", "set_iters_visible", 31, "bool", 4096)); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "bitmask_map" , "get_bitmask_map", "set_bitmask_map", 38, "PackedByteArray;int", 4096)); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::BOOL, "is_fixed_size" , "get_is_fixed_size", "set_is_fixed_size")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "num_bools" , "get_num_bools", "set_num_bools")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "fixed_size_bytes" , "get_fixed_size_bytes", "set_fixed_size_bytes")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "type" , "get_type", "set_type")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::CALLABLE, "get_plist_func" , "get_get_plist_func", "set_get_plist_func", 39, "check plist", 4100)); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::CALLABLE, "get_plist_short_func" , "get_get_plist_short_func", "set_get_plist_short_func", 39, "check plist (script only)", 4100)); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::BOOL, "ready"), "get_ready," "set_ready"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::BOOL, "owner"), "get_owner," "set_owner"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::STRING, "owner_scene_path"), "get_owner_scene_path," "set_owner_scene_path"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "num_props"), "get_num_props," "set_num_props"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "source_script", 17, "Script", 4102), "get_source_script," "set_source_script"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::STRING_NAME, "base_class"), "get_base_class," "set_base_class"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "properties", 23, "24/17:Property", 4102), "get_properties," "set_properties"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::PACKED_BYTE_ARRAY, "iter_all"), "get_iter_all," "set_iter_all"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::PACKED_BYTE_ARRAY, "iter_owner_only"), "get_iter_owner_only," "set_iter_owner_only"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::PACKED_BYTE_ARRAY, "iter_team_only"), "get_iter_team_only," "set_iter_team_only"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::PACKED_BYTE_ARRAY, "iter_physical"), "get_iter_physical," "set_iter_physical"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "iters", 31, "PackedByteArray", 4096), "get_iters," "set_iters"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "iters_visible", 31, "bool", 4096), "get_iters_visible," "set_iters_visible"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "bitmask_map", 38, "PackedByteArray;int", 4096), "get_bitmask_map," "set_bitmask_map"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::BOOL, "is_fixed_size"), "get_is_fixed_size," "set_is_fixed_size"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "num_bools"), "get_num_bools," "set_num_bools"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "fixed_size_bytes"), "get_fixed_size_bytes," "set_fixed_size_bytes"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "type"), "get_type," "set_type"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::CALLABLE, "get_plist_func", 39, "check plist", 4100), "get_get_plist_func," "set_get_plist_func"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::CALLABLE, "get_plist_short_func", 39, "check plist (script only)", 4100), "get_get_plist_short_func," "set_get_plist_short_func"); // unfinished and u should prolly change this
 BIND_ENUM_CONSTANT(ALL);
 BIND_ENUM_CONSTANT(OWNER_ONLY);
 BIND_ENUM_CONSTANT(TEAM_ONLY);

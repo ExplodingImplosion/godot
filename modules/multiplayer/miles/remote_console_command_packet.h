@@ -11,5 +11,5 @@ void _execute(int sender_id);
 static bool is_script_valid_packet(GdScript script);
 void _execute(int _sender_id);
 String get_input();
-String set_input(String input);
+String set_input(String p_input);
 };

@@ -89,133 +89,133 @@ void Client::tick_local() {
 int Client::get_id() {
 	
 }
-int Client::set_id(int id) {
+int Client::set_id(int p_id) {
 	
 }
 Array Client::get_players() {
 	
 }
-Array Client::set_players(Array players) {
+Array Client::set_players(Array p_players) {
 	
 }
 bool Client::get_ready() {
 	
 }
-bool Client::set_ready(bool ready) {
+bool Client::set_ready(bool p_ready) {
 	
 }
 RefCounted Client::get_most_recent_acked_frame() {
 	
 }
-RefCounted Client::set_most_recent_acked_frame(RefCounted most_recent_acked_frame) {
+RefCounted Client::set_most_recent_acked_frame(RefCounted p_most_recent_acked_frame) {
 	
 }
 RefCounted Client::get_dirty_frame() {
 	
 }
-RefCounted Client::set_dirty_frame(RefCounted dirty_frame) {
+RefCounted Client::set_dirty_frame(RefCounted p_dirty_frame) {
 	
 }
 int Client::get_server_acked_frame_num() {
 	
 }
-int Client::set_server_acked_frame_num(int server_acked_frame_num) {
+int Client::set_server_acked_frame_num(int p_server_acked_frame_num) {
 	
 }
 int Client::get_last_decoded_frame_size() {
 	
 }
-int Client::set_last_decoded_frame_size(int last_decoded_frame_size) {
+int Client::set_last_decoded_frame_size(int p_last_decoded_frame_size) {
 	
 }
 int Client::get_team() {
 	
 }
-int Client::set_team(int team) {
+int Client::set_team(int p_team) {
 	
 }
 RefCounted Client::get_most_recent_received_frame() {
 	
 }
-RefCounted Client::set_most_recent_received_frame(RefCounted most_recent_received_frame) {
+RefCounted Client::set_most_recent_received_frame(RefCounted p_most_recent_received_frame) {
 	
 }
 int Client::get_input_signature() {
 	
 }
-int Client::set_input_signature(int input_signature) {
+int Client::set_input_signature(int p_input_signature) {
 	
 }
 int Client::get_acked_input_signature() {
 	
 }
-int Client::set_acked_input_signature(int acked_input_signature) {
+int Client::set_acked_input_signature(int p_acked_input_signature) {
 	
 }
 int Client::get_server_input_signature() {
 	
 }
-int Client::set_server_input_signature(int server_input_signature) {
+int Client::set_server_input_signature(int p_server_input_signature) {
 	
 }
 int Client::get_input_buffer_offset() {
 	
 }
-int Client::set_input_buffer_offset(int input_buffer_offset) {
+int Client::set_input_buffer_offset(int p_input_buffer_offset) {
 	
 }
 RefCounted Client::get_replay() {
 	
 }
-RefCounted Client::set_replay(RefCounted replay) {
+RefCounted Client::set_replay(RefCounted p_replay) {
 	
 }
 bool Client::get_fucked() {
 	
 }
-bool Client::set_fucked(bool fucked) {
+bool Client::set_fucked(bool p_fucked) {
 	
 }
 Dictionary Client::get_uid_map() {
 	
 }
-Dictionary Client::set_uid_map(Dictionary uid_map) {
+Dictionary Client::set_uid_map(Dictionary p_uid_map) {
 	
 }
 int Client::get_max_command_frame_rate() {
 	
 }
-int Client::set_max_command_frame_rate(int max_command_frame_rate) {
+int Client::set_max_command_frame_rate(int p_max_command_frame_rate) {
 	
 }
 float Client::get_buffer_time() {
 	
 }
-float Client::set_buffer_time(float buffer_time) {
+float Client::set_buffer_time(float p_buffer_time) {
 	
 }
 float Client::get_input_buffer_time() {
 	
 }
-float Client::set_input_buffer_time(float input_buffer_time) {
+float Client::set_input_buffer_time(float p_input_buffer_time) {
 	
 }
 float Client::get_server_input_buffer_time() {
 	
 }
-float Client::set_server_input_buffer_time(float server_input_buffer_time) {
+float Client::set_server_input_buffer_time(float p_server_input_buffer_time) {
 	
 }
 int Client::get_max_receive_bandwidth() {
 	
 }
-int Client::set_max_receive_bandwidth(int max_receive_bandwidth) {
+int Client::set_max_receive_bandwidth(int p_max_receive_bandwidth) {
 	
 }
 int Client::get_max_send_bandwidth() {
 	
 }
-int Client::set_max_send_bandwidth(int max_send_bandwidth) {
+int Client::set_max_send_bandwidth(int p_max_send_bandwidth) {
 	
 }
 void Client::_bind_methods(){
@@ -248,26 +248,26 @@ ClassDB::bind_method(D_METHOD("change_input_buffer_offset", "amnt"), &Client::ch
 ClassDB::bind_method(D_METHOD("set_input_buffer_offset", "position"), &Client::set_input_buffer_offset);
 ClassDB::bind_method(D_METHOD("tick_player_inputs"), &Client::tick_player_inputs);
 ClassDB::bind_method(D_METHOD("tick_local"), &Client::tick_local);
-ADD_PROPERTY(PropertyInfo(Variant::INT, "id" , "get_id", "set_id")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "players" , "get_players", "set_players", 31, "RefCounted", 4096)); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::BOOL, "ready" , "get_ready", "set_ready")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "most_recent_acked_frame" , "get_most_recent_acked_frame", "set_most_recent_acked_frame")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "dirty_frame" , "get_dirty_frame", "set_dirty_frame")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "server_acked_frame_num" , "get_server_acked_frame_num", "set_server_acked_frame_num")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "last_decoded_frame_size" , "get_last_decoded_frame_size", "set_last_decoded_frame_size")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "team" , "get_team", "set_team")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "most_recent_received_frame" , "get_most_recent_received_frame", "set_most_recent_received_frame")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "input_signature" , "get_input_signature", "set_input_signature")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "acked_input_signature" , "get_acked_input_signature", "set_acked_input_signature")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "server_input_signature" , "get_server_input_signature", "set_server_input_signature")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "input_buffer_offset" , "get_input_buffer_offset", "set_input_buffer_offset")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "replay" , "get_replay", "set_replay")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::BOOL, "fucked" , "get_fucked", "set_fucked")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "uid_map" , "get_uid_map", "set_uid_map", 38, "int;int", 4096)); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "max_command_frame_rate" , "get_max_command_frame_rate", "set_max_command_frame_rate")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "buffer_time" , "get_buffer_time", "set_buffer_time")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "input_buffer_time" , "get_input_buffer_time", "set_input_buffer_time")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "server_input_buffer_time" , "get_server_input_buffer_time", "set_server_input_buffer_time")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "max_receive_bandwidth" , "get_max_receive_bandwidth", "set_max_receive_bandwidth")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "max_send_bandwidth" , "get_max_send_bandwidth", "set_max_send_bandwidth")); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "id"), "get_id," "set_id"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "players", 31, "RefCounted", 4096), "get_players," "set_players"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::BOOL, "ready"), "get_ready," "set_ready"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "most_recent_acked_frame"), "get_most_recent_acked_frame," "set_most_recent_acked_frame"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "dirty_frame"), "get_dirty_frame," "set_dirty_frame"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "server_acked_frame_num"), "get_server_acked_frame_num," "set_server_acked_frame_num"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "last_decoded_frame_size"), "get_last_decoded_frame_size," "set_last_decoded_frame_size"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "team"), "get_team," "set_team"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "most_recent_received_frame"), "get_most_recent_received_frame," "set_most_recent_received_frame"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "input_signature"), "get_input_signature," "set_input_signature"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "acked_input_signature"), "get_acked_input_signature," "set_acked_input_signature"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "server_input_signature"), "get_server_input_signature," "set_server_input_signature"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "input_buffer_offset"), "get_input_buffer_offset," "set_input_buffer_offset"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "replay"), "get_replay," "set_replay"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::BOOL, "fucked"), "get_fucked," "set_fucked"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "uid_map", 38, "int;int", 4096), "get_uid_map," "set_uid_map"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "max_command_frame_rate"), "get_max_command_frame_rate," "set_max_command_frame_rate"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "buffer_time"), "get_buffer_time," "set_buffer_time"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "input_buffer_time"), "get_input_buffer_time," "set_input_buffer_time"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "server_input_buffer_time"), "get_server_input_buffer_time," "set_server_input_buffer_time"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "max_receive_bandwidth"), "get_max_receive_bandwidth," "set_max_receive_bandwidth"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "max_send_bandwidth"), "get_max_send_bandwidth," "set_max_send_bandwidth"); // unfinished and u should prolly change this
 }

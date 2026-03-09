@@ -53,19 +53,19 @@ RefCounted OwnerId::get_player_owner() {
 int OwnerId::get_owner_id() {
 	
 }
-int OwnerId::set_owner_id(int owner_id) {
+int OwnerId::set_owner_id(int p_owner_id) {
 	
 }
 StringName OwnerId::get_group_name() {
 	
 }
-StringName OwnerId::set_group_name(StringName group_name) {
+StringName OwnerId::set_group_name(StringName p_group_name) {
 	
 }
 Node OwnerId::get_parent() {
 	
 }
-Node OwnerId::set_parent(Node parent) {
+Node OwnerId::set_parent(Node p_parent) {
 	
 }
 void OwnerId::_bind_methods(){
@@ -86,8 +86,8 @@ ClassDB::bind_method(D_METHOD("get_node_owner_id", "node"), &OwnerId::get_node_o
 ClassDB::bind_method(D_METHOD("get_node_client_owner", "node"), &OwnerId::get_node_client_owner);
 ClassDB::bind_method(D_METHOD("get_node_player_owner", "node"), &OwnerId::get_node_player_owner);
 ClassDB::bind_method(D_METHOD("get_player_owner"), &OwnerId::get_player_owner);
-ADD_PROPERTY(PropertyInfo(Variant::INT, "owner_id" , "get_owner_id", "set_owner_id")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::STRING_NAME, "group_name" , "get_group_name", "set_group_name")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "parent" , "get_parent", "set_parent")); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "owner_id"), "get_owner_id," "set_owner_id"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::STRING_NAME, "group_name"), "get_group_name," "set_group_name"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "parent"), "get_parent," "set_parent"); // unfinished and u should prolly change this
 ADD_SIGNAL(MethodInfo("owner_changed", ));
 }

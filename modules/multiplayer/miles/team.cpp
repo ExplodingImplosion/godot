@@ -56,19 +56,19 @@ int Team::get_node_team_id(Node node) {
 int Team::get_team_id() {
 	
 }
-int Team::set_team_id(int team_id) {
+int Team::set_team_id(int p_team_id) {
 	
 }
 StringName Team::get_group_name() {
 	
 }
-StringName Team::set_group_name(StringName group_name) {
+StringName Team::set_group_name(StringName p_group_name) {
 	
 }
 Node Team::get_parent() {
 	
 }
-Node Team::set_parent(Node parent) {
+Node Team::set_parent(Node p_parent) {
 	
 }
 void Team::_bind_methods(){
@@ -90,11 +90,11 @@ ClassDB::bind_method(D_METHOD("nodes_are_on_same_team", "node1", "node2"), &Team
 ClassDB::bind_method(D_METHOD("all_nodes_are_on_same_team", "array"), &Team::all_nodes_are_on_same_team);
 ClassDB::bind_method(D_METHOD("teams_are_friendly", "team1", "team2"), &Team::teams_are_friendly);
 ClassDB::bind_method(D_METHOD("get_node_team_id", "node"), &Team::get_node_team_id);
-ADD_PROPERTY(PropertyInfo(Variant::INT, "team_id" , "get_team_id", "set_team_id", 6, "
+ADD_PROPERTY(PropertyInfo(Variant::INT, "team_id", 6, "
 Always Hostile,
 Team 1,
 Team 2,
-", 4102)); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::STRING_NAME, "group_name" , "get_group_name", "set_group_name")); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "parent" , "get_parent", "set_parent")); // unfinished and u should prolly change this
+", 4102), "get_team_id," "set_team_id"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::STRING_NAME, "group_name"), "get_group_name," "set_group_name"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "parent"), "get_parent," "set_parent"); // unfinished and u should prolly change this
 }

@@ -26,7 +26,7 @@ void MultiplayerLevel::_exit_tree() {
 Node MultiplayerLevel::get_history_saver() {
 	
 }
-Node MultiplayerLevel::set_history_saver(Node history_saver) {
+Node MultiplayerLevel::set_history_saver(Node p_history_saver) {
 	
 }
 void MultiplayerLevel::_bind_methods(){
@@ -38,7 +38,7 @@ ClassDB::bind_method(D_METHOD("on_notified_ready", "id"), &MultiplayerLevel::on_
 ClassDB::bind_method(D_METHOD("on_node_spawned", "serializer"), &MultiplayerLevel::on_node_spawned);
 ClassDB::bind_method(D_METHOD("on_node_deleted", "serializer"), &MultiplayerLevel::on_node_deleted);
 ClassDB::bind_method(D_METHOD("_exit_tree"), &MultiplayerLevel::_exit_tree);
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "history_saver" , "get_history_saver", "set_history_saver")); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "history_saver"), "get_history_saver," "set_history_saver"); // unfinished and u should prolly change this
 BIND_ENUM_CONSTANT(SINGLETONS);
 BIND_ENUM_CONSTANT(REGULAR);
 BIND_ENUM_CONSTANT(BOUNDING_BOX);

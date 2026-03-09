@@ -8,5 +8,5 @@ CollisionObject3d object;
 void _ready();
 void _exit_tree();
 CollisionObject3d get_object();
-CollisionObject3d set_object(CollisionObject3d object);
+CollisionObject3d set_object(CollisionObject3d p_object);
 };
