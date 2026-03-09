@@ -1,11 +1,11 @@
 #include add_player_accept_packet.h
-void _execute(int _sender_id) {
+void AddPlayerAcceptPacket::_execute(int _sender_id) {
 	
 }
-static bool is_script_valid_packet(GdScript script) {
+bool AddPlayerAcceptPacket::is_script_valid_packet(GdScript script) {
 	
 }
-void _execute(int _sender_id) {
+void AddPlayerAcceptPacket::_execute(int _sender_id) {
 	
 }
 void AddPlayerAcceptPacket::_bind_methods(){

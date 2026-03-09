@@ -1,71 +1,131 @@
 #include serializer.h
-static int get_uid_by_node(Node node) {
+int Serializer::get_uid_by_node(Node node) {
 	
 }
-static Array get_serializers() {
+Array Serializer::get_serializers() {
 	
 }
-void increment_uid() {
+void Serializer::increment_uid() {
 	
 }
-void clear_uid() {
+void Serializer::clear_uid() {
 	
 }
-float get_update_weight() {
+float Serializer::get_update_weight() {
 	
 }
-void _physics_process(float delta) {
+void Serializer::_physics_process(float delta) {
 	
 }
-void serialize_nodes() {
+void Serializer::serialize_nodes() {
 	
 }
-bool should_serialize() {
+bool Serializer::should_serialize() {
 	
 }
-void _enter_tree() {
+void Serializer::_enter_tree() {
 	
 }
-void on_owner_exit_tree(Node node_owner) {
+void Serializer::on_owner_exit_tree(Node node_owner) {
 	
 }
-void _ready() {
+void Serializer::_ready() {
 	
 }
-bool nodes_are_valid() {
+bool Serializer::nodes_are_valid() {
 	
 }
-void update_physical_properties(Array properties, float weight, bool notify_transform_changed) {
+void Serializer::update_physical_properties(Array properties, float weight, bool notify_transform_changed) {
 	
 }
-void receive_update(Array properties) {
+void Serializer::receive_update(Array properties) {
 	
 }
-void receive_update_interpolated(Array properties) {
+void Serializer::receive_update_interpolated(Array properties) {
 	
 }
-void receive_interpolation_update(Array properties) {
+void Serializer::receive_interpolation_update(Array properties) {
 	
 }
-void interpolate(Array current_properties, Array prev_properties) {
+void Serializer::interpolate(Array current_properties, Array prev_properties) {
 	
 }
-void receive_instant_update(Array properties) {
+void Serializer::receive_instant_update(Array properties) {
 	
 }
-void decode_nodes(StreamPeerBuffer buffer) {
+void Serializer::decode_nodes(StreamPeerBuffer buffer) {
 	
 }
-void delta_decode_nodes(StreamPeerBuffer buffer) {
+void Serializer::delta_decode_nodes(StreamPeerBuffer buffer) {
 	
 }
-void decode(StreamPeerBuffer buffer, int vis_type) {
+void Serializer::decode(StreamPeerBuffer buffer, int vis_type) {
 	
 }
-void decode_delta(StreamPeerBuffer buffer, int vis_type) {
+void Serializer::decode_delta(StreamPeerBuffer buffer, int vis_type) {
 	
 }
-static RefCounted get_serialization_info(PackedScene scene, int scene_id, SceneState state) {
+RefCounted Serializer::get_serialization_info(PackedScene scene, int scene_id, SceneState state) {
+	
+}
+Array Serializer::get_serialization_properties() {
+	
+}
+Array Serializer::set_serialization_properties(Array serialization_properties) {
+	
+}
+Array Serializer::get_nodes() {
+	
+}
+Array Serializer::set_nodes(Array nodes) {
+	
+}
+Dictionary Serializer::get_test_dict() {
+	
+}
+Dictionary Serializer::set_test_dict(Dictionary test_dict) {
+	
+}
+float Serializer::get_update_frequency() {
+	
+}
+float Serializer::set_update_frequency(float update_frequency) {
+	
+}
+float Serializer::get_update_time_left() {
+	
+}
+float Serializer::set_update_time_left(float update_time_left) {
+	
+}
+bool Serializer::get_updating() {
+	
+}
+bool Serializer::set_updating(bool updating) {
+	
+}
+int Serializer::get_uid() {
+	
+}
+int Serializer::set_uid(int uid) {
+	
+}
+int Serializer::get_scene_id() {
+	
+}
+int Serializer::set_scene_id(int scene_id) {
+	
+}
+bool Serializer::get_has_serialized() {
+	
+}
+bool Serializer::set_has_serialized(bool has_serialized) {
+	
+}
+RefCounted Serializer::get_serialized() {
+	
+}
+RefCounted Serializer::set_serialized(RefCounted serialized) {
 	
 }
 void Serializer::_bind_methods(){
@@ -92,16 +152,16 @@ ClassDB::bind_method(D_METHOD("delta_decode_nodes", "buffer"), &Serializer::delt
 ClassDB::bind_method(D_METHOD("decode", "buffer", "vis_type"), &Serializer::decode);
 ClassDB::bind_method(D_METHOD("decode_delta", "buffer", "vis_type"), &Serializer::decode_delta);
 ClassDB::bind_method(D_METHOD("get_serialization_info", "scene", "scene_id", "state"), &Serializer::get_serialization_info);
-ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "serialization_properties", 23, "24/17:NetworkedNode", 4102))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "nodes", 23, "24/34:Node", 4102))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "test_dict", 23, "24/34:Node;24/17:NetworkedNode", 4102))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "update_frequency"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "update_time_left"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::BOOL, "updating"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "uid"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "scene_id"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::BOOL, "has_serialized"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "serialized"))),); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "serialization_properties", 23, "24/17:NetworkedNode", 4102))),"set_serialization_properties","get_serialization_properties"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "nodes", 23, "24/34:Node", 4102))),"set_nodes","get_nodes"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "test_dict", 23, "24/34:Node;24/17:NetworkedNode", 4102))),"set_test_dict","get_test_dict"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "update_frequency"))),"set_update_frequency","get_update_frequency"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "update_time_left"))),"set_update_time_left","get_update_time_left"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::BOOL, "updating"))),"set_updating","get_updating"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "uid"))),"set_uid","get_uid"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "scene_id"))),"set_scene_id","get_scene_id"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::BOOL, "has_serialized"))),"set_has_serialized","get_has_serialized"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "serialized"))),"set_serialized","get_serialized"); // unfinished and u should prolly change this
 BIND_ENUM_CONSTANT(SINGLETONS);
 BIND_ENUM_CONSTANT(REGULAR);
 BIND_ENUM_CONSTANT(BOUNDING_BOX);

@@ -1,14 +1,32 @@
 #include input_packet.h
-static void send() {
+void InputPacket::send() {
 	
 }
-void _execute(int sender_id) {
+void InputPacket::_execute(int sender_id) {
 	
 }
-static bool is_script_valid_packet(GdScript script) {
+bool InputPacket::is_script_valid_packet(GdScript script) {
 	
 }
-void _execute(int _sender_id) {
+void InputPacket::_execute(int _sender_id) {
+	
+}
+int InputPacket::get_u32_signature() {
+	
+}
+int InputPacket::set_u32_signature(int u32_signature) {
+	
+}
+int InputPacket::get_u8_num_inputs() {
+	
+}
+int InputPacket::set_u8_num_inputs(int u8_num_inputs) {
+	
+}
+PackedByteArray InputPacket::get_inputs() {
+	
+}
+PackedByteArray InputPacket::set_inputs(PackedByteArray inputs) {
 	
 }
 void InputPacket::_bind_methods(){
@@ -16,7 +34,7 @@ ClassDB::bind_method(D_METHOD("send"), &InputPacket::send);
 ClassDB::bind_method(D_METHOD("_execute", "sender_id"), &InputPacket::_execute);
 ClassDB::bind_method(D_METHOD("is_script_valid_packet", "script"), &InputPacket::is_script_valid_packet);
 ClassDB::bind_method(D_METHOD("_execute", "_sender_id"), &InputPacket::_execute);
-ADD_PROPERTY(PropertyInfo(Variant::INT, "u32_signature"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "u8_num_inputs"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::PACKED_BYTE_ARRAY, "inputs"))),); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "u32_signature"))),"set_u32_signature","get_u32_signature"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "u8_num_inputs"))),"set_u8_num_inputs","get_u8_num_inputs"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::PACKED_BYTE_ARRAY, "inputs"))),"set_inputs","get_inputs"); // unfinished and u should prolly change this
 }

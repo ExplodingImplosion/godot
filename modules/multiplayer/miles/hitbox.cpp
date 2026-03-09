@@ -1,11 +1,11 @@
 #include hitbox.h
-void _ready() {
+void Hitbox::_ready() {
 	
 }
-void on_owner_exit_tree(Node node_owner) {
+void Hitbox::on_owner_exit_tree(Node node_owner) {
 	
 }
-static CollisionShape3d get_parent_collider_component(CollisionObject3d collider) {
+CollisionShape3d Hitbox::get_parent_collider_component(CollisionObject3d collider) {
 	
 }
 void Hitbox::_bind_methods(){

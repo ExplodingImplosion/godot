@@ -1,29 +1,29 @@
 #include compression.h
-static bool is_compressed(PackedByteArray bytes) {
+bool Compression::is_compressed(PackedByteArray bytes) {
 	
 }
-static int get_num_times_compressed(PackedByteArray bytes) {
+int Compression::get_num_times_compressed(PackedByteArray bytes) {
 	
 }
-static int get_begin_offset(PackedByteArray bytes, bool big) {
+int Compression::get_begin_offset(PackedByteArray bytes, bool big) {
 	
 }
-static int get_contents_decompressed_size(int times_compressed, PackedByteArray bytes, bool big) {
+int Compression::get_contents_decompressed_size(int times_compressed, PackedByteArray bytes, bool big) {
 	
 }
-static PackedByteArray get_contents(PackedByteArray bytes, bool big) {
+PackedByteArray Compression::get_contents(PackedByteArray bytes, bool big) {
 	
 }
-static PackedByteArray get_bytes_decompressed(int times_compressed, PackedByteArray bytes, PackedByteArray contents, int compression_mode, bool big) {
+PackedByteArray Compression::get_bytes_decompressed(int times_compressed, PackedByteArray bytes, PackedByteArray contents, int compression_mode, bool big) {
 	
 }
-static PackedByteArray repeated_compress(PackedByteArray bytes, int compression_mode, bool big) {
+PackedByteArray Compression::repeated_compress(PackedByteArray bytes, int compression_mode, bool big) {
 	
 }
-static void add_compression(PackedByteArray final, int offset, int compressed_size, bool big) {
+void Compression::add_compression(PackedByteArray final, int offset, int compressed_size, bool big) {
 	
 }
-static PackedByteArray repeated_decompress(PackedByteArray bytes, int compression_mode, bool big) {
+PackedByteArray Compression::repeated_decompress(PackedByteArray bytes, int compression_mode, bool big) {
 	
 }
 void Compression::_bind_methods(){

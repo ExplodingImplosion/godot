@@ -1,5 +1,5 @@
 #include settings.h
-static void get_setting_safe(String name, void default_value) {
+void Settings::get_setting_safe(String name, void default_value) {
 	
 }
 void Settings::_bind_methods(){

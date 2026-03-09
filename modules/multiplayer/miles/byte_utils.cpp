@@ -1,185 +1,185 @@
 #include byte_utils.h
-static int get_byte_change_to_set_bitflag_in_bytes(int bit_index, bool on, PackedByteArray bytes) {
+int ByteUtils::get_byte_change_to_set_bitflag_in_bytes(int bit_index, bool on, PackedByteArray bytes) {
 	
 }
-static int get_byte_change_to_flip_bit_index_in_bytes(int bit_index, PackedByteArray bytes) {
+int ByteUtils::get_byte_change_to_flip_bit_index_in_bytes(int bit_index, PackedByteArray bytes) {
 	
 }
-static int get_byte_with_flipped_bit(int bit, int byte) {
+int ByteUtils::get_byte_with_flipped_bit(int bit, int byte) {
 	
 }
-static int get_byte_with_flipped_bit_index(int bit_index, int byte) {
+int ByteUtils::get_byte_with_flipped_bit_index(int bit_index, int byte) {
 	
 }
-static int set_bit_in_byte(int bit, int byte, bool on) {
+int ByteUtils::set_bit_in_byte(int bit, int byte, bool on) {
 	
 }
-static int set_bit_in_int(int bit, int num, bool on) {
+int ByteUtils::set_bit_in_int(int bit, int num, bool on) {
 	
 }
-static int set_bit_by_index_in_byte(int bit_index, int byte, bool on) {
+int ByteUtils::set_bit_by_index_in_byte(int bit_index, int byte, bool on) {
 	
 }
-static int set_bit_by_index_in_int(int bit_index, int num, bool on) {
+int ByteUtils::set_bit_by_index_in_int(int bit_index, int num, bool on) {
 	
 }
-static bool get_bit_by_index(int idx, PackedByteArray bytes) {
+bool ByteUtils::get_bit_by_index(int idx, PackedByteArray bytes) {
 	
 }
-static int set_bit_by_index(int idx, PackedByteArray bytes, bool on) {
+int ByteUtils::set_bit_by_index(int idx, PackedByteArray bytes, bool on) {
 	
 }
-static int flip_bit_by_index(int idx, PackedByteArray bytes) {
+int ByteUtils::flip_bit_by_index(int idx, PackedByteArray bytes) {
 	
 }
-static int get_bit_offset_within_byte(int bit) {
+int ByteUtils::get_bit_offset_within_byte(int bit) {
 	
 }
-static bool is_multiple_of(int a, int b) {
+bool ByteUtils::is_multiple_of(int a, int b) {
 	
 }
-static bool bit_has_flag(int bit, int flag) {
+bool ByteUtils::bit_has_flag(int bit, int flag) {
 	
 }
-static bool get_bit_by_index_in_byte(int bit_index, int byte) {
+bool ByteUtils::get_bit_by_index_in_byte(int bit_index, int byte) {
 	
 }
-static int which_byte_is_bit_in(int bit_offset) {
+int ByteUtils::which_byte_is_bit_in(int bit_offset) {
 	
 }
-static int get_num_bytes_to_hold_num_bits(int num_bits) {
+int ByteUtils::get_num_bytes_to_hold_num_bits(int num_bits) {
 	
 }
-static bool is_valid_u8(int byte) {
+bool ByteUtils::is_valid_u8(int byte) {
 	
 }
-static void assert_valid_u8(int byte) {
+void ByteUtils::assert_valid_u8(int byte) {
 	
 }
-static bool is_valid_u16(int num) {
+bool ByteUtils::is_valid_u16(int num) {
 	
 }
-static void assert_valid_u16(int num) {
+void ByteUtils::assert_valid_u16(int num) {
 	
 }
-static int wrap_u16(int num) {
+int ByteUtils::wrap_u16(int num) {
 	
 }
-static int wrap_u8(int num) {
+int ByteUtils::wrap_u8(int num) {
 	
 }
-static int dumbhash(PackedByteArray bytes) {
+int ByteUtils::dumbhash(PackedByteArray bytes) {
 	
 }
-static PackedByteArray serialize_v2(Vector2 v2) {
+PackedByteArray ByteUtils::serialize_v2(Vector2 v2) {
 	
 }
-static PackedByteArray encode_v2(PackedByteArray bytes, Vector2 v2, int offset) {
+PackedByteArray ByteUtils::encode_v2(PackedByteArray bytes, Vector2 v2, int offset) {
 	
 }
-static Vector2 decode_v2(PackedByteArray bytes, int offset) {
+Vector2 ByteUtils::decode_v2(PackedByteArray bytes, int offset) {
 	
 }
-static PackedByteArray encode_v3(PackedByteArray bytes, Vector3 v3, int offset) {
+PackedByteArray ByteUtils::encode_v3(PackedByteArray bytes, Vector3 v3, int offset) {
 	
 }
-static Vector3 decode_v3(PackedByteArray bytes, int offset) {
+Vector3 ByteUtils::decode_v3(PackedByteArray bytes, int offset) {
 	
 }
-static PackedByteArray encode_v4(PackedByteArray bytes, Vector4 v4, int offset) {
+PackedByteArray ByteUtils::encode_v4(PackedByteArray bytes, Vector4 v4, int offset) {
 	
 }
-static Vector4 decode_v4(PackedByteArray bytes, int offset) {
+Vector4 ByteUtils::decode_v4(PackedByteArray bytes, int offset) {
 	
 }
-static PackedByteArray encode_v2i(PackedByteArray bytes, Vector2i v2, int offset) {
+PackedByteArray ByteUtils::encode_v2i(PackedByteArray bytes, Vector2i v2, int offset) {
 	
 }
-static Vector2i decode_v2i(PackedByteArray bytes, int offset) {
+Vector2i ByteUtils::decode_v2i(PackedByteArray bytes, int offset) {
 	
 }
-static PackedByteArray encode_v3i(PackedByteArray bytes, Vector3i v3, int offset) {
+PackedByteArray ByteUtils::encode_v3i(PackedByteArray bytes, Vector3i v3, int offset) {
 	
 }
-static Vector3i decode_v3i(PackedByteArray bytes, int offset) {
+Vector3i ByteUtils::decode_v3i(PackedByteArray bytes, int offset) {
 	
 }
-static PackedByteArray encode_v4i(PackedByteArray bytes, Vector4i v4, int offset) {
+PackedByteArray ByteUtils::encode_v4i(PackedByteArray bytes, Vector4i v4, int offset) {
 	
 }
-static Vector4i decode_v4i(PackedByteArray bytes, int offset) {
+Vector4i ByteUtils::decode_v4i(PackedByteArray bytes, int offset) {
 	
 }
-static PackedByteArray encode_r2(PackedByteArray bytes, Rect2 r2, int offset) {
+PackedByteArray ByteUtils::encode_r2(PackedByteArray bytes, Rect2 r2, int offset) {
 	
 }
-static Rect2 decode_r2(PackedByteArray bytes, int offset) {
+Rect2 ByteUtils::decode_r2(PackedByteArray bytes, int offset) {
 	
 }
-static PackedByteArray encode_r2i(PackedByteArray bytes, Rect2i r2i, int offset) {
+PackedByteArray ByteUtils::encode_r2i(PackedByteArray bytes, Rect2i r2i, int offset) {
 	
 }
-static Rect2i decode_r2i(PackedByteArray bytes, int offset) {
+Rect2i ByteUtils::decode_r2i(PackedByteArray bytes, int offset) {
 	
 }
-static PackedByteArray encode_quat(PackedByteArray bytes, Quaternion quat, int offset) {
+PackedByteArray ByteUtils::encode_quat(PackedByteArray bytes, Quaternion quat, int offset) {
 	
 }
-static Quaternion decode_quat(PackedByteArray bytes, int offset) {
+Quaternion ByteUtils::decode_quat(PackedByteArray bytes, int offset) {
 	
 }
-static PackedByteArray encode_color(PackedByteArray bytes, Color color, int offset) {
+PackedByteArray ByteUtils::encode_color(PackedByteArray bytes, Color color, int offset) {
 	
 }
-static Color decode_color(PackedByteArray bytes, int offset) {
+Color ByteUtils::decode_color(PackedByteArray bytes, int offset) {
 	
 }
-static void encode_array(PackedByteArray encode_to, PackedByteArray array_to_encode, int offset) {
+void ByteUtils::encode_array(PackedByteArray encode_to, PackedByteArray array_to_encode, int offset) {
 	
 }
-static void turn_all_bits_on(PackedByteArray buffer) {
+void ByteUtils::turn_all_bits_on(PackedByteArray buffer) {
 	
 }
-static Array get_all_bits_by_index(PackedByteArray bytearray) {
+Array ByteUtils::get_all_bits_by_index(PackedByteArray bytearray) {
 	
 }
-static String get_even_string(PackedByteArray bytearray) {
+String ByteUtils::get_even_string(PackedByteArray bytearray) {
 	
 }
-static int get_digits(int byte) {
+int ByteUtils::get_digits(int byte) {
 	
 }
-static float bytes_to_megabytes(int bytes) {
+float ByteUtils::bytes_to_megabytes(int bytes) {
 	
 }
-static float bytes_to_gigabytes(int bytes) {
+float ByteUtils::bytes_to_gigabytes(int bytes) {
 	
 }
-static int clamp_u16(int value) {
+int ByteUtils::clamp_u16(int value) {
 	
 }
-static PackedByteArray get_compressed(PackedByteArray bytes, int mode, int size_indicator_bytes) {
+PackedByteArray ByteUtils::get_compressed(PackedByteArray bytes, int mode, int size_indicator_bytes) {
 	
 }
-static PackedByteArray get_decompressed(PackedByteArray bytes, int mode, int size_indicator_bytes) {
+PackedByteArray ByteUtils::get_decompressed(PackedByteArray bytes, int mode, int size_indicator_bytes) {
 	
 }
-static float get_pct(int num, int factor) {
+float ByteUtils::get_pct(int num, int factor) {
 	
 }
-static String to_binary_string(int num, bool Ob, int min_size) {
+String ByteUtils::to_binary_string(int num, bool Ob, int min_size) {
 	
 }
-static PackedStringArray to_binary_array(PackedByteArray bytes, bool Ob) {
+PackedStringArray ByteUtils::to_binary_array(PackedByteArray bytes, bool Ob) {
 	
 }
-static String array_to_binary_string(PackedByteArray bytes, bool Ob) {
+String ByteUtils::array_to_binary_string(PackedByteArray bytes, bool Ob) {
 	
 }
-static PackedByteArray create_bitmask(int num_bits, bool on) {
+PackedByteArray ByteUtils::create_bitmask(int num_bits, bool on) {
 	
 }
-static int get_bit_count(int num) {
+int ByteUtils::get_bit_count(int num) {
 	
 }
 void ByteUtils::_bind_methods(){

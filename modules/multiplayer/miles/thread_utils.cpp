@@ -1,20 +1,20 @@
 #include thread_utils.h
-static void cleanup_threads() {
+void ThreadUtils::cleanup_threads() {
 	
 }
-static int add_thread(Callable callable, bool high_priority, String description) {
+int ThreadUtils::add_thread(Callable callable, bool high_priority, String description) {
 	
 }
-static void _static_init() {
+void ThreadUtils::_static_init() {
 	
 }
-static void setup_cleanup() {
+void ThreadUtils::setup_cleanup() {
 	
 }
-static void add_locked_thread(Object object, Callable callable, bool high_priority, String description) {
+void ThreadUtils::add_locked_thread(Object object, Callable callable, bool high_priority, String description) {
 	
 }
-static void cleanup_locked_thread(Object object, bool clear) {
+void ThreadUtils::cleanup_locked_thread(Object object, bool clear) {
 	
 }
 void ThreadUtils::_bind_methods(){

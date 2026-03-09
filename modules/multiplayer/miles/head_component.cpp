@@ -1,32 +1,68 @@
 #include head_component.h
-void _ready() {
+void HeadComponent::_ready() {
 	
 }
-void _physics_process(float delta) {
+void HeadComponent::_physics_process(float delta) {
 	
 }
-void apply_physics_interp_by_locality() {
+void HeadComponent::apply_physics_interp_by_locality() {
 	
 }
-void _exit_tree() {
+void HeadComponent::_exit_tree() {
 	
 }
-void take_mouse_control() {
+void HeadComponent::take_mouse_control() {
 	
 }
-void take_stick_control(RefCounted stick) {
+void HeadComponent::take_stick_control(RefCounted stick) {
 	
 }
-void release_mouse_control() {
+void HeadComponent::release_mouse_control() {
 	
 }
-void release_stick_control() {
+void HeadComponent::release_stick_control() {
 	
 }
-void aim(Vector2 direction) {
+void HeadComponent::aim(Vector2 direction) {
 	
 }
-void _process(float delta) {
+void HeadComponent::_process(float delta) {
+	
+}
+CharacterBody3d HeadComponent::get_player() {
+	
+}
+CharacterBody3d HeadComponent::set_player(CharacterBody3d player) {
+	
+}
+Camera3d HeadComponent::get_camera() {
+	
+}
+Camera3d HeadComponent::set_camera(Camera3d camera) {
+	
+}
+RemoteTransform3d HeadComponent::get_transformer() {
+	
+}
+RemoteTransform3d HeadComponent::set_transformer(RemoteTransform3d transformer) {
+	
+}
+Callable HeadComponent::get_stick_aim_func() {
+	
+}
+Callable HeadComponent::set_stick_aim_func(Callable stick_aim_func) {
+	
+}
+Callable HeadComponent::get_release_mouse_aim() {
+	
+}
+Callable HeadComponent::set_release_mouse_aim(Callable release_mouse_aim) {
+	
+}
+Callable HeadComponent::get_release_stick_aim() {
+	
+}
+Callable HeadComponent::set_release_stick_aim(Callable release_stick_aim) {
 	
 }
 void HeadComponent::_bind_methods(){
@@ -40,10 +76,10 @@ ClassDB::bind_method(D_METHOD("release_mouse_control"), &HeadComponent::release_
 ClassDB::bind_method(D_METHOD("release_stick_control"), &HeadComponent::release_stick_control);
 ClassDB::bind_method(D_METHOD("aim", "direction"), &HeadComponent::aim);
 ClassDB::bind_method(D_METHOD("_process", "delta"), &HeadComponent::_process);
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "player"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "camera"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "transformer"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::CALLABLE, "stick_aim_func"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::CALLABLE, "release_mouse_aim"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::CALLABLE, "release_stick_aim"))),); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "player"))),"set_player","get_player"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "camera"))),"set_camera","get_camera"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "transformer"))),"set_transformer","get_transformer"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::CALLABLE, "stick_aim_func"))),"set_stick_aim_func","get_stick_aim_func"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::CALLABLE, "release_mouse_aim"))),"set_release_mouse_aim","get_release_mouse_aim"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::CALLABLE, "release_stick_aim"))),"set_release_stick_aim","get_release_stick_aim"); // unfinished and u should prolly change this
 }

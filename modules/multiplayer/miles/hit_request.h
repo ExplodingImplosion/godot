@@ -11,4 +11,14 @@ void merge(Node requester, Callable callable, Array bounding_boxes, bool subtick
 void _init(int player_id, Node requester, Callable callable, Array bounding_boxes, bool subtick);
 void resolve(Node3d level);
 static void hitreg_debug_boxes(bool show_hitreg, Node serializer, Color color, float time);
+int get_player_id();
+int set_player_id(int player_id);
+Array get_requesters();
+Array set_requesters(Array requesters);
+Array get_callables();
+Array set_callables(Array callables);
+Dictionary get_bounding_boxes();
+Dictionary set_bounding_boxes(Dictionary bounding_boxes);
+bool get_subtick();
+bool set_subtick(bool subtick);
 };

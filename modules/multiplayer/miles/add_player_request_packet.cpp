@@ -1,14 +1,14 @@
 #include add_player_request_packet.h
-static void send() {
+void AddPlayerRequestPacket::send() {
 	
 }
-void _execute(int sender_id) {
+void AddPlayerRequestPacket::_execute(int sender_id) {
 	
 }
-static bool is_script_valid_packet(GdScript script) {
+bool AddPlayerRequestPacket::is_script_valid_packet(GdScript script) {
 	
 }
-void _execute(int _sender_id) {
+void AddPlayerRequestPacket::_execute(int _sender_id) {
 	
 }
 void AddPlayerRequestPacket::_bind_methods(){

@@ -1,83 +1,173 @@
 #include property.h
-void _init(StringName name, int type) {
+void Property::_init(StringName name, int type) {
 	
 }
-void setup() {
+void Property::setup() {
 	
 }
-static bool is_interpolatable(int type) {
+bool Property::is_interpolatable(int type) {
 	
 }
-String _to_string() {
+String Property::_to_string() {
 	
 }
-void get_property(Object node) {
+void Property::get_property(Object node) {
 	
 }
-static Node property_to_node(int property) {
+Node Property::property_to_node(int property) {
 	
 }
-static int node_to_property(Object node) {
+int Property::node_to_property(Object node) {
 	
 }
-void set_property(void property, Object node) {
+void Property::set_property(void property, Object node) {
 	
 }
-void set_property_interpolated(void property, Object node, float weight) {
+void Property::set_property_interpolated(void property, Object node, float weight) {
 	
 }
-void interpolate_property(void current_property, void prev_property, Object node, float weight) {
+void Property::interpolate_property(void current_property, void prev_property, Object node, float weight) {
 	
 }
-static int get_visibility(int node_owner_id, int node_team, int receiver_id, int hostility_mask) {
+int Property::get_visibility(int node_owner_id, int node_team, int receiver_id, int hostility_mask) {
 	
 }
-static int get_visibility_by_clients(int owner_id, int receiver_id) {
+int Property::get_visibility_by_clients(int owner_id, int receiver_id) {
 	
 }
-static int get_visibility_by_team(int owner_id, int owner_team, int receiver_id) {
+int Property::get_visibility_by_team(int owner_id, int owner_team, int receiver_id) {
 	
 }
-static int get_visibility_by_node(Node node, int receiver_id, int hostility_mask) {
+int Property::get_visibility_by_node(Node node, int receiver_id, int hostility_mask) {
 	
 }
-bool get_visible(int owner_id, int receiver_id) {
+bool Property::get_visible(int owner_id, int receiver_id) {
 	
 }
-void encode(void property, StreamPeerBuffer buffer) {
+void Property::encode(void property, StreamPeerBuffer buffer) {
 	
 }
-void decode(StreamPeerBuffer buffer) {
+void Property::decode(StreamPeerBuffer buffer) {
 	
 }
-static int get_encode_type(int type, int sub_property_index, int precision_level) {
+int Property::get_encode_type(int type, int sub_property_index, int precision_level) {
 	
 }
-static int name_to_precision(String name) {
+int Property::name_to_precision(String name) {
 	
 }
-String get_node_accessor_setter(String node_name) {
+String Property::get_node_accessor_setter(String node_name) {
 	
 }
-String get_setter(String value, String node_name) {
+String Property::get_setter(String value, String node_name) {
 	
 }
-String get_interpolator(String prev_value, String current_value, String node_name) {
+String Property::get_interpolator(String prev_value, String current_value, String node_name) {
 	
 }
-String get_getter(String assignment, String node_name) {
+String Property::get_getter(String assignment, String node_name) {
 	
 }
-String get_type_func(String buffer_name, String property_value_name) {
+String Property::get_type_func(String buffer_name, String property_value_name) {
 	
 }
-String set_type_func(String buffer_name, String property_value_name) {
+String Property::set_type_func(String buffer_name, String property_value_name) {
 	
 }
-String get_compute_encoder(int offset, int input_offset, int bool_offset, int input_bool_offset) {
+String Property::get_compute_encoder(int offset, int input_offset, int bool_offset, int input_bool_offset) {
 	
 }
-String get_compute_decoder(int offset, int input_offset) {
+String Property::get_compute_decoder(int offset, int input_offset) {
+	
+}
+StringName Property::get_name() {
+	
+}
+StringName Property::set_name(StringName name) {
+	
+}
+int Property::get_type() {
+	
+}
+int Property::set_type(int type) {
+	
+}
+int Property::get_precision_level() {
+	
+}
+int Property::set_precision_level(int precision_level) {
+	
+}
+int Property::get_sub_property_index() {
+	
+}
+int Property::set_sub_property_index(int sub_property_index) {
+	
+}
+int Property::get_interp_type() {
+	
+}
+int Property::set_interp_type(int interp_type) {
+	
+}
+int Property::get_visibility_type() {
+	
+}
+int Property::set_visibility_type(int visibility_type) {
+	
+}
+bool Property::get_physical() {
+	
+}
+bool Property::set_physical(bool physical) {
+	
+}
+bool Property::get_rotation() {
+	
+}
+bool Property::set_rotation(bool rotation) {
+	
+}
+bool Property::get_recent_only() {
+	
+}
+bool Property::set_recent_only(bool recent_only) {
+	
+}
+int Property::get_network_type() {
+	
+}
+int Property::set_network_type(int network_type) {
+	
+}
+int Property::get_max_bits() {
+	
+}
+int Property::set_max_bits(int max_bits) {
+	
+}
+int Property::get_size_bytes() {
+	
+}
+int Property::set_size_bytes(int size_bytes) {
+	
+}
+int Property::get_encode_type() {
+	
+}
+int Property::set_encode_type(int encode_type) {
+	
+}
+Property Property::get_value_type() {
+	
+}
+Property Property::set_value_type(Property value_type) {
+	
+}
+Property Property::get_key_type() {
+	
+}
+Property Property::set_key_type(Property key_type) {
 	
 }
 void Property::_bind_methods(){
@@ -108,21 +198,21 @@ ClassDB::bind_method(D_METHOD("get_type_func", "buffer_name", "property_value_na
 ClassDB::bind_method(D_METHOD("set_type_func", "buffer_name", "property_value_name"), &Property::set_type_func);
 ClassDB::bind_method(D_METHOD("get_compute_encoder", "offset", "input_offset", "bool_offset", "input_bool_offset"), &Property::get_compute_encoder);
 ClassDB::bind_method(D_METHOD("get_compute_decoder", "offset", "input_offset"), &Property::get_compute_decoder);
-ADD_PROPERTY(PropertyInfo(Variant::STRING_NAME, "name"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "type", 2, "Type Nil:0,Type Bool:1,Type Int:2,Type Float:3,Type String:4,Type Vector 2:5,Type Vector 2i:6,Type Rect 2:7,Type Rect 2i:8,Type Vector 3:9,Type Vector 3i:10,Type Transform 2d:11,Type Vector 4:12,Type Vector 4i:13,Type Plane:14,Type Quaternion:15,Type Aabb:16,Type Basis:17,Type Transform 3d:18,Type Projection:19,Type Color:20,Type String Name:21,Type Node Path:22,Type Rid:23,Type Object:24,Type Callable:25,Type Signal:26,Type Dictionary:27,Type Array:28,Type Packed Byte Array:29,Type Packed Int 32 Array:30,Type Packed Int 64 Array:31,Type Packed Float 32 Array:32,Type Packed Float 64 Array:33,Type Packed String Array:34,Type Packed Vector 2 Array:35,Type Packed Vector 3 Array:36,Type Packed Color Array:37,Type Packed Vector 4 Array:38,Type Max:39", 69638))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "precision_level", 2, "Default:0,Max:1,Half:2,Byte:3,U 32:4,U 64:5,U 16:6,U 8:7,Dynamic:8,U Dynamic:9,Enum:10", 69638))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "sub_property_index", 2, "None:-1,X:0,Y:1,Z:2,W:3", 69638))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "interp_type", 2, "Interpolate:0,Discrete Latest:1,Discrete Previous:2", 69638))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "visibility_type", 2, "All:0,Owner Only:1,Team Only:2,Vis Type Max:3", 69638))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::BOOL, "physical"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::BOOL, "rotation"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::BOOL, "recent_only"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "network_type"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "max_bits"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "size_bytes"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "encode_type"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "value_type", 17, "Property", 4102))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "key_type", 17, "Property", 4102))),); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::STRING_NAME, "name"))),"set_name","get_name"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "type", 2, "Type Nil:0,Type Bool:1,Type Int:2,Type Float:3,Type String:4,Type Vector 2:5,Type Vector 2i:6,Type Rect 2:7,Type Rect 2i:8,Type Vector 3:9,Type Vector 3i:10,Type Transform 2d:11,Type Vector 4:12,Type Vector 4i:13,Type Plane:14,Type Quaternion:15,Type Aabb:16,Type Basis:17,Type Transform 3d:18,Type Projection:19,Type Color:20,Type String Name:21,Type Node Path:22,Type Rid:23,Type Object:24,Type Callable:25,Type Signal:26,Type Dictionary:27,Type Array:28,Type Packed Byte Array:29,Type Packed Int 32 Array:30,Type Packed Int 64 Array:31,Type Packed Float 32 Array:32,Type Packed Float 64 Array:33,Type Packed String Array:34,Type Packed Vector 2 Array:35,Type Packed Vector 3 Array:36,Type Packed Color Array:37,Type Packed Vector 4 Array:38,Type Max:39", 69638))),"set_type","get_type"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "precision_level", 2, "Default:0,Max:1,Half:2,Byte:3,U 32:4,U 64:5,U 16:6,U 8:7,Dynamic:8,U Dynamic:9,Enum:10", 69638))),"set_precision_level","get_precision_level"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "sub_property_index", 2, "None:-1,X:0,Y:1,Z:2,W:3", 69638))),"set_sub_property_index","get_sub_property_index"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "interp_type", 2, "Interpolate:0,Discrete Latest:1,Discrete Previous:2", 69638))),"set_interp_type","get_interp_type"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "visibility_type", 2, "All:0,Owner Only:1,Team Only:2,Vis Type Max:3", 69638))),"set_visibility_type","get_visibility_type"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::BOOL, "physical"))),"set_physical","get_physical"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::BOOL, "rotation"))),"set_rotation","get_rotation"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::BOOL, "recent_only"))),"set_recent_only","get_recent_only"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "network_type"))),"set_network_type","get_network_type"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "max_bits"))),"set_max_bits","get_max_bits"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "size_bytes"))),"set_size_bytes","get_size_bytes"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "encode_type"))),"set_encode_type","get_encode_type"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "value_type", 17, "Property", 4102))),"set_value_type","get_value_type"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "key_type", 17, "Property", 4102))),"set_key_type","get_key_type"); // unfinished and u should prolly change this
 BIND_ENUM_CONSTANT(TYPE_NIL);
 BIND_ENUM_CONSTANT(TYPE_INT);
 BIND_ENUM_CONSTANT(INT_FLAG);

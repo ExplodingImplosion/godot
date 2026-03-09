@@ -1,44 +1,80 @@
 #include bounding_box.h
-void _init() {
+void BoundingBox::_init() {
 	
 }
-void _ready() {
+void BoundingBox::_ready() {
 	
 }
-void fill_states() {
+void BoundingBox::fill_states() {
 	
 }
-void _exit_tree() {
+void BoundingBox::_exit_tree() {
 	
 }
-void tick_state(What the fuuuuck lmao aabb) {
+void BoundingBox::tick_state(What the fuuuuck lmao aabb) {
 	
 }
-void _physics_process(float _delta) {
+void BoundingBox::_physics_process(float _delta) {
 	
 }
-static bool can_show_hitreg() {
+bool BoundingBox::can_show_hitreg() {
 	
 }
-static Array get_raycast_intersections(RayCast3d raycast, Array ignore_owners) {
+Array BoundingBox::get_raycast_intersections(RayCast3d raycast, Array ignore_owners) {
 	
 }
-static Array get_ray_intersection_intersections(World3d world, PhysicsRayQueryParameters3d ray_intersection) {
+Array BoundingBox::get_ray_intersection_intersections(World3d world, PhysicsRayQueryParameters3d ray_intersection) {
 	
 }
-static void add_debug_mesh(StaticBody3d box) {
+void BoundingBox::add_debug_mesh(StaticBody3d box) {
 	
 }
-static void on_debug_mesh_removed(MeshInstance3d mesh, int frame) {
+void BoundingBox::on_debug_mesh_removed(MeshInstance3d mesh, int frame) {
 	
 }
-static Array get_shapecast_intersections(ShapeCast3d shapecast, bool disable_after, Array ignore_owners) {
+Array BoundingBox::get_shapecast_intersections(ShapeCast3d shapecast, bool disable_after, Array ignore_owners) {
 	
 }
-static Array get_characterbody_intersections(CharacterBody3d characterbody, float move_delta, Array ignore_owners) {
+Array BoundingBox::get_characterbody_intersections(CharacterBody3d characterbody, float move_delta, Array ignore_owners) {
 	
 }
-static Array get_area_intersections(Area3d area) {
+Array BoundingBox::get_area_intersections(Area3d area) {
+	
+}
+MeshInstance3d BoundingBox::get_mesh() {
+	
+}
+MeshInstance3d BoundingBox::set_mesh(MeshInstance3d mesh) {
+	
+}
+Array BoundingBox::get_states() {
+	
+}
+Array BoundingBox::set_states(Array states) {
+	
+}
+int BoundingBox::get_state_idx() {
+	
+}
+int BoundingBox::set_state_idx(int state_idx) {
+	
+}
+int BoundingBox::get_num_states() {
+	
+}
+int BoundingBox::set_num_states(int num_states) {
+	
+}
+CollisionShape3d BoundingBox::get_collider() {
+	
+}
+CollisionShape3d BoundingBox::set_collider(CollisionShape3d collider) {
+	
+}
+BoxShape3d BoundingBox::get_shape() {
+	
+}
+BoxShape3d BoundingBox::set_shape(BoxShape3d shape) {
 	
 }
 void BoundingBox::_bind_methods(){
@@ -56,10 +92,10 @@ ClassDB::bind_method(D_METHOD("on_debug_mesh_removed", "mesh", "frame"), &Boundi
 ClassDB::bind_method(D_METHOD("get_shapecast_intersections", "shapecast", "disable_after", "ignore_owners"), &BoundingBox::get_shapecast_intersections);
 ClassDB::bind_method(D_METHOD("get_characterbody_intersections", "characterbody", "move_delta", "ignore_owners"), &BoundingBox::get_characterbody_intersections);
 ClassDB::bind_method(D_METHOD("get_area_intersections", "area"), &BoundingBox::get_area_intersections);
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "mesh", 34, "MeshInstance3D", 4102))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "states", 31, "AABB", 4096))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "state_idx"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "num_states"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "collider"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "shape"))),); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "mesh", 34, "MeshInstance3D", 4102))),"set_mesh","get_mesh"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "states", 31, "AABB", 4096))),"set_states","get_states"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "state_idx"))),"set_state_idx","get_state_idx"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "num_states"))),"set_num_states","get_num_states"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "collider"))),"set_collider","get_collider"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "shape"))),"set_shape","get_shape"); // unfinished and u should prolly change this
 }

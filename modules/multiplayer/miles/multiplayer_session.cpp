@@ -1,35 +1,35 @@
 #include multiplayer_session.h
-static void send_states_to_clients(Node history) {
+void MultiplayerSession::send_states_to_clients(Node history) {
 	
 }
-static void reset() {
+void MultiplayerSession::reset() {
 	
 }
-static bool client_is_ready(int id) {
+bool MultiplayerSession::client_is_ready(int id) {
 	
 }
-static RefCounted add_client(int id, int num_players) {
+RefCounted MultiplayerSession::add_client(int id, int num_players) {
 	
 }
-static RefCounted add_local_client(int id, int num_players) {
+RefCounted MultiplayerSession::add_local_client(int id, int num_players) {
 	
 }
-static RefCounted add_dummy_client(int id) {
+RefCounted MultiplayerSession::add_dummy_client(int id) {
 	
 }
-static void mark_client_ready(int id) {
+void MultiplayerSession::mark_client_ready(int id) {
 	
 }
-static void remove_client(int id) {
+void MultiplayerSession::remove_client(int id) {
 	
 }
-static PackedInt32Array get_ready_clients() {
+PackedInt32Array MultiplayerSession::get_ready_clients() {
 	
 }
-static bool are_clients_friendly(int cid1, int cid2) {
+bool MultiplayerSession::are_clients_friendly(int cid1, int cid2) {
 	
 }
-static void tick(Node history_saver) {
+void MultiplayerSession::tick(Node history_saver) {
 	
 }
 void MultiplayerSession::_bind_methods(){

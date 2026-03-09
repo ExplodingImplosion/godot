@@ -1,155 +1,275 @@
 #include networked_node.h
-String _to_string() {
+String NetworkedNode::_to_string() {
 	
 }
-void _init() {
+void NetworkedNode::_init() {
 	
 }
-void setup() {
+void NetworkedNode::setup() {
 	
 }
-static String get_function_declaration(String function_name, String function_body, bool indent) {
+String NetworkedNode::get_function_declaration(String function_name, String function_body, bool indent) {
 	
 }
-void get_properties_by_type(Node node, Array array) {
+void NetworkedNode::get_properties_by_type(Node node, Array array) {
 	
 }
-void get_properties_by_type_hostile(Node node, Array array) {
+void NetworkedNode::get_properties_by_type_hostile(Node node, Array array) {
 	
 }
-void get_properties_by_type_teammate(Node node, Array array) {
+void NetworkedNode::get_properties_by_type_teammate(Node node, Array array) {
 	
 }
-void set_properties_by_type(Node node, Array array) {
+void NetworkedNode::set_properties_by_type(Node node, Array array) {
 	
 }
-void set_properties_by_type_hostile(Node node, Array array) {
+void NetworkedNode::set_properties_by_type_hostile(Node node, Array array) {
 	
 }
-void set_properties_by_type_teammate(Node node, Array array) {
+void NetworkedNode::set_properties_by_type_teammate(Node node, Array array) {
 	
 }
-void set_node_physical_properties(Node node, Array array) {
+void NetworkedNode::set_node_physical_properties(Node node, Array array) {
 	
 }
-void encode_by_type(Array array, StreamPeerBuffer buffer) {
+void NetworkedNode::encode_by_type(Array array, StreamPeerBuffer buffer) {
 	
 }
-void encode_teammate_by_type(Array array, StreamPeerBuffer buffer) {
+void NetworkedNode::encode_teammate_by_type(Array array, StreamPeerBuffer buffer) {
 	
 }
-void encode_hostile_by_type(Array array, StreamPeerBuffer buffer) {
+void NetworkedNode::encode_hostile_by_type(Array array, StreamPeerBuffer buffer) {
 	
 }
-void decode_by_type(Array array, StreamPeerBuffer buffer) {
+void NetworkedNode::decode_by_type(Array array, StreamPeerBuffer buffer) {
 	
 }
-void decode_teammate_by_type(Array array, StreamPeerBuffer buffer) {
+void NetworkedNode::decode_teammate_by_type(Array array, StreamPeerBuffer buffer) {
 	
 }
-void decode_hostile_by_type(Array array, StreamPeerBuffer buffer) {
+void NetworkedNode::decode_hostile_by_type(Array array, StreamPeerBuffer buffer) {
 	
 }
-void encode_delta_array_by_type(Array current_properties, Array prev_properties, StreamPeerBuffer buffer) {
+void NetworkedNode::encode_delta_array_by_type(Array current_properties, Array prev_properties, StreamPeerBuffer buffer) {
 	
 }
-void encode_teammate_delta_array_by_type(Array current_properties, Array prev_properties, StreamPeerBuffer buffer) {
+void NetworkedNode::encode_teammate_delta_array_by_type(Array current_properties, Array prev_properties, StreamPeerBuffer buffer) {
 	
 }
-void encode_hostile_delta_array_by_type(Array current_properties, Array prev_properties, StreamPeerBuffer buffer) {
+void NetworkedNode::encode_hostile_delta_array_by_type(Array current_properties, Array prev_properties, StreamPeerBuffer buffer) {
 	
 }
-void decode_delta_array_by_type(Array array, StreamPeerBuffer buffer) {
+void NetworkedNode::decode_delta_array_by_type(Array array, StreamPeerBuffer buffer) {
 	
 }
-void decode_teammate_delta_array_by_type(Array array, StreamPeerBuffer buffer) {
+void NetworkedNode::decode_teammate_delta_array_by_type(Array array, StreamPeerBuffer buffer) {
 	
 }
-void decode_hostile_delta_array_by_type(Array array, StreamPeerBuffer buffer) {
+void NetworkedNode::decode_hostile_delta_array_by_type(Array array, StreamPeerBuffer buffer) {
 	
 }
-void encode_object_by_type(Object object, StreamPeerBuffer buffer) {
+void NetworkedNode::encode_object_by_type(Object object, StreamPeerBuffer buffer) {
 	
 }
-void decode_object_by_type(Object object, StreamPeerBuffer buffer) {
+void NetworkedNode::decode_object_by_type(Object object, StreamPeerBuffer buffer) {
 	
 }
-String generate_script() {
+String NetworkedNode::generate_script() {
 	
 }
-String generate_shader() {
+String NetworkedNode::generate_shader() {
 	
 }
-static Array get_full_property_list(Script script) {
+Array NetworkedNode::get_full_property_list(Script script) {
 	
 }
-static Dictionary get_property_list_map(Script script) {
+Dictionary NetworkedNode::get_property_list_map(Script script) {
 	
 }
-static Dictionary get_property_list_map_by_base_type(StringName type) {
+Dictionary NetworkedNode::get_property_list_map_by_base_type(StringName type) {
 	
 }
-void apply_to_array(Object node, Array array) {
+void NetworkedNode::apply_to_array(Object node, Array array) {
 	
 }
-Array get_array() {
+Array NetworkedNode::get_array() {
 	
 }
-Array to_array(Object node) {
+Array NetworkedNode::to_array(Object node) {
 	
 }
-void from_array(Array array, Object node) {
+void NetworkedNode::from_array(Array array, Object node) {
 	
 }
-void from_array_no_nulls(Array array, Object node) {
+void NetworkedNode::from_array_no_nulls(Array array, Object node) {
 	
 }
-void from_array_interpolated(Array array, Object node, float weight) {
+void NetworkedNode::from_array_interpolated(Array array, Object node, float weight) {
 	
 }
-void interpolate(Array current_array, Array prev_array, Object node, float weight) {
+void NetworkedNode::interpolate(Array current_array, Array prev_array, Object node, float weight) {
 	
 }
-void encode_node(Object node, StreamPeerBuffer buffer) {
+void NetworkedNode::encode_node(Object node, StreamPeerBuffer buffer) {
 	
 }
-static void encode_owner_delta(StreamPeerBuffer buffer) {
+void NetworkedNode::encode_owner_delta(StreamPeerBuffer buffer) {
 	
 }
-static void encode_owner_spawn(int uid, int scene_id, StreamPeerBuffer buffer) {
+void NetworkedNode::encode_owner_spawn(int uid, int scene_id, StreamPeerBuffer buffer) {
 	
 }
-static void encode_owner_delete(int uid, StreamPeerBuffer buffer) {
+void NetworkedNode::encode_owner_delete(int uid, StreamPeerBuffer buffer) {
 	
 }
-void encode_array(Array array, StreamPeerBuffer buffer, int vis_type) {
+void NetworkedNode::encode_array(Array array, StreamPeerBuffer buffer, int vis_type) {
 	
 }
-void encode_array_iter(Array array, StreamPeerBuffer buffer, PackedByteArray iter) {
+void NetworkedNode::encode_array_iter(Array array, StreamPeerBuffer buffer, PackedByteArray iter) {
 	
 }
-void encode_delta_array(Array current, Array prev, StreamPeerBuffer buffer, int vis_type) {
+void NetworkedNode::encode_delta_array(Array current, Array prev, StreamPeerBuffer buffer, int vis_type) {
 	
 }
-void encode_delta_array_iter(Array current, Array prev, StreamPeerBuffer buffer, PackedByteArray iter) {
+void NetworkedNode::encode_delta_array_iter(Array current, Array prev, StreamPeerBuffer buffer, PackedByteArray iter) {
 	
 }
-void decode(Object node, StreamPeerBuffer buffer) {
+void NetworkedNode::decode(Object node, StreamPeerBuffer buffer) {
 	
 }
-void decode_delta(Object node, StreamPeerBuffer buffer) {
+void NetworkedNode::decode_delta(Object node, StreamPeerBuffer buffer) {
 	
 }
-void decode_array(Array array, StreamPeerBuffer buffer, int vis_type) {
+void NetworkedNode::decode_array(Array array, StreamPeerBuffer buffer, int vis_type) {
 	
 }
-void decode_array_iter(Array array, StreamPeerBuffer buffer, PackedByteArray iter) {
+void NetworkedNode::decode_array_iter(Array array, StreamPeerBuffer buffer, PackedByteArray iter) {
 	
 }
-void decode_delta_array(Array array, StreamPeerBuffer buffer, int vis_type) {
+void NetworkedNode::decode_delta_array(Array array, StreamPeerBuffer buffer, int vis_type) {
 	
 }
-void decode_delta_array_iter(Array array, StreamPeerBuffer buffer, PackedByteArray iter) {
+void NetworkedNode::decode_delta_array_iter(Array array, StreamPeerBuffer buffer, PackedByteArray iter) {
+	
+}
+bool NetworkedNode::get_ready() {
+	
+}
+bool NetworkedNode::set_ready(bool ready) {
+	
+}
+bool NetworkedNode::get_owner() {
+	
+}
+bool NetworkedNode::set_owner(bool owner) {
+	
+}
+String NetworkedNode::get_owner_scene_path() {
+	
+}
+String NetworkedNode::set_owner_scene_path(String owner_scene_path) {
+	
+}
+int NetworkedNode::get_num_props() {
+	
+}
+int NetworkedNode::set_num_props(int num_props) {
+	
+}
+Script NetworkedNode::get_source_script() {
+	
+}
+Script NetworkedNode::set_source_script(Script source_script) {
+	
+}
+StringName NetworkedNode::get_base_class() {
+	
+}
+StringName NetworkedNode::set_base_class(StringName base_class) {
+	
+}
+Array NetworkedNode::get_properties() {
+	
+}
+Array NetworkedNode::set_properties(Array properties) {
+	
+}
+PackedByteArray NetworkedNode::get_iter_all() {
+	
+}
+PackedByteArray NetworkedNode::set_iter_all(PackedByteArray iter_all) {
+	
+}
+PackedByteArray NetworkedNode::get_iter_owner_only() {
+	
+}
+PackedByteArray NetworkedNode::set_iter_owner_only(PackedByteArray iter_owner_only) {
+	
+}
+PackedByteArray NetworkedNode::get_iter_team_only() {
+	
+}
+PackedByteArray NetworkedNode::set_iter_team_only(PackedByteArray iter_team_only) {
+	
+}
+PackedByteArray NetworkedNode::get_iter_physical() {
+	
+}
+PackedByteArray NetworkedNode::set_iter_physical(PackedByteArray iter_physical) {
+	
+}
+Array NetworkedNode::get_iters() {
+	
+}
+Array NetworkedNode::set_iters(Array iters) {
+	
+}
+Array NetworkedNode::get_iters_visible() {
+	
+}
+Array NetworkedNode::set_iters_visible(Array iters_visible) {
+	
+}
+Dictionary NetworkedNode::get_bitmask_map() {
+	
+}
+Dictionary NetworkedNode::set_bitmask_map(Dictionary bitmask_map) {
+	
+}
+bool NetworkedNode::get_is_fixed_size() {
+	
+}
+bool NetworkedNode::set_is_fixed_size(bool is_fixed_size) {
+	
+}
+int NetworkedNode::get_num_bools() {
+	
+}
+int NetworkedNode::set_num_bools(int num_bools) {
+	
+}
+int NetworkedNode::get_fixed_size_bytes() {
+	
+}
+int NetworkedNode::set_fixed_size_bytes(int fixed_size_bytes) {
+	
+}
+GdScript NetworkedNode::get_type() {
+	
+}
+GdScript NetworkedNode::set_type(GdScript type) {
+	
+}
+Callable NetworkedNode::get_get_plist_func() {
+	
+}
+Callable NetworkedNode::set_get_plist_func(Callable get_plist_func) {
+	
+}
+Callable NetworkedNode::get_get_plist_short_func() {
+	
+}
+Callable NetworkedNode::set_get_plist_short_func(Callable get_plist_short_func) {
 	
 }
 void NetworkedNode::_bind_methods(){
@@ -204,26 +324,26 @@ ClassDB::bind_method(D_METHOD("decode_array", "array", "buffer", "vis_type"), &N
 ClassDB::bind_method(D_METHOD("decode_array_iter", "array", "buffer", "iter"), &NetworkedNode::decode_array_iter);
 ClassDB::bind_method(D_METHOD("decode_delta_array", "array", "buffer", "vis_type"), &NetworkedNode::decode_delta_array);
 ClassDB::bind_method(D_METHOD("decode_delta_array_iter", "array", "buffer", "iter"), &NetworkedNode::decode_delta_array_iter);
-ADD_PROPERTY(PropertyInfo(Variant::BOOL, "ready"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::BOOL, "owner"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::STRING, "owner_scene_path"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "num_props"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "source_script", 17, "Script", 4102))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::STRING_NAME, "base_class"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "properties", 23, "24/17:Property", 4102))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::PACKED_BYTE_ARRAY, "iter_all"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::PACKED_BYTE_ARRAY, "iter_owner_only"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::PACKED_BYTE_ARRAY, "iter_team_only"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::PACKED_BYTE_ARRAY, "iter_physical"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "iters", 31, "PackedByteArray", 4096))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "iters_visible", 31, "bool", 4096))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "bitmask_map", 38, "PackedByteArray;int", 4096))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::BOOL, "is_fixed_size"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "num_bools"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "fixed_size_bytes"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "type"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::CALLABLE, "get_plist_func", 39, "check plist", 4100))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::CALLABLE, "get_plist_short_func", 39, "check plist (script only)", 4100))),); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::BOOL, "ready"))),"set_ready","get_ready"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::BOOL, "owner"))),"set_owner","get_owner"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::STRING, "owner_scene_path"))),"set_owner_scene_path","get_owner_scene_path"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "num_props"))),"set_num_props","get_num_props"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "source_script", 17, "Script", 4102))),"set_source_script","get_source_script"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::STRING_NAME, "base_class"))),"set_base_class","get_base_class"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "properties", 23, "24/17:Property", 4102))),"set_properties","get_properties"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::PACKED_BYTE_ARRAY, "iter_all"))),"set_iter_all","get_iter_all"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::PACKED_BYTE_ARRAY, "iter_owner_only"))),"set_iter_owner_only","get_iter_owner_only"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::PACKED_BYTE_ARRAY, "iter_team_only"))),"set_iter_team_only","get_iter_team_only"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::PACKED_BYTE_ARRAY, "iter_physical"))),"set_iter_physical","get_iter_physical"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "iters", 31, "PackedByteArray", 4096))),"set_iters","get_iters"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "iters_visible", 31, "bool", 4096))),"set_iters_visible","get_iters_visible"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "bitmask_map", 38, "PackedByteArray;int", 4096))),"set_bitmask_map","get_bitmask_map"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::BOOL, "is_fixed_size"))),"set_is_fixed_size","get_is_fixed_size"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "num_bools"))),"set_num_bools","get_num_bools"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "fixed_size_bytes"))),"set_fixed_size_bytes","get_fixed_size_bytes"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "type"))),"set_type","get_type"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::CALLABLE, "get_plist_func", 39, "check plist", 4100))),"set_get_plist_func","get_get_plist_func"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::CALLABLE, "get_plist_short_func", 39, "check plist (script only)", 4100))),"set_get_plist_short_func","get_get_plist_short_func"); // unfinished and u should prolly change this
 BIND_ENUM_CONSTANT(ALL);
 BIND_ENUM_CONSTANT(OWNER_ONLY);
 BIND_ENUM_CONSTANT(TEAM_ONLY);

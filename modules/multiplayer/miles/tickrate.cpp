@@ -1,47 +1,47 @@
 #include tickrate.h
-static float get_physics_delta() {
+float Tickrate::get_physics_delta() {
 	
 }
-static void initialize() {
+void Tickrate::initialize() {
 	
 }
-static bool is_running_at_target_tickrate() {
+bool Tickrate::is_running_at_target_tickrate() {
 	
 }
-static void modify_physics_sim_speed(float frac) {
+void Tickrate::modify_physics_sim_speed(float frac) {
 	
 }
-static void reset_physics_sim_speed() {
+void Tickrate::reset_physics_sim_speed() {
 	
 }
-static void set_physics_simulation_rate(int rate) {
+void Tickrate::set_physics_simulation_rate(int rate) {
 	
 }
-static void reset_tickrate() {
+void Tickrate::reset_tickrate() {
 	
 }
-static int get_default_tickrate() {
+int Tickrate::get_default_tickrate() {
 	
 }
-static void assign_physics_delta(float delta, int rate) {
+void Tickrate::assign_physics_delta(float delta, int rate) {
 	
 }
-static void auto_assign_physics_delta() {
+void Tickrate::auto_assign_physics_delta() {
 	
 }
-static void change_tickrate(int rate) {
+void Tickrate::change_tickrate(int rate) {
 	
 }
-static void change_time_scale(float scale) {
+void Tickrate::change_time_scale(float scale) {
 	
 }
-static void assign_time_scale() {
+void Tickrate::assign_time_scale() {
 	
 }
-static int get_jitter_proof_buffer_size() {
+int Tickrate::get_jitter_proof_buffer_size() {
 	
 }
-static void adjust_for_buffer_size(int buffer_size) {
+void Tickrate::adjust_for_buffer_size(int buffer_size) {
 	
 }
 void Tickrate::_bind_methods(){

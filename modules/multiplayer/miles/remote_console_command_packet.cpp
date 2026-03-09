@@ -1,14 +1,20 @@
 #include remote_console_command_packet.h
-static void send(String input) {
+void RemoteConsoleCommandPacket::send(String input) {
 	
 }
-void _execute(int sender_id) {
+void RemoteConsoleCommandPacket::_execute(int sender_id) {
 	
 }
-static bool is_script_valid_packet(GdScript script) {
+bool RemoteConsoleCommandPacket::is_script_valid_packet(GdScript script) {
 	
 }
-void _execute(int _sender_id) {
+void RemoteConsoleCommandPacket::_execute(int _sender_id) {
+	
+}
+String RemoteConsoleCommandPacket::get_input() {
+	
+}
+String RemoteConsoleCommandPacket::set_input(String input) {
 	
 }
 void RemoteConsoleCommandPacket::_bind_methods(){
@@ -16,5 +22,5 @@ ClassDB::bind_method(D_METHOD("send", "input"), &RemoteConsoleCommandPacket::sen
 ClassDB::bind_method(D_METHOD("_execute", "sender_id"), &RemoteConsoleCommandPacket::_execute);
 ClassDB::bind_method(D_METHOD("is_script_valid_packet", "script"), &RemoteConsoleCommandPacket::is_script_valid_packet);
 ClassDB::bind_method(D_METHOD("_execute", "_sender_id"), &RemoteConsoleCommandPacket::_execute);
-ADD_PROPERTY(PropertyInfo(Variant::STRING, "input"))),); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::STRING, "input"))),"set_input","get_input"); // unfinished and u should prolly change this
 }

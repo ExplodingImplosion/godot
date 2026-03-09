@@ -1,11 +1,11 @@
 #include add_player_deny_packet.h
-void _execute(int _sender_id) {
+void AddPlayerDenyPacket::_execute(int _sender_id) {
 	
 }
-static bool is_script_valid_packet(GdScript script) {
+bool AddPlayerDenyPacket::is_script_valid_packet(GdScript script) {
 	
 }
-void _execute(int _sender_id) {
+void AddPlayerDenyPacket::_execute(int _sender_id) {
 	
 }
 void AddPlayerDenyPacket::_bind_methods(){

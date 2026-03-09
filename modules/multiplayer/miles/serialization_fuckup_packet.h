@@ -12,4 +12,8 @@ void _execute(int sender_id);
 String get_fuckup_string();
 static bool is_script_valid_packet(GdScript script);
 void _execute(int _sender_id);
+int get_u8_fuckup();
+int set_u8_fuckup(int u8_fuckup);
+Array get_data();
+Array set_data(Array data);
 };

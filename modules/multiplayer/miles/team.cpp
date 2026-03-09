@@ -1,56 +1,74 @@
 #include team.h
-static Array get_nodes_with_teams() {
+Array Team::get_nodes_with_teams() {
 	
 }
-StringName get_group_name() {
+StringName Team::get_group_name() {
 	
 }
-void assign_group() {
+void Team::assign_group() {
 	
 }
-void reassign_group() {
+void Team::reassign_group() {
 	
 }
-void _ready() {
+void Team::_ready() {
 	
 }
-void _exit_tree() {
+void Team::_exit_tree() {
 	
 }
-void propagate_to(Node node) {
+void Team::propagate_to(Node node) {
 	
 }
-static void add_node_team(Node node, int team) {
+void Team::add_node_team(Node node, int team) {
 	
 }
-static Node get_node_team_component(Node node) {
+Node Team::get_node_team_component(Node node) {
 	
 }
-static void try_propagate_to(Node from, Node to) {
+void Team::try_propagate_to(Node from, Node to) {
 	
 }
-static bool has(Node node) {
+bool Team::has(Node node) {
 	
 }
-static bool node_is_on_team(Node node, int team) {
+bool Team::node_is_on_team(Node node, int team) {
 	
 }
-static bool node_is_in_team_group(Node node, int team) {
+bool Team::node_is_in_team_group(Node node, int team) {
 	
 }
-static Array get_nodes_on_team(int team) {
+Array Team::get_nodes_on_team(int team) {
 	
 }
-static bool nodes_are_on_same_team(Node node1, Node node2) {
+bool Team::nodes_are_on_same_team(Node node1, Node node2) {
 	
 }
-static bool all_nodes_are_on_same_team(Array array) {
+bool Team::all_nodes_are_on_same_team(Array array) {
 	
 }
-static bool teams_are_friendly(int team1, int team2) {
+bool Team::teams_are_friendly(int team1, int team2) {
 	
 }
-static int get_node_team_id(Node node) {
+int Team::get_node_team_id(Node node) {
+	
+}
+int Team::get_team_id() {
+	
+}
+int Team::set_team_id(int team_id) {
+	
+}
+StringName Team::get_group_name() {
+	
+}
+StringName Team::set_group_name(StringName group_name) {
+	
+}
+Node Team::get_parent() {
+	
+}
+Node Team::set_parent(Node parent) {
 	
 }
 void Team::_bind_methods(){
@@ -76,7 +94,7 @@ ADD_PROPERTY(PropertyInfo(Variant::INT, "team_id", 6, "
 Always Hostile,
 Team 1,
 Team 2,
-", 4102))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::STRING_NAME, "group_name"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "parent"))),); // unfinished and u should prolly change this
+", 4102))),"set_team_id","get_team_id"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::STRING_NAME, "group_name"))),"set_group_name","get_group_name"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "parent"))),"set_parent","get_parent"); // unfinished and u should prolly change this
 }

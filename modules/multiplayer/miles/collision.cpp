@@ -1,14 +1,14 @@
 #include collision.h
-static bool is_in_layer(int layers, int layer) {
+bool Collision::is_in_layer(int layers, int layer) {
 	
 }
-static void scale_shape(Shape3d shape, float scale) {
+void Collision::scale_shape(Shape3d shape, float scale) {
 	
 }
-static Vector3 get_shape_extents(Shape3d shape) {
+Vector3 Collision::get_shape_extents(Shape3d shape) {
 	
 }
-static Vector3 get_center_of_mass(CollisionObject3d object) {
+Vector3 Collision::get_center_of_mass(CollisionObject3d object) {
 	
 }
 void Collision::_bind_methods(){

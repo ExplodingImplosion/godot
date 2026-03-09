@@ -1,74 +1,74 @@
 #include quack_multiplayer.h
-static bool register_scene(String path, int idx) {
+bool QuackMultiplayer::register_scene(String path, int idx) {
 	
 }
-static void register_scenes() {
+void QuackMultiplayer::register_scenes() {
 	
 }
-static PackedStringArray get_scene_paths(String path) {
+PackedStringArray QuackMultiplayer::get_scene_paths(String path) {
 	
 }
-static void register_all_scripts() {
+void QuackMultiplayer::register_all_scripts() {
 	
 }
-static void add_networked_property(Dictionary property_info, Array property_names, PackedByteArray property_types) {
+void QuackMultiplayer::add_networked_property(Dictionary property_info, Array property_names, PackedByteArray property_types) {
 	
 }
-static bool is_script_predicted(Script script) {
+bool QuackMultiplayer::is_script_predicted(Script script) {
 	
 }
-static int get_net_var_type(Dictionary property_info) {
+int QuackMultiplayer::get_net_var_type(Dictionary property_info) {
 	
 }
-static int get_property_type(String name, int type) {
+int QuackMultiplayer::get_property_type(String name, int type) {
 	
 }
-static int get_int_type(String name) {
+int QuackMultiplayer::get_int_type(String name) {
 	
 }
-static int get_float_type(String name) {
+int QuackMultiplayer::get_float_type(String name) {
 	
 }
-static bool is_script_variable(Dictionary property_info) {
+bool QuackMultiplayer::is_script_variable(Dictionary property_info) {
 	
 }
-static bool is_net_updated_this_frame(Dictionary property_info) {
+bool QuackMultiplayer::is_net_updated_this_frame(Dictionary property_info) {
 	
 }
-static bool is_valid_net_var(Dictionary property_info) {
+bool QuackMultiplayer::is_valid_net_var(Dictionary property_info) {
 	
 }
-static void set_node_position_on_ready(Node3d node, Vector3 position) {
+void QuackMultiplayer::set_node_position_on_ready(Node3d node, Vector3 position) {
 	
 }
-static void set_node_position_on_tree_entered(Node3d node, Vector3 position) {
+void QuackMultiplayer::set_node_position_on_tree_entered(Node3d node, Vector3 position) {
 	
 }
-static void set_node_rotation_on_ready(Node3d node, Vector3 rotation) {
+void QuackMultiplayer::set_node_rotation_on_ready(Node3d node, Vector3 rotation) {
 	
 }
-static void set_node_rotation_on_tree_entered(Node3d node, Vector3 rotation) {
+void QuackMultiplayer::set_node_rotation_on_tree_entered(Node3d node, Vector3 rotation) {
 	
 }
-static void set_node_transform_on_ready(Node3d node, Vector3 position, Vector3 rotation) {
+void QuackMultiplayer::set_node_transform_on_ready(Node3d node, Vector3 position, Vector3 rotation) {
 	
 }
-static void set_node_transform_on_tree_entered(Node3d node, Vector3 position, Vector3 rotation) {
+void QuackMultiplayer::set_node_transform_on_tree_entered(Node3d node, Vector3 position, Vector3 rotation) {
 	
 }
-static int get_net_type(int type) {
+int QuackMultiplayer::get_net_type(int type) {
 	
 }
-static bool is_int_type(int type) {
+bool QuackMultiplayer::is_int_type(int type) {
 	
 }
-static bool is_float_type(int type) {
+bool QuackMultiplayer::is_float_type(int type) {
 	
 }
-static bool is_non_numerical(int type) {
+bool QuackMultiplayer::is_non_numerical(int type) {
 	
 }
-static int get_property_size_by_type(int type) {
+int QuackMultiplayer::get_property_size_by_type(int type) {
 	
 }
 void QuackMultiplayer::_bind_methods(){

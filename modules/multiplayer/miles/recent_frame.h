@@ -16,4 +16,8 @@ void merge(RefCounted frame);
 void _init(Array serialized_nodes, int frame_num);
 PackedByteArray get_delta(RefCounted prev_frame, int receiver_id, int hostility_mask);
 void decode_delta(PackedByteArray delta, int frame_num, int delta_frame_num);
+int get_num();
+int set_num(int num);
+Dictionary get_serializations();
+Dictionary set_serializations(Dictionary serializations);
 };

@@ -1,53 +1,71 @@
 #include owner_id.h
-StringName get_group_name() {
+StringName OwnerId::get_group_name() {
 	
 }
-void assign_group() {
+void OwnerId::assign_group() {
 	
 }
-void reassign_group() {
+void OwnerId::reassign_group() {
 	
 }
-void _ready() {
+void OwnerId::_ready() {
 	
 }
-void _exit_tree() {
+void OwnerId::_exit_tree() {
 	
 }
-void propagate_to(Node node) {
+void OwnerId::propagate_to(Node node) {
 	
 }
-static void add_node_owner(Node node, int id) {
+void OwnerId::add_node_owner(Node node, int id) {
 	
 }
-static Node get_node_owner(Node node) {
+Node OwnerId::get_node_owner(Node node) {
 	
 }
-static bool has(Node node) {
+bool OwnerId::has(Node node) {
 	
 }
-static bool node_is_owned_by(Node node, int id) {
+bool OwnerId::node_is_owned_by(Node node, int id) {
 	
 }
-static bool node_is_in_owner_group(Node node, int id) {
+bool OwnerId::node_is_in_owner_group(Node node, int id) {
 	
 }
-static bool nodes_share_owner(Node node1, Node node2) {
+bool OwnerId::nodes_share_owner(Node node1, Node node2) {
 	
 }
-static Array get_nodes_owned_by(int id) {
+Array OwnerId::get_nodes_owned_by(int id) {
 	
 }
-static int get_node_owner_id(Node node) {
+int OwnerId::get_node_owner_id(Node node) {
 	
 }
-static RefCounted get_node_client_owner(Node node) {
+RefCounted OwnerId::get_node_client_owner(Node node) {
 	
 }
-static RefCounted get_node_player_owner(Node node) {
+RefCounted OwnerId::get_node_player_owner(Node node) {
 	
 }
-RefCounted get_player_owner() {
+RefCounted OwnerId::get_player_owner() {
+	
+}
+int OwnerId::get_owner_id() {
+	
+}
+int OwnerId::set_owner_id(int owner_id) {
+	
+}
+StringName OwnerId::get_group_name() {
+	
+}
+StringName OwnerId::set_group_name(StringName group_name) {
+	
+}
+Node OwnerId::get_parent() {
+	
+}
+Node OwnerId::set_parent(Node parent) {
 	
 }
 void OwnerId::_bind_methods(){
@@ -68,8 +86,8 @@ ClassDB::bind_method(D_METHOD("get_node_owner_id", "node"), &OwnerId::get_node_o
 ClassDB::bind_method(D_METHOD("get_node_client_owner", "node"), &OwnerId::get_node_client_owner);
 ClassDB::bind_method(D_METHOD("get_node_player_owner", "node"), &OwnerId::get_node_player_owner);
 ClassDB::bind_method(D_METHOD("get_player_owner"), &OwnerId::get_player_owner);
-ADD_PROPERTY(PropertyInfo(Variant::INT, "owner_id"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::STRING_NAME, "group_name"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "parent"))),); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "owner_id"))),"set_owner_id","get_owner_id"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::STRING_NAME, "group_name"))),"set_group_name","get_group_name"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "parent"))),"set_parent","get_parent"); // unfinished and u should prolly change this
 ADD_SIGNAL(MethodInfo("owner_changed", ));
 }

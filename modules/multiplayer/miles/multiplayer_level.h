@@ -37,5 +37,7 @@ void on_notified_ready(int id);
 void on_node_spawned(Node serializer);
 void on_node_deleted(Node serializer);
 void _exit_tree();
+Node get_history_saver();
+Node set_history_saver(Node history_saver);
 };
 VARIANT_ENUM_CAST(MultiplayerLevel::PhysicsPriority);
