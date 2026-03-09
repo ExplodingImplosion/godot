@@ -124,13 +124,13 @@ public:
 class StreamPeerBuffer : public StreamPeer {
 	GDCLASS(StreamPeerBuffer, StreamPeer);
 
-	Vector<uint8_t> data;
 	int pointer = 0;
 
 protected:
 	static void _bind_methods();
 
 public:
+	Vector<uint8_t> data;
 	Error put_data(const uint8_t *p_data, int p_bytes) override;
 	Error put_partial_data(const uint8_t *p_data, int p_bytes, int &r_sent) override;
 
