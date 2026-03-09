@@ -289,7 +289,7 @@ ClassDB::bind_method(D_METHOD("put_nv2_half", "v2", "unit"), &StreamPeerBitBuffe
 ClassDB::bind_method(D_METHOD("get_nv2_half", "unit"), &StreamPeerBitBuffer::get_nv2_half);
 ClassDB::bind_method(D_METHOD("put_probabalistic_enum", "value"), &StreamPeerBitBuffer::put_probabalistic_enum);
 ClassDB::bind_method(D_METHOD("get_probabalistic_enum", "enum_max"), &StreamPeerBitBuffer::get_probabalistic_enum);
-ADD_PROPERTY(PropertyInfo(Variant::INT, "bool_position"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "num_allocated_bools"))),); // unfinished and u should prolly change this
-ADD_PROPERTY(PropertyInfo(Variant::INT, "bool_bytes"))),); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "bool_position"))),"set_bool_position","get_bool_position"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "num_allocated_bools"))),"set_num_allocated_bools","get_num_allocated_bools"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "bool_bytes"))),"set_bool_bytes","get_bool_bytes"); // unfinished and u should prolly change this
 }

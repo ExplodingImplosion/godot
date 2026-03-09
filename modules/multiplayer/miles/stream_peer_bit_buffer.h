@@ -77,4 +77,10 @@ class StreamPeerBitBuffer: public StreamPeerBuffer {
         Vector2 get_nv2_half(float unit);
         void put_probabalistic_enum(int value);
         int get_probabalistic_enum(int enum_max);
+int get_bool_position();
+int set_bool_position(int bool_position);
+int get_num_allocated_bools();
+int set_num_allocated_bools(int num_allocated_bools);
+int get_bool_bytes();
+int set_bool_bytes(int bool_bytes);
 };
