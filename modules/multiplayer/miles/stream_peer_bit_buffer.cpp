@@ -28,7 +28,7 @@ Ref<StreamPeerBitBuffer> StreamPeerBitBuffer::allocate(int with_size, int alloca
 // NOTE: BUG! reallocating bools turns var_pos negative (wtf?)
 void StreamPeerBitBuffer::init(int with_size, int allocated_bools) {
 	bool_bytes = (allocated_bools+7) / 8;
-    with_size = VariantUtilityFunctions::clampi(with_size,bool_bytes,0x7FFFFFFF)
+    with_size = VariantUtilityFunctions::clampi(with_size,bool_bytes,0x7FFFFFFF);
     num_allocated_bools = bool_bytes * 8;
     resize(with_size);
     seek(bool_bytes);
