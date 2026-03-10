@@ -46,9 +46,8 @@ protected:
 
 	uint16_t locked_axis = 0;
 
-	Ref<KinematicCollision3D> _move(const Vector3 &p_motion, bool p_test_only = false, real_t p_margin = 0.001, bool p_recovery_as_collision = false, int p_max_collisions = 1);
-
 public:
+	Ref<KinematicCollision3D> _move(const Vector3 &p_motion, bool p_test_only = false, real_t p_margin = 0.001, bool p_recovery_as_collision = false, int p_max_collisions = 1);
 	static constexpr AncestralClass static_ancestral_class = AncestralClass::PHYSICS_BODY_3D;
 
 	PackedStringArray get_configuration_warnings() const override;

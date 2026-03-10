@@ -112,6 +112,7 @@ public:
 	PlatformOnLeave get_platform_on_leave() const;
 
 	CharacterBody3D();
+	Vector3 up_direction = Vector3(0.0, 1.0, 0.0);
 
 private:
 	real_t margin = 0.001;
@@ -149,7 +150,6 @@ private:
 	real_t floor_snap_length = 0.1;
 	real_t floor_max_angle = Math::deg_to_rad((real_t)45.0);
 	real_t wall_min_slide_angle = Math::deg_to_rad((real_t)15.0);
-	Vector3 up_direction = Vector3(0.0, 1.0, 0.0);
 	Vector3 velocity;
 	Vector3 floor_normal;
 	Vector3 wall_normal;
