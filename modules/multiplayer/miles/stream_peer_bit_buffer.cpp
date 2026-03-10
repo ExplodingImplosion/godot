@@ -18,6 +18,8 @@ void StreamPeerBitBuffer::reset() {
     seek(bool_bytes);
 }
 
+// GDScript doesn't let you override constructors outside of GDScript (to my knowledge), so this is a workaround.
+// TODO, should look into supporting default args in GDScript.
 Ref<StreamPeerBitBuffer> StreamPeerBitBuffer::allocate(int with_size, int allocated_bools) {
 	Ref<StreamPeerBitBuffer> buffer;
     buffer.instantiate();
@@ -25,12 +27,22 @@ Ref<StreamPeerBitBuffer> StreamPeerBitBuffer::allocate(int with_size, int alloca
     return buffer;
 }
 
-// NOTE: BUG! reallocating bools turns var_pos negative (wtf?)
 void StreamPeerBitBuffer::init(int with_size, int allocated_bools) {
+    // Technically this could be negative and it would be fine because it gets clamped
+    // later on, but if someone is passing a negative number then something has gone wrong
+    ERR_FAIL_COND(with_size < 0);
+    // Don't allocate negative booleans lmao.
+    ERR_FAIL_COND(allocated_bools < 0);
+    // Ensure bool bytes is enough bytes to hold every allocated bool.
 	bool_bytes = (allocated_bools+7) / 8;
-    with_size = VariantUtilityFunctions::clampi(with_size,bool_bytes,0x7FFFFFFF);
     num_allocated_bools = bool_bytes * 8;
+    // make sure with_size is at least bool_bytes. When the pointer seeks below,
+    // StreamPeerBuffer is cool with it if its idx equals its size. It just can't
+    // be bigger, is all.
+    with_size = VariantUtilityFunctions::clampi(with_size,bool_bytes,0x7FFFFFFF);
+    // Resize to allocate at least the minimum starting size
     resize(with_size);
+    // Byte-aligned writes start here.
     seek(bool_bytes);
 }
 
@@ -40,12 +52,14 @@ void StreamPeerBitBuffer::init(int with_size, int allocated_bools) {
 // 		encode_uint32((uint32_t)p_value, &w[p_offset]);
 
 PackedByteArray StreamPeerBitBuffer::export_data(bool until_position) {
-	PackedByteArray array;
-    array.resize(4);
+    // Grab a 4 byte array and encode how many booleans there are.
+    // Includes the exact bool position in bits, so that recipients know
+    // which bits are garbage.
+	PackedByteArray array; array.resize(4);
     uint8_t *w = array.ptrw();
     encode_uint32(bool_position,&w[0]);
 
-    // These could probably be made faster
+    // These could probably be made faster.
     array.append_array(get_bools(until_position));
     array.append_array(get_non_bools(until_position));
     return array;
@@ -63,18 +77,28 @@ void StreamPeerBitBuffer::import(PackedByteArray bytes) {
 PackedByteArray StreamPeerBitBuffer::get_bools(bool until_position) {
 	return data.slice(0, until_position ? (bool_position + 7) / 8 : bool_bytes);
 }
+
+// Basically a faster version of calling allocate() and then import(), because import() handles
+// the same stuff allocate() does.
 Ref<StreamPeerBitBuffer> StreamPeerBitBuffer::decode(PackedByteArray bytes) {
 	Ref<StreamPeerBitBuffer> buffer;
     buffer.instantiate();
     buffer->import(bytes);
     return buffer;
 }
+
 PackedByteArray StreamPeerBitBuffer::get_non_bools(bool until_position) {
 	return data.slice(bool_bytes, until_position ? get_position()+1 : 0x7FFFFFFF);
 }
+// I don't yet know the exact GDScript syntax for making typed arrays etc, so im not gonna
+// bother with this yet. In my game, this function was called once for printing something that
+// is never printed.
 // Array StreamPeerBitBuffer::get_bools_as_array() {
 // 	Array<bool>
 // }
+
+// (Airplane voice) In the unlikely event someone didn't allocate enough
+// bools up front and wants to put another one, allocate 8 more lmfao.
 void StreamPeerBitBuffer::ensure_bools_allocated() {
 	if (unlikely(bool_position >= num_allocated_bools)) {
         // if (unlikely(bool_position > num_allocated_bools)) {
@@ -83,6 +107,8 @@ void StreamPeerBitBuffer::ensure_bools_allocated() {
         reallocate_bools(bool_position + 1 - num_allocated_bools);
     }
 }
+
+// Should be unsigned but a bunch of this is exposed to GDScript, so it's gonna be signed lololol
 void StreamPeerBitBuffer::reallocate_bools(int amount) {
 	ERR_FAIL_COND(amount < 1);
     uint32_t num_new_bytes = (amount+7) / 8;
@@ -98,13 +124,16 @@ void StreamPeerBitBuffer::reallocate_bools(int amount) {
 
     // Move all other data ahead by num_new_bytes
     Error err = _put_data(non_bools);
+    // I don't know the C++ version of GDScript's error_string()
     ERR_FAIL_COND_MSG(err == OK, "Yo this should never be an error, but got error [format me lmao]");
     
     // Go back to original pos + new bytes like nothing ever happened
     seek(pos + num_new_bytes);
 
 }
+
 void StreamPeerBitBuffer::put_bool(bool value) {
+    // Never overwrite byte-aligned data with booleans. Unless there's an ERR_FAIL_COND lolololol
 	ensure_bools_allocated();
     uint32_t idx = bool_position / 8;
     uint8_t bit = 1 << (bool_position % 8);
@@ -113,6 +142,8 @@ void StreamPeerBitBuffer::put_bool(bool value) {
     value ? w[idx] |= bit : w[idx] &= ~bit;
     bool_position += 1;
 }
+
+// For convenience sake
 bool StreamPeerBitBuffer::put_eval(bool evaluation) {
 	put_bool(evaluation);
     return evaluation;
@@ -249,39 +280,49 @@ Color StreamPeerBitBuffer::get_color() {
 		get_float()
 	);
 }
+
+#define max_u8 255
+#define max_u16 65535
+#define max_u32 4294967295
 void StreamPeerBitBuffer::put_udynamic(int num) {
-	if (put_eval(num > 255)) {
-        if (put_eval(num > 65535)) {
-            if (put_eval(num > 4294967295)) {
+    // Is the number too big for a byte?
+	if (put_eval(num > max_u8)) {
+        // Too big for 2 bytes?
+        if (put_eval(num > max_u16)) {
+            // Too big for 4 bytes?
+            if (put_eval(num > max_u32)) {
                 put_u64(num);
             }
-            else{
+            else{ // Small enough for 4 bytes.
                 put_u32(num);
             }
         }
-        else {
+        else { // Small enough for 2 bytes.
             put_u16(num);
         }
     }
-    else{
+    else{ // Small enough for a byte.
         put_u8(num);
     }
 }
 int StreamPeerBitBuffer::get_udynamic() {
+    // Too big for a byte?
 	if (get_bool()) {
+        // Too big for 2?
         if (get_bool()) {
+            // Too big for 4?
             if (get_bool()) {
                 return get_u64();
             }
-            else {
+            else { // Small enoug for 4.
                 return get_u32();
             }
         }
-        else {
+        else { // Small enough for 2.
             return get_u16();
         }
     }
-    else { 
+    else { // Small enough for a byte.
         return get_u8();
     }
 }
@@ -326,7 +367,7 @@ int StreamPeerBitBuffer::get_dynamic() {
 
 void StreamPeerBitBuffer::put_n8(float num, float unit = 1.) {
 	float frac = VariantUtilityFunctions::clampf(num / unit, 0., 1.);
-    put_u8(uint8_t(255*frac));
+    put_u8(uint8_t(255.*frac));
 }
 float StreamPeerBitBuffer::get_n8(float unit = 1.) {
 	float frac = float(get_u8()) / 255.;
@@ -334,7 +375,7 @@ float StreamPeerBitBuffer::get_n8(float unit = 1.) {
 }
 void StreamPeerBitBuffer::put_n16(float num, float unit = 1.) {
 	float frac = VariantUtilityFunctions::clampf(num / unit, 0., 1.);
-    put_u16(uint16_t(65535*frac));
+    put_u16(uint16_t(65535.*frac));
 }
 float StreamPeerBitBuffer::get_n16(float unit = 1.) {
 	float frac = float(get_u16())/65535.;
@@ -342,7 +383,7 @@ float StreamPeerBitBuffer::get_n16(float unit = 1.) {
 }
 void StreamPeerBitBuffer::put_n32(float num, float unit = 1.) {
 	float frac = VariantUtilityFunctions::clampf(num / unit,0.,1.);
-	put_u32(int(4294967295*frac));
+	put_u32(int(4294967295.*frac));
 }
 float StreamPeerBitBuffer::get_n32(float unit = 1.) {
 	float frac = float(get_u32())/4294967295.;
@@ -358,7 +399,7 @@ float StreamPeerBitBuffer::get_n64(float unit = 1.) {
 }
 void StreamPeerBitBuffer::put_r8(float num, float unit = Math::TAU) {
 	float frac = VariantUtilityFunctions::wrapf(num / unit,0.,1.);
-	put_u8(int(255*frac));
+	put_u8(int(255.*frac));
 }
 float StreamPeerBitBuffer::get_r8(float unit = Math::TAU) {
 	float frac = float(get_u8())/255.;
