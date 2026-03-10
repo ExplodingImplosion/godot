@@ -38,6 +38,8 @@ ClassDB::bind_method(D_METHOD("on_notified_ready", "id"), &MultiplayerLevel::on_
 ClassDB::bind_method(D_METHOD("on_node_spawned", "serializer"), &MultiplayerLevel::on_node_spawned);
 ClassDB::bind_method(D_METHOD("on_node_deleted", "serializer"), &MultiplayerLevel::on_node_deleted);
 ClassDB::bind_method(D_METHOD("_exit_tree"), &MultiplayerLevel::_exit_tree);
+ClassDB::bind_method(D_METHOD("set_history_saver", "value"), &MultiplayerLevel::set_history_saver);
+ClassDB::bind_method(D_METHOD("get_history_saver"), &MultiplayerLevel::get_history_saver);
 ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "history_saver"), "set_history_saver," "get_history_saver"); // unfinished and u should prolly change this
 BIND_ENUM_CONSTANT(SINGLETONS);
 BIND_ENUM_CONSTANT(REGULAR);

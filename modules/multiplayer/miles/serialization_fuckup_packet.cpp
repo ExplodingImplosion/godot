@@ -32,6 +32,10 @@ ClassDB::bind_method(D_METHOD("_execute", "sender_id"), &SerializationFuckupPack
 ClassDB::bind_method(D_METHOD("get_fuckup_string"), &SerializationFuckupPacket::get_fuckup_string);
 ClassDB::bind_static_method("SerializationFuckupPacket", D_METHOD("is_script_valid_packet", "script"), &SerializationFuckupPacket::is_script_valid_packet);
 ClassDB::bind_method(D_METHOD("_execute", "_sender_id"), &SerializationFuckupPacket::_execute);
+ClassDB::bind_method(D_METHOD("set_u8_fuckup", "value"), &SerializationFuckupPacket::set_u8_fuckup);
+ClassDB::bind_method(D_METHOD("get_u8_fuckup"), &SerializationFuckupPacket::get_u8_fuckup);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "u8_fuckup"), "set_u8_fuckup," "get_u8_fuckup"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_data", "value"), &SerializationFuckupPacket::set_data);
+ClassDB::bind_method(D_METHOD("get_data"), &SerializationFuckupPacket::get_data);
 ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "data"), "set_data," "get_data"); // unfinished and u should prolly change this
 }

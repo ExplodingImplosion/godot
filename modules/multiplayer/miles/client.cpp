@@ -248,26 +248,70 @@ ClassDB::bind_method(D_METHOD("change_input_buffer_offset", "amnt"), &Client::ch
 ClassDB::bind_method(D_METHOD("set_input_buffer_offset", "position"), &Client::set_input_buffer_offset);
 ClassDB::bind_method(D_METHOD("tick_player_inputs"), &Client::tick_player_inputs);
 ClassDB::bind_method(D_METHOD("tick_local"), &Client::tick_local);
+ClassDB::bind_method(D_METHOD("set_id", "value"), &Client::set_id);
+ClassDB::bind_method(D_METHOD("get_id"), &Client::get_id);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "id"), "set_id," "get_id"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_players", "value"), &Client::set_players);
+ClassDB::bind_method(D_METHOD("get_players"), &Client::get_players);
 ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "players", 31, "RefCounted", 4096), "set_players," "get_players"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_ready", "value"), &Client::set_ready);
+ClassDB::bind_method(D_METHOD("get_ready"), &Client::get_ready);
 ADD_PROPERTY(PropertyInfo(Variant::BOOL, "ready"), "set_ready," "get_ready"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_most_recent_acked_frame", "value"), &Client::set_most_recent_acked_frame);
+ClassDB::bind_method(D_METHOD("get_most_recent_acked_frame"), &Client::get_most_recent_acked_frame);
 ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "most_recent_acked_frame"), "set_most_recent_acked_frame," "get_most_recent_acked_frame"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_dirty_frame", "value"), &Client::set_dirty_frame);
+ClassDB::bind_method(D_METHOD("get_dirty_frame"), &Client::get_dirty_frame);
 ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "dirty_frame"), "set_dirty_frame," "get_dirty_frame"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_server_acked_frame_num", "value"), &Client::set_server_acked_frame_num);
+ClassDB::bind_method(D_METHOD("get_server_acked_frame_num"), &Client::get_server_acked_frame_num);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "server_acked_frame_num"), "set_server_acked_frame_num," "get_server_acked_frame_num"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_last_decoded_frame_size", "value"), &Client::set_last_decoded_frame_size);
+ClassDB::bind_method(D_METHOD("get_last_decoded_frame_size"), &Client::get_last_decoded_frame_size);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "last_decoded_frame_size"), "set_last_decoded_frame_size," "get_last_decoded_frame_size"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_team", "value"), &Client::set_team);
+ClassDB::bind_method(D_METHOD("get_team"), &Client::get_team);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "team"), "set_team," "get_team"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_most_recent_received_frame", "value"), &Client::set_most_recent_received_frame);
+ClassDB::bind_method(D_METHOD("get_most_recent_received_frame"), &Client::get_most_recent_received_frame);
 ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "most_recent_received_frame"), "set_most_recent_received_frame," "get_most_recent_received_frame"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_input_signature", "value"), &Client::set_input_signature);
+ClassDB::bind_method(D_METHOD("get_input_signature"), &Client::get_input_signature);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "input_signature"), "set_input_signature," "get_input_signature"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_acked_input_signature", "value"), &Client::set_acked_input_signature);
+ClassDB::bind_method(D_METHOD("get_acked_input_signature"), &Client::get_acked_input_signature);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "acked_input_signature"), "set_acked_input_signature," "get_acked_input_signature"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_server_input_signature", "value"), &Client::set_server_input_signature);
+ClassDB::bind_method(D_METHOD("get_server_input_signature"), &Client::get_server_input_signature);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "server_input_signature"), "set_server_input_signature," "get_server_input_signature"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_input_buffer_offset", "value"), &Client::set_input_buffer_offset);
+ClassDB::bind_method(D_METHOD("get_input_buffer_offset"), &Client::get_input_buffer_offset);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "input_buffer_offset"), "set_input_buffer_offset," "get_input_buffer_offset"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_replay", "value"), &Client::set_replay);
+ClassDB::bind_method(D_METHOD("get_replay"), &Client::get_replay);
 ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "replay"), "set_replay," "get_replay"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_fucked", "value"), &Client::set_fucked);
+ClassDB::bind_method(D_METHOD("get_fucked"), &Client::get_fucked);
 ADD_PROPERTY(PropertyInfo(Variant::BOOL, "fucked"), "set_fucked," "get_fucked"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_uid_map", "value"), &Client::set_uid_map);
+ClassDB::bind_method(D_METHOD("get_uid_map"), &Client::get_uid_map);
 ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "uid_map", 38, "int;int", 4096), "set_uid_map," "get_uid_map"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_max_command_frame_rate", "value"), &Client::set_max_command_frame_rate);
+ClassDB::bind_method(D_METHOD("get_max_command_frame_rate"), &Client::get_max_command_frame_rate);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "max_command_frame_rate"), "set_max_command_frame_rate," "get_max_command_frame_rate"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_buffer_time", "value"), &Client::set_buffer_time);
+ClassDB::bind_method(D_METHOD("get_buffer_time"), &Client::get_buffer_time);
 ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "buffer_time"), "set_buffer_time," "get_buffer_time"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_input_buffer_time", "value"), &Client::set_input_buffer_time);
+ClassDB::bind_method(D_METHOD("get_input_buffer_time"), &Client::get_input_buffer_time);
 ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "input_buffer_time"), "set_input_buffer_time," "get_input_buffer_time"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_server_input_buffer_time", "value"), &Client::set_server_input_buffer_time);
+ClassDB::bind_method(D_METHOD("get_server_input_buffer_time"), &Client::get_server_input_buffer_time);
 ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "server_input_buffer_time"), "set_server_input_buffer_time," "get_server_input_buffer_time"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_max_receive_bandwidth", "value"), &Client::set_max_receive_bandwidth);
+ClassDB::bind_method(D_METHOD("get_max_receive_bandwidth"), &Client::get_max_receive_bandwidth);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "max_receive_bandwidth"), "set_max_receive_bandwidth," "get_max_receive_bandwidth"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_max_send_bandwidth", "value"), &Client::set_max_send_bandwidth);
+ClassDB::bind_method(D_METHOD("get_max_send_bandwidth"), &Client::get_max_send_bandwidth);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "max_send_bandwidth"), "set_max_send_bandwidth," "get_max_send_bandwidth"); // unfinished and u should prolly change this
 }

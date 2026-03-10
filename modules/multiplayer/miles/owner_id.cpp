@@ -86,8 +86,14 @@ ClassDB::bind_static_method("OwnerId", D_METHOD("get_node_owner_id", "node"), &O
 ClassDB::bind_static_method("OwnerId", D_METHOD("get_node_client_owner", "node"), &OwnerId::get_node_client_owner);
 ClassDB::bind_static_method("OwnerId", D_METHOD("get_node_player_owner", "node"), &OwnerId::get_node_player_owner);
 ClassDB::bind_method(D_METHOD("get_player_owner"), &OwnerId::get_player_owner);
+ClassDB::bind_method(D_METHOD("set_owner_id", "value"), &OwnerId::set_owner_id);
+ClassDB::bind_method(D_METHOD("get_owner_id"), &OwnerId::get_owner_id);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "owner_id"), "set_owner_id," "get_owner_id"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_group_name", "value"), &OwnerId::set_group_name);
+ClassDB::bind_method(D_METHOD("get_group_name"), &OwnerId::get_group_name);
 ADD_PROPERTY(PropertyInfo(Variant::STRING_NAME, "group_name"), "set_group_name," "get_group_name"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_parent", "value"), &OwnerId::set_parent);
+ClassDB::bind_method(D_METHOD("get_parent"), &OwnerId::get_parent);
 ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "parent"), "set_parent," "get_parent"); // unfinished and u should prolly change this
 ADD_SIGNAL(MethodInfo("owner_changed", ));
 }

@@ -324,25 +324,65 @@ ClassDB::bind_method(D_METHOD("decode_array", "array", "buffer", "vis_type"), &N
 ClassDB::bind_method(D_METHOD("decode_array_iter", "array", "buffer", "iter"), &NetworkedNode::decode_array_iter);
 ClassDB::bind_method(D_METHOD("decode_delta_array", "array", "buffer", "vis_type"), &NetworkedNode::decode_delta_array);
 ClassDB::bind_method(D_METHOD("decode_delta_array_iter", "array", "buffer", "iter"), &NetworkedNode::decode_delta_array_iter);
+ClassDB::bind_method(D_METHOD("set_ready", "value"), &NetworkedNode::set_ready);
+ClassDB::bind_method(D_METHOD("get_ready"), &NetworkedNode::get_ready);
 ADD_PROPERTY(PropertyInfo(Variant::BOOL, "ready"), "set_ready," "get_ready"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_owner", "value"), &NetworkedNode::set_owner);
+ClassDB::bind_method(D_METHOD("get_owner"), &NetworkedNode::get_owner);
 ADD_PROPERTY(PropertyInfo(Variant::BOOL, "owner"), "set_owner," "get_owner"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_owner_scene_path", "value"), &NetworkedNode::set_owner_scene_path);
+ClassDB::bind_method(D_METHOD("get_owner_scene_path"), &NetworkedNode::get_owner_scene_path);
 ADD_PROPERTY(PropertyInfo(Variant::STRING, "owner_scene_path"), "set_owner_scene_path," "get_owner_scene_path"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_num_props", "value"), &NetworkedNode::set_num_props);
+ClassDB::bind_method(D_METHOD("get_num_props"), &NetworkedNode::get_num_props);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "num_props"), "set_num_props," "get_num_props"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_source_script", "value"), &NetworkedNode::set_source_script);
+ClassDB::bind_method(D_METHOD("get_source_script"), &NetworkedNode::get_source_script);
 ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "source_script", 17, "Script", 4102), "set_source_script," "get_source_script"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_base_class", "value"), &NetworkedNode::set_base_class);
+ClassDB::bind_method(D_METHOD("get_base_class"), &NetworkedNode::get_base_class);
 ADD_PROPERTY(PropertyInfo(Variant::STRING_NAME, "base_class"), "set_base_class," "get_base_class"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_properties", "value"), &NetworkedNode::set_properties);
+ClassDB::bind_method(D_METHOD("get_properties"), &NetworkedNode::get_properties);
 ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "properties", 23, "24/17:Property", 4102), "set_properties," "get_properties"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_iter_all", "value"), &NetworkedNode::set_iter_all);
+ClassDB::bind_method(D_METHOD("get_iter_all"), &NetworkedNode::get_iter_all);
 ADD_PROPERTY(PropertyInfo(Variant::PACKED_BYTE_ARRAY, "iter_all"), "set_iter_all," "get_iter_all"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_iter_owner_only", "value"), &NetworkedNode::set_iter_owner_only);
+ClassDB::bind_method(D_METHOD("get_iter_owner_only"), &NetworkedNode::get_iter_owner_only);
 ADD_PROPERTY(PropertyInfo(Variant::PACKED_BYTE_ARRAY, "iter_owner_only"), "set_iter_owner_only," "get_iter_owner_only"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_iter_team_only", "value"), &NetworkedNode::set_iter_team_only);
+ClassDB::bind_method(D_METHOD("get_iter_team_only"), &NetworkedNode::get_iter_team_only);
 ADD_PROPERTY(PropertyInfo(Variant::PACKED_BYTE_ARRAY, "iter_team_only"), "set_iter_team_only," "get_iter_team_only"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_iter_physical", "value"), &NetworkedNode::set_iter_physical);
+ClassDB::bind_method(D_METHOD("get_iter_physical"), &NetworkedNode::get_iter_physical);
 ADD_PROPERTY(PropertyInfo(Variant::PACKED_BYTE_ARRAY, "iter_physical"), "set_iter_physical," "get_iter_physical"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_iters", "value"), &NetworkedNode::set_iters);
+ClassDB::bind_method(D_METHOD("get_iters"), &NetworkedNode::get_iters);
 ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "iters", 31, "PackedByteArray", 4096), "set_iters," "get_iters"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_iters_visible", "value"), &NetworkedNode::set_iters_visible);
+ClassDB::bind_method(D_METHOD("get_iters_visible"), &NetworkedNode::get_iters_visible);
 ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "iters_visible", 31, "bool", 4096), "set_iters_visible," "get_iters_visible"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_bitmask_map", "value"), &NetworkedNode::set_bitmask_map);
+ClassDB::bind_method(D_METHOD("get_bitmask_map"), &NetworkedNode::get_bitmask_map);
 ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "bitmask_map", 38, "PackedByteArray;int", 4096), "set_bitmask_map," "get_bitmask_map"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_is_fixed_size", "value"), &NetworkedNode::set_is_fixed_size);
+ClassDB::bind_method(D_METHOD("get_is_fixed_size"), &NetworkedNode::get_is_fixed_size);
 ADD_PROPERTY(PropertyInfo(Variant::BOOL, "is_fixed_size"), "set_is_fixed_size," "get_is_fixed_size"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_num_bools", "value"), &NetworkedNode::set_num_bools);
+ClassDB::bind_method(D_METHOD("get_num_bools"), &NetworkedNode::get_num_bools);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "num_bools"), "set_num_bools," "get_num_bools"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_fixed_size_bytes", "value"), &NetworkedNode::set_fixed_size_bytes);
+ClassDB::bind_method(D_METHOD("get_fixed_size_bytes"), &NetworkedNode::get_fixed_size_bytes);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "fixed_size_bytes"), "set_fixed_size_bytes," "get_fixed_size_bytes"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_type", "value"), &NetworkedNode::set_type);
+ClassDB::bind_method(D_METHOD("get_type"), &NetworkedNode::get_type);
 ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "type"), "set_type," "get_type"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_get_plist_func", "value"), &NetworkedNode::set_get_plist_func);
+ClassDB::bind_method(D_METHOD("get_get_plist_func"), &NetworkedNode::get_get_plist_func);
 ADD_PROPERTY(PropertyInfo(Variant::CALLABLE, "get_plist_func", 39, "check plist", 4100), "set_get_plist_func," "get_get_plist_func"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_get_plist_short_func", "value"), &NetworkedNode::set_get_plist_short_func);
+ClassDB::bind_method(D_METHOD("get_get_plist_short_func"), &NetworkedNode::get_get_plist_short_func);
 ADD_PROPERTY(PropertyInfo(Variant::CALLABLE, "get_plist_short_func", 39, "check plist (script only)", 4100), "set_get_plist_short_func," "get_get_plist_short_func"); // unfinished and u should prolly change this
 BIND_ENUM_CONSTANT(ALL);
 BIND_ENUM_CONSTANT(OWNER_ONLY);

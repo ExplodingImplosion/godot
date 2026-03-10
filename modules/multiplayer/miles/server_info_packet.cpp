@@ -44,8 +44,16 @@ ClassDB::bind_method(D_METHOD("_execute", "_sender_id"), &ServerInfoPacket::_exe
 ClassDB::bind_method(D_METHOD("_to_string"), &ServerInfoPacket::_to_string);
 ClassDB::bind_static_method("ServerInfoPacket", D_METHOD("is_script_valid_packet", "script"), &ServerInfoPacket::is_script_valid_packet);
 ClassDB::bind_method(D_METHOD("_execute", "_sender_id"), &ServerInfoPacket::_execute);
+ClassDB::bind_method(D_METHOD("set_scene_path", "value"), &ServerInfoPacket::set_scene_path);
+ClassDB::bind_method(D_METHOD("get_scene_path"), &ServerInfoPacket::get_scene_path);
 ADD_PROPERTY(PropertyInfo(Variant::STRING, "scene_path"), "set_scene_path," "get_scene_path"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_u8_max_players", "value"), &ServerInfoPacket::set_u8_max_players);
+ClassDB::bind_method(D_METHOD("get_u8_max_players"), &ServerInfoPacket::get_u8_max_players);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "u8_max_players"), "set_u8_max_players," "get_u8_max_players"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_u8_max_spectators", "value"), &ServerInfoPacket::set_u8_max_spectators);
+ClassDB::bind_method(D_METHOD("get_u8_max_spectators"), &ServerInfoPacket::get_u8_max_spectators);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "u8_max_spectators"), "set_u8_max_spectators," "get_u8_max_spectators"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_u16_tickrate", "value"), &ServerInfoPacket::set_u16_tickrate);
+ClassDB::bind_method(D_METHOD("get_u16_tickrate"), &ServerInfoPacket::get_u16_tickrate);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "u16_tickrate"), "set_u16_tickrate," "get_u16_tickrate"); // unfinished and u should prolly change this
 }

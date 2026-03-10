@@ -34,7 +34,13 @@ ClassDB::bind_static_method("InputPacket", D_METHOD("send"), &InputPacket::send)
 ClassDB::bind_method(D_METHOD("_execute", "sender_id"), &InputPacket::_execute);
 ClassDB::bind_static_method("InputPacket", D_METHOD("is_script_valid_packet", "script"), &InputPacket::is_script_valid_packet);
 ClassDB::bind_method(D_METHOD("_execute", "_sender_id"), &InputPacket::_execute);
+ClassDB::bind_method(D_METHOD("set_u32_signature", "value"), &InputPacket::set_u32_signature);
+ClassDB::bind_method(D_METHOD("get_u32_signature"), &InputPacket::get_u32_signature);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "u32_signature"), "set_u32_signature," "get_u32_signature"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_u8_num_inputs", "value"), &InputPacket::set_u8_num_inputs);
+ClassDB::bind_method(D_METHOD("get_u8_num_inputs"), &InputPacket::get_u8_num_inputs);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "u8_num_inputs"), "set_u8_num_inputs," "get_u8_num_inputs"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_inputs", "value"), &InputPacket::set_inputs);
+ClassDB::bind_method(D_METHOD("get_inputs"), &InputPacket::get_inputs);
 ADD_PROPERTY(PropertyInfo(Variant::PACKED_BYTE_ARRAY, "inputs"), "set_inputs," "get_inputs"); // unfinished and u should prolly change this
 }

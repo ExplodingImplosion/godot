@@ -90,11 +90,17 @@ ClassDB::bind_static_method("Team", D_METHOD("nodes_are_on_same_team", "node1", 
 ClassDB::bind_static_method("Team", D_METHOD("all_nodes_are_on_same_team", "array"), &Team::all_nodes_are_on_same_team);
 ClassDB::bind_static_method("Team", D_METHOD("teams_are_friendly", "team1", "team2"), &Team::teams_are_friendly);
 ClassDB::bind_static_method("Team", D_METHOD("get_node_team_id", "node"), &Team::get_node_team_id);
+ClassDB::bind_method(D_METHOD("set_team_id", "value"), &Team::set_team_id);
+ClassDB::bind_method(D_METHOD("get_team_id"), &Team::get_team_id);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "team_id", 6, "
 Always Hostile,
 Team 1,
 Team 2,
 ", 4102), "set_team_id," "get_team_id"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_group_name", "value"), &Team::set_group_name);
+ClassDB::bind_method(D_METHOD("get_group_name"), &Team::get_group_name);
 ADD_PROPERTY(PropertyInfo(Variant::STRING_NAME, "group_name"), "set_group_name," "get_group_name"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_parent", "value"), &Team::set_parent);
+ClassDB::bind_method(D_METHOD("get_parent"), &Team::get_parent);
 ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "parent"), "set_parent," "get_parent"); // unfinished and u should prolly change this
 }

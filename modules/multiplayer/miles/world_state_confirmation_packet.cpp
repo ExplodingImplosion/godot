@@ -22,5 +22,7 @@ ClassDB::bind_static_method("WorldStateConfirmationPacket", D_METHOD("send", "co
 ClassDB::bind_method(D_METHOD("_execute", "sender_id"), &WorldStateConfirmationPacket::_execute);
 ClassDB::bind_static_method("WorldStateConfirmationPacket", D_METHOD("is_script_valid_packet", "script"), &WorldStateConfirmationPacket::is_script_valid_packet);
 ClassDB::bind_method(D_METHOD("_execute", "_sender_id"), &WorldStateConfirmationPacket::_execute);
+ClassDB::bind_method(D_METHOD("set_u32_confirmation_frame_num", "value"), &WorldStateConfirmationPacket::set_u32_confirmation_frame_num);
+ClassDB::bind_method(D_METHOD("get_u32_confirmation_frame_num"), &WorldStateConfirmationPacket::get_u32_confirmation_frame_num);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "u32_confirmation_frame_num"), "set_u32_confirmation_frame_num," "get_u32_confirmation_frame_num"); // unfinished and u should prolly change this
 }

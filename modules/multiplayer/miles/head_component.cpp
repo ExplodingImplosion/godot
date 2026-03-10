@@ -76,10 +76,22 @@ ClassDB::bind_method(D_METHOD("release_mouse_control"), &HeadComponent::release_
 ClassDB::bind_method(D_METHOD("release_stick_control"), &HeadComponent::release_stick_control);
 ClassDB::bind_method(D_METHOD("aim", "direction"), &HeadComponent::aim);
 ClassDB::bind_method(D_METHOD("_process", "delta"), &HeadComponent::_process);
+ClassDB::bind_method(D_METHOD("set_player", "value"), &HeadComponent::set_player);
+ClassDB::bind_method(D_METHOD("get_player"), &HeadComponent::get_player);
 ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "player"), "set_player," "get_player"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_camera", "value"), &HeadComponent::set_camera);
+ClassDB::bind_method(D_METHOD("get_camera"), &HeadComponent::get_camera);
 ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "camera"), "set_camera," "get_camera"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_transformer", "value"), &HeadComponent::set_transformer);
+ClassDB::bind_method(D_METHOD("get_transformer"), &HeadComponent::get_transformer);
 ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "transformer"), "set_transformer," "get_transformer"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_stick_aim_func", "value"), &HeadComponent::set_stick_aim_func);
+ClassDB::bind_method(D_METHOD("get_stick_aim_func"), &HeadComponent::get_stick_aim_func);
 ADD_PROPERTY(PropertyInfo(Variant::CALLABLE, "stick_aim_func"), "set_stick_aim_func," "get_stick_aim_func"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_release_mouse_aim", "value"), &HeadComponent::set_release_mouse_aim);
+ClassDB::bind_method(D_METHOD("get_release_mouse_aim"), &HeadComponent::get_release_mouse_aim);
 ADD_PROPERTY(PropertyInfo(Variant::CALLABLE, "release_mouse_aim"), "set_release_mouse_aim," "get_release_mouse_aim"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_release_stick_aim", "value"), &HeadComponent::set_release_stick_aim);
+ClassDB::bind_method(D_METHOD("get_release_stick_aim"), &HeadComponent::get_release_stick_aim);
 ADD_PROPERTY(PropertyInfo(Variant::CALLABLE, "release_stick_aim"), "set_release_stick_aim," "get_release_stick_aim"); // unfinished and u should prolly change this
 }

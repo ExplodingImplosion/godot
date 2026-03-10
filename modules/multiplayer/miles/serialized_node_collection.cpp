@@ -110,15 +110,37 @@ ClassDB::bind_method(D_METHOD("encode_spawn", "buffer", "vis_type"), &Serialized
 ClassDB::bind_method(D_METHOD("decode_spawn", "buffer", "vis_type"), &SerializedNodeCollection::decode_spawn);
 ClassDB::bind_method(D_METHOD("encode_delta", "prev", "buffer", "vis_type"), &SerializedNodeCollection::encode_delta);
 ClassDB::bind_method(D_METHOD("decode_delta", "buffer", "vis_type"), &SerializedNodeCollection::decode_delta);
+ClassDB::bind_method(D_METHOD("set_node_configs", "value"), &SerializedNodeCollection::set_node_configs);
+ClassDB::bind_method(D_METHOD("get_node_configs"), &SerializedNodeCollection::get_node_configs);
 ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "node_configs", 31, "NetworkedNode", 4096), "set_node_configs," "get_node_configs"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_property_lists", "value"), &SerializedNodeCollection::set_property_lists);
+ClassDB::bind_method(D_METHOD("get_property_lists"), &SerializedNodeCollection::get_property_lists);
 ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "property_lists", 31, "Array", 4096), "set_property_lists," "get_property_lists"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_prev_property_lists", "value"), &SerializedNodeCollection::set_prev_property_lists);
+ClassDB::bind_method(D_METHOD("get_prev_property_lists"), &SerializedNodeCollection::get_prev_property_lists);
 ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "prev_property_lists", 31, "Array", 4096), "set_prev_property_lists," "get_prev_property_lists"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_num_nodes", "value"), &SerializedNodeCollection::set_num_nodes);
+ClassDB::bind_method(D_METHOD("get_num_nodes"), &SerializedNodeCollection::get_num_nodes);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "num_nodes"), "set_num_nodes," "get_num_nodes"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_uid", "value"), &SerializedNodeCollection::set_uid);
+ClassDB::bind_method(D_METHOD("get_uid"), &SerializedNodeCollection::get_uid);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "uid"), "set_uid," "get_uid"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_scene_id", "value"), &SerializedNodeCollection::set_scene_id);
+ClassDB::bind_method(D_METHOD("get_scene_id"), &SerializedNodeCollection::get_scene_id);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "scene_id"), "set_scene_id," "get_scene_id"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_owner_id", "value"), &SerializedNodeCollection::set_owner_id);
+ClassDB::bind_method(D_METHOD("get_owner_id"), &SerializedNodeCollection::get_owner_id);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "owner_id"), "set_owner_id," "get_owner_id"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_team", "value"), &SerializedNodeCollection::set_team);
+ClassDB::bind_method(D_METHOD("get_team"), &SerializedNodeCollection::get_team);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "team"), "set_team," "get_team"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_frame_created", "value"), &SerializedNodeCollection::set_frame_created);
+ClassDB::bind_method(D_METHOD("get_frame_created"), &SerializedNodeCollection::get_frame_created);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "frame_created"), "set_frame_created," "get_frame_created"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_frame_deleted", "value"), &SerializedNodeCollection::set_frame_deleted);
+ClassDB::bind_method(D_METHOD("get_frame_deleted"), &SerializedNodeCollection::get_frame_deleted);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "frame_deleted"), "set_frame_deleted," "get_frame_deleted"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_visibility", "value"), &SerializedNodeCollection::set_visibility);
+ClassDB::bind_method(D_METHOD("get_visibility"), &SerializedNodeCollection::get_visibility);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "visibility"), "set_visibility," "get_visibility"); // unfinished and u should prolly change this
 }
