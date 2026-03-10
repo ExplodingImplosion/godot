@@ -7,15 +7,16 @@ class StreamPeerBitBuffer: public StreamPeerBuffer {
         uint32_t num_allocated_bools = 0;
         uint32_t bool_bytes = 0;
         
-        String _to_string();
+        virtual String _to_string() override;
         void reset();
-        void _init(int with_size, int allocated_bools);
-        PackedByteArray export(bool until_position);
+        void init(int with_size, int allocated_bools);
+        static Ref<StreamPeerBitBuffer> allocate(int with_size, int allocated_bools);
+        PackedByteArray export_data(bool until_position);
         void import(PackedByteArray bytes);
         PackedByteArray get_bools(bool until_position);
-        static StreamPeerBitBuffer* decode(PackedByteArray bytes);
+        static Ref<StreamPeerBitBuffer> decode(PackedByteArray bytes);
         PackedByteArray get_non_bools(bool until_position);
-        Array get_bools_as_array();
+        // Array get_bools_as_array();
         void ensure_bools_allocated();
         void reallocate_bools(int amount);
         void put_bool(bool value);
@@ -77,10 +78,10 @@ class StreamPeerBitBuffer: public StreamPeerBuffer {
         void put_probabalistic_enum(int value);
         int get_probabalistic_enum(int enum_max);
         int get_bool_position();
-        int set_bool_position(int p_bool_position);
+        void set_bool_position(int p_bool_position);
         int get_num_allocated_bools();
-        int set_num_allocated_bools(int p_num_allocated_bools);
+        void set_num_allocated_bools(int p_num_allocated_bools);
         int get_bool_bytes();
-        int set_bool_bytes(int p_bool_bytes);
-        
+        void set_bool_bytes(int p_bool_bytes);
+        static void _bind_methods();
 };
