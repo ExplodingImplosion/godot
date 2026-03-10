@@ -28,6 +28,7 @@ Ref<StreamPeerBitBuffer> StreamPeerBitBuffer::allocate(int with_size, int alloca
 // NOTE: BUG! reallocating bools turns var_pos negative (wtf?)
 void StreamPeerBitBuffer::init(int with_size, int allocated_bools) {
 	bool_bytes = (allocated_bools+7) / 8;
+    with_size = VariantUtilityFunctions::clampi(with_size,bool_bytes,0x7FFFFFFF)
     num_allocated_bools = bool_bytes * 8;
     resize(with_size);
     seek(bool_bytes);
@@ -41,10 +42,8 @@ void StreamPeerBitBuffer::init(int with_size, int allocated_bools) {
 PackedByteArray StreamPeerBitBuffer::export_data(bool until_position) {
 	PackedByteArray array;
     array.resize(4);
-    // This might be wrong
     uint8_t *w = array.ptrw();
     encode_uint32(bool_position,&w[0]);
-    //
 
     // These could probably be made faster
     array.append_array(get_bools(until_position));
