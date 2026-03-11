@@ -197,11 +197,11 @@ ClassDB::bind_static_method("TimeUtils", D_METHOD("get_time_usec"), &TimeUtils::
 ClassDB::bind_static_method("TimeUtils", D_METHOD("get_time_msec"), &TimeUtils::get_time_msec);
 ClassDB::bind_static_method("TimeUtils", D_METHOD("get_frame_percentage", "time_usec"), &TimeUtils::get_frame_percentage);
 ClassDB::bind_static_method("TimeUtils", D_METHOD("get_func_time_usec", "method"), &TimeUtils::get_func_time_usec);
-ClassDB::bind_static_method("TimeUtils", D_METHOD("get_func_frame_pct", "method", "print_func_frame_pct"), &TimeUtils::get_func_frame_pct);
+ClassDB::bind_static_method("TimeUtils", D_METHOD("get_func_frame_pct", "method", "print_func_frame_pct"), &TimeUtils::get_func_frame_pct, DEFVAL(true));
 ClassDB::bind_static_method("TimeUtils", D_METHOD("get_func_time_msec", "method"), &TimeUtils::get_func_time_msec);
 ClassDB::bind_static_method("TimeUtils", D_METHOD("get_func_time_msecf", "method"), &TimeUtils::get_func_time_msecf);
 ClassDB::bind_static_method("TimeUtils", D_METHOD("get_func_time_seconds", "method"), &TimeUtils::get_func_time_seconds);
-ClassDB::bind_static_method("TimeUtils", D_METHOD("is_frame_out_of_time", "max_frame_frac"), &TimeUtils::is_frame_out_of_time);
-ClassDB::bind_static_method("TimeUtils", D_METHOD("check_func_time", "function", "include_arguments", "include_object", "include_stack"), &TimeUtils::check_func_time);
+ClassDB::bind_static_method("TimeUtils", D_METHOD("is_frame_out_of_time", "max_frame_frac"), &TimeUtils::is_frame_out_of_time, DEFVAL(0.95));
+ClassDB::bind_static_method("TimeUtils", D_METHOD("check_func_time", "function", "include_arguments", "include_object", "include_stack"), &TimeUtils::check_func_time, DEFVAL(false), DEFVAL(false), DEFVAL(false));
 ClassDB::bind_static_method("TimeUtils", D_METHOD("get_time_since_physics_frame_usec"), &TimeUtils::get_time_since_physics_frame_usec);
 }
