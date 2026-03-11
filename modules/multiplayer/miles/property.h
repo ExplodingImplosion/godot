@@ -1,15 +1,17 @@
-#include quack_multiplayer.h
-#include stream_peer_bit_buffer.h
-#include multiplayer_session.h
-#include team_component.h
-#include owner_id.h
-#include serializer.h
+#include "quack_multiplayer.h"
+#include "stream_peer_bit_buffer.h"
+// #include multiplayer_session.h
+// #include team_component.h
+// #include owner_id.h
+#include "serializer.h"
+#include "core/object/object.h"
+#include "scene/main/node.h"
 
 class Property: public Resource {
 GDCLASS(Property, Resource);
 public:
 StringName name;
-int type;
+Variant::Type type;
 int precision_level;
 int sub_property_index;
 int interp_type;
@@ -21,8 +23,8 @@ int network_type;
 int max_bits;
 int size_bytes;
 int encode_type;
-Property value_type;
-Property key_type;
+Ref<Property> value_type;
+Ref<Property> key_type;
 enum NetworkType {
 TYPE_NIL = 0,
 TYPE_INT = 1,
@@ -106,7 +108,15 @@ OWNER_ONLY = 1,
 TEAM_ONLY = 2,
 VIS_TYPE_MAX = 3,
 };
-const PackedByteArray max_bits_per_level = [32, 64, 16, 8, 32, 64, 16, 8, 255];
+const PackedByteArray max_bits_per_level = get_max_bits_per_level();
+static const PackedByteArray get_max_bits_per_level() {
+    PackedByteArray max_bits; max_bits.resize(9);
+    max_bits.write[0] = 32; max_bits.write[1] = 64; max_bits.write[2] = 16; max_bits.write[3] = 8;
+    max_bits.write[4] = 32; max_bits.write[5] = 64; max_bits.write[6] = 16; max_bits.write[7] = 8;
+    max_bits.write[8] = 255;
+    return max_bits;
+}
+
 enum PropertyIndex {
 NONE = -1,
 X = 0,
@@ -117,22 +127,22 @@ W = 3,
 const int NO_NODE = -1;
 const int UN_SERIALIZED_NODE = -2;
 const int OBJECT = -3;
-void _init(StringName name, int type);
+static Ref<Property> make_new(StringName p_name, Variant::Type p_type);
 void setup();
-static bool is_interpolatable(int type);
+static bool is_interpolatable(Variant::Type type);
 String _to_string();
-void get_property(Object node);
-static Node property_to_node(int property);
-static int node_to_property(Object node);
-void set_property(void property, Object node);
-void set_property_interpolated(void property, Object node, float weight);
-void interpolate_property(void current_property, void prev_property, Object node, float weight);
+void get_property(Object* node);
+static Node* property_to_node(int property);
+static int node_to_property(Object* node);
+void set_property(Ref<Property>property, Object* node);
+void set_property_interpolated(Ref<Property>property, Object* node, float weight);
+void interpolate_property(Ref<Property>current_property, Ref<Property> prev_property, Object* node, float weight);
 static int get_visibility(int node_owner_id, int node_team, int receiver_id, int hostility_mask);
 static int get_visibility_by_clients(int owner_id, int receiver_id);
 static int get_visibility_by_team(int owner_id, int owner_team, int receiver_id);
-static int get_visibility_by_node(Node node, int receiver_id, int hostility_mask);
+static int get_visibility_by_node(Node* node, int receiver_id, int hostility_mask);
 bool get_visible(int owner_id, int receiver_id);
-void encode(void property, StreamPeerBuffer buffer);
+void encode(Ref<Property>property, StreamPeerBuffer buffer);
 void decode(StreamPeerBuffer buffer);
 static int get_encode_type(int type, int sub_property_index, int precision_level);
 static int name_to_precision(String name);

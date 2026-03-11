@@ -1,32 +1,164 @@
-#include property.h
-void Property::_init(StringName name, int type) {
-	
+#include "property.h"
+Ref<Property> Property::make_new(StringName p_name, Variant::Type p_type) {
+	Ref<Property> property; property.instantiate();
+    property->name = p_name; property->type = p_type;
+    // assert name isnt empty and type isnt nil
+    property->setup();
+    return property;
 }
+
+Property::NetworkType get_net_type(Variant::Type type) {
+    switch (type){
+		case Variant::Type::NIL:
+			return Property::NetworkType::TYPE_NIL;
+		case Variant::Type::INT:
+			return Property::NetworkType::TYPE_INT;
+		case Variant::Type::FLOAT:
+			return Property::NetworkType::TYPE_FLOAT;
+		case Variant::Type::BOOL:
+			return Property::NetworkType::TYPE_BOOL;
+		case Variant::Type::STRING:
+			return Property::NetworkType::TYPE_STRING;
+		case Variant::Type::VECTOR2:
+			return Property::NetworkType::TYPE_VECTOR2;
+		case Variant::Type::VECTOR2I:
+			return Property::NetworkType::TYPE_VECTOR2I;
+		case Variant::Type::RECT2:
+			return Property::NetworkType::TYPE_RECT2;
+		case Variant::Type::RECT2I:
+			return Property::NetworkType::TYPE_RECT2I;
+		case Variant::Type::VECTOR3:
+			return Property::NetworkType::TYPE_VECTOR3;
+		case Variant::Type::VECTOR3I:
+			return Property::NetworkType::TYPE_VECTOR3I;
+		case Variant::Type::TRANSFORM2D:
+			return Property::NetworkType::TYPE_TRANSFORM2D;
+		case Variant::Type::VECTOR4:
+			return Property::NetworkType::TYPE_VECTOR4;
+		case Variant::Type::VECTOR4I:
+			return Property::NetworkType::TYPE_VECTOR4I;
+		case Variant::Type::PLANE:
+			return Property::NetworkType::TYPE_PLANE;
+		case Variant::Type::QUATERNION:
+			return Property::NetworkType::TYPE_QUATERNION;
+		case Variant::Type::BASIS:
+			return Property::NetworkType::TYPE_BASIS;
+		case Variant::Type::TRANSFORM3D:
+			return Property::NetworkType::TYPE_TRANSFORM3D;
+		case Variant::Type::PROJECTION:
+			return Property::NetworkType::TYPE_PROJECTION;
+		case Variant::Type::COLOR:
+			return Property::NetworkType::TYPE_COLOR;
+		case Variant::Type::STRING_NAME:
+			return Property::NetworkType::TYPE_STRING_NAME;
+		case Variant::Type::NODE_PATH:
+			return Property::NetworkType::TYPE_NODE_PATH;
+		case Variant::Type::RID:
+			return Property::NetworkType::TYPE_RID;
+		case Variant::Type::OBJECT:
+			return Property::NetworkType::TYPE_OBJECT;
+		case Variant::Type::CALLABLE:
+			return Property::NetworkType::TYPE_CALLABLE;
+		case Variant::Type::SIGNAL:
+			return Property::NetworkType::TYPE_SIGNAL;
+		case Variant::Type::DICTIONARY:
+			return Property::NetworkType::TYPE_DICTIONARY;
+		case Variant::Type::ARRAY:
+			return Property::NetworkType::TYPE_ARRAY;
+		case Variant::Type::PACKED_BYTE_ARRAY:
+			return Property::NetworkType::TYPE_PACKED_BYTE_ARRAY;
+		case Variant::Type::PACKED_INT32_ARRAY:
+			return Property::NetworkType::TYPE_PACKED_INT32_ARRAY;
+		case Variant::Type::PACKED_INT64_ARRAY:
+			return Property::NetworkType::TYPE_PACKED_INT64_ARRAY;
+		case Variant::Type::PACKED_FLOAT32_ARRAY:
+			return Property::NetworkType::TYPE_PACKED_FLOAT32_ARRAY;
+		case Variant::Type::PACKED_FLOAT64_ARRAY:
+			return Property::NetworkType::TYPE_PACKED_FLOAT64_ARRAY;
+		case Variant::Type::PACKED_STRING_ARRAY:
+			return Property::NetworkType::TYPE_PACKED_STRING_ARRAY;
+		case Variant::Type::PACKED_VECTOR2_ARRAY:
+			return Property::NetworkType::TYPE_PACKED_VECTOR2_ARRAY;
+		case Variant::Type::PACKED_VECTOR3_ARRAY:
+			return Property::NetworkType::TYPE_PACKED_VECTOR3_ARRAY;
+		case Variant::Type::PACKED_COLOR_ARRAY:
+			return Property::NetworkType::TYPE_PACKED_COLOR_ARRAY;
+		case Variant::Type::PACKED_VECTOR4_ARRAY:
+			return Property::NetworkType::TYPE_PACKED_VECTOR4_ARRAY;
+		TYPE_MAX:
+            ERR_FAIL_COND_V(true, Property::NetworkType::TYPE_NIL);
+            return Property::NetworkType::TYPE_NIL;
+			// Console.get_assertfail_msg(false,"Invalid type %s supplied."%type_string(type))
+		default:
+            ERR_FAIL_COND_V(true, Property::NetworkType::TYPE_NIL);
+            return Property::NetworkType::TYPE_NIL;
+			// Console.get_assertfail_msg(false,"Invalid type %s supplied."%type_string(type))
+    }
+}
+
 void Property::setup() {
-	
+	network_type = get_net_type(type);
+    max_bits = max_bits_per_level[precision_level];
+    encode_type = get_encode_type(network_type, sub_property_index, precision_level);
+    if (! Property::is_interpolatable(type) && interp_type == InterpType::INTERPOLATE) {
+        // If in editor, defer
+        // WARN_PRINT(
+        //     vformat(
+        //         "Property %s (%s) is of non-interpolatable type %s and is set to interpolate. Changing interp type to discrete latest.",
+        //         name,resource_path,type_string(type)
+        //     )
+        // );
+        interp_type = InterpType::DISCRETE_LATEST;
+    }
+    if (encode_type == NetworkType::TYPE_ARRAY && value_type == nullptr) {
+        value_type = Property::make_new(StringName(""),Variant::Type::NIL);
+    }
 }
-bool Property::is_interpolatable(int type) {
-	
+bool Property::is_interpolatable(Variant::Type type) {
+	switch (type){
+		case Variant::Type::INT:
+			return true;
+		case Variant::Type::FLOAT:
+			return true;
+		case Variant::Type::VECTOR2:
+			return true;
+		case Variant::Type::VECTOR3:
+			return true;
+		case Variant::Type::VECTOR4:
+			return true;
+		case Variant::Type::COLOR:
+			return true;
+		case Variant::Type::QUATERNION:
+			return true;
+		case Variant::Type::BASIS:
+			return true;
+		case Variant::Type::TRANSFORM2D:
+			return true;
+		case Variant::Type::TRANSFORM3D:
+			return true;
+		default:
+			return false;
+    }
 }
 String Property::_to_string() {
+	return "Coming soon";
+}
+void Property::get_property(Object* node) {
 	
 }
-void Property::get_property(Object node) {
+Node* Property::property_to_node(int property) {
 	
 }
-Node Property::property_to_node(int property) {
+int Property::node_to_property(Object* node) {
 	
 }
-int Property::node_to_property(Object node) {
+void Property::set_property(Ref<Property> property, Object* node) {
 	
 }
-void Property::set_property(void property, Object node) {
+void Property::set_property_interpolated(Ref<Property> property, Object* node, float weight) {
 	
 }
-void Property::set_property_interpolated(void property, Object node, float weight) {
-	
-}
-void Property::interpolate_property(void current_property, void prev_property, Object node, float weight) {
+void Property::interpolate_property(Ref<Property> current_property, Ref<Property> prev_property, Object* node, float weight) {
 	
 }
 int Property::get_visibility(int node_owner_id, int node_team, int receiver_id, int hostility_mask) {
@@ -38,13 +170,13 @@ int Property::get_visibility_by_clients(int owner_id, int receiver_id) {
 int Property::get_visibility_by_team(int owner_id, int owner_team, int receiver_id) {
 	
 }
-int Property::get_visibility_by_node(Node node, int receiver_id, int hostility_mask) {
+int Property::get_visibility_by_node(Node* node, int receiver_id, int hostility_mask) {
 	
 }
 bool Property::get_visible(int owner_id, int receiver_id) {
 	
 }
-void Property::encode(void property, StreamPeerBuffer buffer) {
+void Property::encode(Ref<Property> property, StreamPeerBuffer buffer) {
 	
 }
 void Property::decode(StreamPeerBuffer buffer) {
@@ -171,7 +303,7 @@ Property Property::set_key_type(Property p_key_type) {
 	
 }
 void Property::_bind_methods(){
-ClassDB::bind_method(D_METHOD("_init", "name", "type"), &Property::_init);
+ClassDB::bind_static_method("Property", D_METHOD("make_new", "name", "type"), &Property::make_new);
 ClassDB::bind_method(D_METHOD("setup"), &Property::setup);
 ClassDB::bind_static_method("Property", D_METHOD("is_interpolatable", "type"), &Property::is_interpolatable);
 ClassDB::bind_method(D_METHOD("_to_string"), &Property::_to_string);
@@ -203,7 +335,7 @@ ClassDB::bind_method(D_METHOD("get_name"), &Property::get_name);
 ADD_PROPERTY(PropertyInfo(Variant::STRING_NAME, "name"), "set_name," "get_name"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_type", "value"), &Property::set_type);
 ClassDB::bind_method(D_METHOD("get_type"), &Property::get_type);
-ADD_PROPERTY(PropertyInfo(Variant::INT, "type", 2, "Type Nil:0,Type Bool:1,Type Int:2,Type Float:3,Type String:4,Type Vector 2:5,Type Vector 2i:6,Type Rect 2:7,Type Rect 2i:8,Type Vector 3:9,Type Vector 3i:10,Type Transform 2d:11,Type Vector 4:12,Type Vector 4i:13,Type Plane:14,Type Quaternion:15,Type Aabb:16,Type Basis:17,Type Transform 3d:18,Type Projection:19,Type Color:20,Type String Name:21,Type Node Path:22,Type Rid:23,Type Object:24,Type Callable:25,Type Signal:26,Type Dictionary:27,Type Array:28,Type Packed Byte Array:29,Type Packed Int 32 Array:30,Type Packed Int 64 Array:31,Type Packed Float 32 Array:32,Type Packed Float 64 Array:33,Type Packed String Array:34,Type Packed Vector 2 Array:35,Type Packed Vector 3 Array:36,Type Packed Color Array:37,Type Packed Vector 4 Array:38,Type Max:39", 69638), "set_type," "get_type"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "type", 2, "Type Nil:0,Type Bool:1,Type Int:2,Type Float:3,Type String:4,Type Vector 2:5,Type Vector 2i:6,Type Rect 2:7,Type Rect 2i:8,Type Vector 3:9,Type Vector 3i:10,Type Transform 2d:11,Type Vector 4:12,Type Vector 4i:13,Type Plane:14,Type Quaternion:15,Type Aabb:16,Type Basis:17,Type Transform 3d:18,Type Projection:19,Type Color:20,Type String Name:21,Type Node* Path:22,Type Rid:23,Type Object:24,Type Callable:25,Type Signal:26,Type Dictionary:27,Type Array:28,Type Packed Byte Array:29,Type Packed Int 32 Array:30,Type Packed Int 64 Array:31,Type Packed Float 32 Array:32,Type Packed Float 64 Array:33,Type Packed String Array:34,Type Packed Vector 2 Array:35,Type Packed Vector 3 Array:36,Type Packed Color Array:37,Type Packed Vector 4 Array:38,Type Max:39", 69638), "set_type," "get_type"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_precision_level", "value"), &Property::set_precision_level);
 ClassDB::bind_method(D_METHOD("get_precision_level"), &Property::get_precision_level);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "precision_level", 2, "Default:0,Max:1,Half:2,Byte:3,U 32:4,U 64:5,U 16:6,U 8:7,Dynamic:8,U Dynamic:9,Enum:10", 69638), "set_precision_level," "get_precision_level"); // unfinished and u should prolly change this

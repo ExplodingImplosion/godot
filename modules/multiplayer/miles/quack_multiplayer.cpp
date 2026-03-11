@@ -1,22 +1,49 @@
-#include quack_multiplayer.h
+#include "quack_multiplayer.h"
+#include "core/io/resource_loader.h"
+#include "core/io/dir_access.h"
 bool QuackMultiplayer::register_scene(String path, int idx) {
-	
+	Ref<PackedScene> scene = ResourceLoader::load(path);
+    SerializedNodeCollection info = SerializedNodeCollection::get_serialization_info(scene,idx);
+    if (info != nullptr) {
+        scene_registry[scene->resource_path] = idx;
+        scenes[idx] = scene;
+        return true;
+    }
+    return false;
 }
 void QuackMultiplayer::register_scenes() {
-	
+	PackedStringArray scene_paths = get_scene_paths("res://gameplay");
+    auto num_paths = scene_paths.size();
+    QuackMultiplayer::scenes.resize(num_paths);
+    uint32_t num_scenes = 0;
+    for (int i = 0; i < num_paths; i++) {
+        if (register_scene(scene_paths[i],num_scenes)) {
+            num_scenes += 1;
+        }
+    }
+    QuackMultiplayer::scenes.resize(num_scenes);
+    QuackMultiplayer::ready = true;
+
 }
 PackedStringArray QuackMultiplayer::get_scene_paths(String path) {
-	
+    PackedStringArray scene_paths;
+    PackedStringArray all_paths = DirAccess::get_files_at(path);
+    String file;
+	for (int i = 0; i < all_paths.size(); i++) {
+        file = all_paths[i].trim_suffix(".remap");
+        if (file.get_extension() == "tscn") {
+            scene_paths.append(path+"/"+file);
+        }
+    }
+    PackedStringArray folders = DirAccess::get_directories_at(path);
+    String folder;
+    for (int i = 0; i < folders.size(); i++) {
+        folder = folders[i];
+        scene_paths.append_array(get_scene_paths(path+"/"+folder));
+    }
+    return scene_paths;
 }
-void QuackMultiplayer::register_all_scripts() {
-	
-}
-void QuackMultiplayer::add_networked_property(Dictionary property_info, Array property_names, PackedByteArray property_types) {
-	
-}
-bool QuackMultiplayer::is_script_predicted(Script script) {
-	
-}
+
 int QuackMultiplayer::get_net_var_type(Dictionary property_info) {
 	
 }

@@ -1,29 +1,54 @@
-#include quack_multiplayer.h
-#include byte_utils.h
-#include serializer.h
+// #include "byte_utils.h"
+#include "serializer.h"
 
 class QuackMultiplayer: public RefCounted {
 GDCLASS(QuackMultiplayer, RefCounted);
 public:
-const String net_prefix = net_;
-const String u8_prefix = u8_;
-const String s8_prefix = s8_;
-const String u16_prefix = u16_;
-const String s16_prefix = s16_;
-const String u32_prefix = u32_;
-const String u64_prefix = u64_;
-const String s64_prefix = s64_;
-const String double_prefix = double_;
-const String half_prefix = half_;
-const String dynamic_prefix = d_;
-const String udynamic_prefix = ud_;
-const StringName net_updated_this_frame = net_updated_this_frame;
-const StringName net_predicted_locally = net_predicted_locally;
-const StringName net_u32_owner_id = net_u32_owner_id;
-const PackedScene Alt = (res://gameplay/level/levels/updrift/alt.tscn):<PackedScene#-9223370084490077897>;
-const String GAMEPLAY_DIRECTORY = res://gameplay;
+const String net_prefix = "net_";
+const String u8_prefix = "u8_";
+const String s8_prefix = "s8_";
+const String u16_prefix = "u16_";
+const String s16_prefix = "s16_";
+const String u32_prefix = "u32_";
+const String u64_prefix = "u64_";
+const String s64_prefix = "s64_";
+const String double_prefix = "double_";
+const String half_prefix = "half_";
+const String dynamic_prefix = "d_";
+const String udynamic_prefix = "ud_";
+const StringName net_updated_this_frame = StringName("net_updated_this_frame");
+const StringName net_predicted_locally = StringName("net_predicted_locally");
+const StringName net_u32_owner_id = StringName("net_u32_owner_id");
+const String GAMEPLAY_DIRECTORY = "res://gameplay";
+static Array scenes;
+static bool ready;
 const int BOOL_OFFSET = -1;
 const int VARIABLE_SIZE = -2;
+static bool register_scene(String path, int idx);
+static void register_scenes();
+static PackedStringArray get_scene_paths(String path);
+static void register_all_scripts();
+static void add_networked_property(Dictionary property_info, Array property_names, PackedByteArray property_types);
+static bool is_script_predicted(Script script);
+static int get_net_var_type(Dictionary property_info);
+static int get_property_type(String name, int type);
+static int get_int_type(String name);
+static int get_float_type(String name);
+static bool is_script_variable(Dictionary property_info);
+static bool is_net_updated_this_frame(Dictionary property_info);
+static bool is_valid_net_var(Dictionary property_info);
+static void set_node_position_on_ready(Node3D node, Vector3 position);
+static void set_node_position_on_tree_entered(Node3D node, Vector3 position);
+static void set_node_rotation_on_ready(Node3D node, Vector3 rotation);
+static void set_node_rotation_on_tree_entered(Node3D node, Vector3 rotation);
+static void set_node_transform_on_ready(Node3D node, Vector3 position, Vector3 rotation);
+static void set_node_transform_on_tree_entered(Node3D node, Vector3 position, Vector3 rotation);
+static int get_net_type(int type);
+static bool is_int_type(int type);
+static bool is_float_type(int type);
+static bool is_non_numerical(int type);
+static int get_property_size_by_type(int type);
+static void _bind_methods();
 enum NetworkType {
 TYPE_NIL = 0,
 TYPE_INT = 1,
@@ -82,29 +107,5 @@ TYPE_DOUBLE = 54,
 TYPE_HALF = 58,
 TYPE_ENUM = 57,
 };
-static bool register_scene(String path, int idx);
-static void register_scenes();
-static PackedStringArray get_scene_paths(String path);
-static void register_all_scripts();
-static void add_networked_property(Dictionary property_info, Array property_names, PackedByteArray property_types);
-static bool is_script_predicted(Script script);
-static int get_net_var_type(Dictionary property_info);
-static int get_property_type(String name, int type);
-static int get_int_type(String name);
-static int get_float_type(String name);
-static bool is_script_variable(Dictionary property_info);
-static bool is_net_updated_this_frame(Dictionary property_info);
-static bool is_valid_net_var(Dictionary property_info);
-static void set_node_position_on_ready(Node3d node, Vector3 position);
-static void set_node_position_on_tree_entered(Node3d node, Vector3 position);
-static void set_node_rotation_on_ready(Node3d node, Vector3 rotation);
-static void set_node_rotation_on_tree_entered(Node3d node, Vector3 rotation);
-static void set_node_transform_on_ready(Node3d node, Vector3 position, Vector3 rotation);
-static void set_node_transform_on_tree_entered(Node3d node, Vector3 position, Vector3 rotation);
-static int get_net_type(int type);
-static bool is_int_type(int type);
-static bool is_float_type(int type);
-static bool is_non_numerical(int type);
-static int get_property_size_by_type(int type);
 };
 VARIANT_ENUM_CAST(QuackMultiplayer::NetworkType);

@@ -1,11 +1,10 @@
-#include quack_multiplayer.h
-#include network.h
-#include serializer.h
-#include stream_peer_bit_buffer.h
-#include owner_id.h
-#include team.h
-#include component_tracker.h
-#include serialized_node_collection.h
+// include quack_multiplayer.h
+// include network.h
+#include "stream_peer_bit_buffer.h"
+// include owner_id.h
+// include team.h
+// include component_tracker.h
+#include "serialized_node_collection.h"
 
 class Serializer: public Node {
 GDCLASS(Serializer, Node);
