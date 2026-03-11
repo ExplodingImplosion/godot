@@ -8,9 +8,9 @@ NetworkedNode property_list;
 int receivable_by;
 bool compressable;
 int send_mode;
-const String compressable_string = compressable;
-const String packet_send_mode_string = packet_send_mode;
-const String receiveable_by_string = receivable_by;
+const String compressable_string = "compressable";
+const String packet_send_mode_string = "packet_send_mode";
+const String receiveable_by_string = "receivable_by";
 enum PacketReceiver {
 CLIENT = 1,
 SERVER = 2,

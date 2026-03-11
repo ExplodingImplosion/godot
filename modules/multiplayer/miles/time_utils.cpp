@@ -1,7 +1,6 @@
 #include "time_utils.h"
-
 int TimeUtils::usec_get_usec_offset_from_second(int usec) {
-	return usec%TimeUtils::usec_in_seconds;
+	
 }
 float TimeUtils::usec_to_seconds(int usec) {
 	
@@ -52,6 +51,12 @@ void TimeUtils::update_idle_physics_time() {
 	
 }
 void TimeUtils::begin_physics_tracking() {
+	
+}
+void TimeUtils::start_time_thread() {
+	
+}
+void TimeUtils::do_time_thread(void n) {
 	
 }
 float TimeUtils::get_interpfrac() {
@@ -166,6 +171,8 @@ ClassDB::bind_static_method("TimeUtils", D_METHOD("update_physics_times"), &Time
 ClassDB::bind_static_method("TimeUtils", D_METHOD("update_deferred_physics_time"), &TimeUtils::update_deferred_physics_time);
 ClassDB::bind_static_method("TimeUtils", D_METHOD("update_idle_physics_time"), &TimeUtils::update_idle_physics_time);
 ClassDB::bind_static_method("TimeUtils", D_METHOD("begin_physics_tracking"), &TimeUtils::begin_physics_tracking);
+ClassDB::bind_static_method("TimeUtils", D_METHOD("start_time_thread"), &TimeUtils::start_time_thread);
+ClassDB::bind_static_method("TimeUtils", D_METHOD("do_time_thread", "n"), &TimeUtils::do_time_thread);
 ClassDB::bind_static_method("TimeUtils", D_METHOD("get_interpfrac"), &TimeUtils::get_interpfrac);
 ClassDB::bind_static_method("TimeUtils", D_METHOD("update_interpfrac"), &TimeUtils::update_interpfrac);
 ClassDB::bind_static_method("TimeUtils", D_METHOD("is_startup"), &TimeUtils::is_startup);

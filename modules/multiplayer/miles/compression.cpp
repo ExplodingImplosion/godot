@@ -1,4 +1,4 @@
-#include compression.h
+#include "compression.h"
 bool Compression::is_compressed(PackedByteArray bytes) {
 	
 }

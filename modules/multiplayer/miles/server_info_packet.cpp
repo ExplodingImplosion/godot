@@ -1,4 +1,4 @@
-#include server_info_packet.h
+#include "server_info_packet.h"
 void ServerInfoPacket::send_to_client(int client_id) {
 	
 }

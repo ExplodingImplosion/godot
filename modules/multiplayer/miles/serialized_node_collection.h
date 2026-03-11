@@ -1,9 +1,5 @@
-#include "scene/main/node.h"
-#include "stream_peer_bit_buffer.h"
-// #include "core/io/stream_peer.h"
 
 class SerializedNodeCollection: public RefCounted {
-        Node spawn(Node* scene);
 GDCLASS(SerializedNodeCollection, RefCounted);
 public:
 Array node_configs;
@@ -17,6 +13,7 @@ int team;
 int frame_created;
 int frame_deleted;
 int visibility;
+Node spawn(Node scene);
 bool was_deleted();
 String _to_string();
 void update_interpolation(Array new_property_lists);

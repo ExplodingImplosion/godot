@@ -1,4 +1,4 @@
-#include head_component.h
+#include "head_component.h"
 void HeadComponent::_ready() {
 	
 }

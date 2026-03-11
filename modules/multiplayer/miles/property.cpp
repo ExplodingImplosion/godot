@@ -1,4 +1,4 @@
-#include property.h
+#include "property.h"
 void Property::_init(StringName name, int type) {
 	
 }

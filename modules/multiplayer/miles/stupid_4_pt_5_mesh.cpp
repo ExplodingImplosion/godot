@@ -1,4 +1,4 @@
-#include stupid_4_pt_5_mesh.h
+#include "stupid_4_pt_5_mesh.h"
 void Stupid4Pt5Mesh::_init(CollisionShape3d collider, bool interp) {
 	
 }

@@ -5,22 +5,22 @@
 class QuackMultiplayer: public RefCounted {
 GDCLASS(QuackMultiplayer, RefCounted);
 public:
-const String net_prefix = net_;
-const String u8_prefix = u8_;
-const String s8_prefix = s8_;
-const String u16_prefix = u16_;
-const String s16_prefix = s16_;
-const String u32_prefix = u32_;
-const String u64_prefix = u64_;
-const String s64_prefix = s64_;
-const String double_prefix = double_;
-const String half_prefix = half_;
-const String dynamic_prefix = d_;
-const String udynamic_prefix = ud_;
-const StringName net_updated_this_frame = net_updated_this_frame;
-const StringName net_predicted_locally = net_predicted_locally;
-const StringName net_u32_owner_id = net_u32_owner_id;
-const String GAMEPLAY_DIRECTORY = res://gameplay;
+const String net_prefix = "net_";
+const String u8_prefix = "u8_";
+const String s8_prefix = "s8_";
+const String u16_prefix = "u16_";
+const String s16_prefix = "s16_";
+const String u32_prefix = "u32_";
+const String u64_prefix = "u64_";
+const String s64_prefix = "s64_";
+const String double_prefix = "double_";
+const String half_prefix = "half_";
+const String dynamic_prefix = "d_";
+const String udynamic_prefix = "ud_";
+const StringName net_updated_this_frame = StringName("net_updated_this_frame");
+const StringName net_predicted_locally = StringName("net_predicted_locally");
+const StringName net_u32_owner_id = StringName("net_u32_owner_id");
+const String GAMEPLAY_DIRECTORY = "res://gameplay";
 const int BOOL_OFFSET = -1;
 const int VARIABLE_SIZE = -2;
 enum NetworkType {

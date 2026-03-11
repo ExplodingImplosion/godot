@@ -1,4 +1,4 @@
-#include collider_component.h
+#include "collider_component.h"
 void ColliderComponent::_ready() {
 	
 }

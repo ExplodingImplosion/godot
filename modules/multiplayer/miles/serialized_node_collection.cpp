@@ -1,29 +1,11 @@
 #include "serialized_node_collection.h"
-#include "serializer.h"
-
-Node SerializedNodeCollection::spawn(Node* scene) {
-	Serializer::uid_index = uid;
-    Node* node = QuackMultiplayer::scenes[scene_id]->instantiate();
-    scene->add_child(node);
-    Serializer* serializer = Serializer::component_list[node];
-    // Needs to be call_deferred instead
-    serializer->receive_instant_update(property_lists);
-    return node;
+Node SerializedNodeCollection::spawn(Node scene) {
+	
 }
 bool SerializedNodeCollection::was_deleted() {
-	return frame_deleted > -1;
+	
 }
 String SerializedNodeCollection::_to_string() {
-	return vformat("SerializedNodeCollection (UID %s, owner %s, team %s, %s serialized nodes, scene %s [%s])"%
-			uid,owner_id,team,num_nodes,scene_id,QuackMultiplayer::scenes[scene_id]->resource_path->get_file()
-		);
-}
-// void SerializedNodeCollection::update_interpolation(Array new_property_lists) {
-// 	for (int array_idx = 0; array_idx < num_nodes; array_idx++) {
-//         for (int i = 0; i < node_configs[array_idx])
-//     }
-// }
-Ref<SerializedNodeCollection>::duplicate() {
 	
 }
 void SerializedNodeCollection::update_interpolation(Array new_property_lists) {

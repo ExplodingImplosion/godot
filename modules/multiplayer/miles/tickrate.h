@@ -2,8 +2,8 @@
 class Tickrate: public RefCounted {
 GDCLASS(Tickrate, RefCounted);
 public:
-const String PHYSICS_FRAMERATE_SETTING = physics/common/physics_ticks_per_second;
-const String TICKRATE_SETTING_PATH = physics/common/physics_ticks_per_second;
+const String PHYSICS_FRAMERATE_SETTING = "physics/common/physics_ticks_per_second";
+const String TICKRATE_SETTING_PATH = "physics/common/physics_ticks_per_second";
 static float get_physics_delta();
 static void initialize();
 static bool is_running_at_target_tickrate();
