@@ -1,4 +1,10 @@
 #include "time_utils.h"
+TimeUtils::TimeUtils(){
+	
+}
+TimeUtils::~TimeUtils(){
+	
+}
 int TimeUtils::usec_get_usec_offset_from_second(int usec) {
 	
 }
@@ -152,6 +158,108 @@ void TimeUtils::check_func_time(Callable function, bool include_arguments, bool 
 int TimeUtils::get_time_since_physics_frame_usec() {
 	
 }
+static int TimeUtils::get_process_time_usec() {
+	return process_time_usec;
+}
+static void TimeUtils::set_process_time_usec(int p_process_time_usec) {
+	process_time_usec = p_process_time_usec;
+}
+static int TimeUtils::get_prev_process_time_usec() {
+	return prev_process_time_usec;
+}
+static void TimeUtils::set_prev_process_time_usec(int p_prev_process_time_usec) {
+	prev_process_time_usec = p_prev_process_time_usec;
+}
+static int TimeUtils::get_process_delta_time_usec() {
+	return process_delta_time_usec;
+}
+static void TimeUtils::set_process_delta_time_usec(int p_process_delta_time_usec) {
+	process_delta_time_usec = p_process_delta_time_usec;
+}
+static float TimeUtils::get_process_delta_time_float() {
+	return process_delta_time_float;
+}
+static void TimeUtils::set_process_delta_time_float(float p_process_delta_time_float) {
+	process_delta_time_float = p_process_delta_time_float;
+}
+static int TimeUtils::get_deferred_process_time_usec() {
+	return deferred_process_time_usec;
+}
+static void TimeUtils::set_deferred_process_time_usec(int p_deferred_process_time_usec) {
+	deferred_process_time_usec = p_deferred_process_time_usec;
+}
+static int TimeUtils::get_idle_process_time_usec() {
+	return idle_process_time_usec;
+}
+static void TimeUtils::set_idle_process_time_usec(int p_idle_process_time_usec) {
+	idle_process_time_usec = p_idle_process_time_usec;
+}
+static int TimeUtils::get_physics_time_usec() {
+	return physics_time_usec;
+}
+static void TimeUtils::set_physics_time_usec(int p_physics_time_usec) {
+	physics_time_usec = p_physics_time_usec;
+}
+static int TimeUtils::get_prev_physics_time_usec() {
+	return prev_physics_time_usec;
+}
+static void TimeUtils::set_prev_physics_time_usec(int p_prev_physics_time_usec) {
+	prev_physics_time_usec = p_prev_physics_time_usec;
+}
+static int TimeUtils::get_physics_delta_time_usec() {
+	return physics_delta_time_usec;
+}
+static void TimeUtils::set_physics_delta_time_usec(int p_physics_delta_time_usec) {
+	physics_delta_time_usec = p_physics_delta_time_usec;
+}
+static int TimeUtils::get_physics_start_time_usec() {
+	return physics_start_time_usec;
+}
+static void TimeUtils::set_physics_start_time_usec(int p_physics_start_time_usec) {
+	physics_start_time_usec = p_physics_start_time_usec;
+}
+static int TimeUtils::get_deferred_physics_time_usec() {
+	return deferred_physics_time_usec;
+}
+static void TimeUtils::set_deferred_physics_time_usec(int p_deferred_physics_time_usec) {
+	deferred_physics_time_usec = p_deferred_physics_time_usec;
+}
+static int TimeUtils::get_idle_physics_time_usec() {
+	return idle_physics_time_usec;
+}
+static void TimeUtils::set_idle_physics_time_usec(int p_idle_physics_time_usec) {
+	idle_physics_time_usec = p_idle_physics_time_usec;
+}
+static float TimeUtils::get_interpfrac() {
+	return interpfrac;
+}
+static void TimeUtils::set_interpfrac(float p_interpfrac) {
+	interpfrac = p_interpfrac;
+}
+static Thread TimeUtils::get_time_thread() {
+	return time_thread;
+}
+static void TimeUtils::set_time_thread(Thread p_time_thread) {
+	time_thread = p_time_thread;
+}
+static int TimeUtils::get_current_time_thread() {
+	return current_time_thread;
+}
+static void TimeUtils::set_current_time_thread(int p_current_time_thread) {
+	current_time_thread = p_current_time_thread;
+}
+static float TimeUtils::get_last_time_thread() {
+	return last_time_thread;
+}
+static void TimeUtils::set_last_time_thread(float p_last_time_thread) {
+	last_time_thread = p_last_time_thread;
+}
+static int TimeUtils::get_delta_time_thread() {
+	return delta_time_thread;
+}
+static void TimeUtils::set_delta_time_thread(int p_delta_time_thread) {
+	delta_time_thread = p_delta_time_thread;
+}
 void TimeUtils::_bind_methods(){
 ClassDB::bind_static_method("TimeUtils", D_METHOD("usec_get_usec_offset_from_second", "usec"), &TimeUtils::usec_get_usec_offset_from_second);
 ClassDB::bind_static_method("TimeUtils", D_METHOD("usec_to_seconds", "usec"), &TimeUtils::usec_to_seconds);
@@ -204,4 +312,55 @@ ClassDB::bind_static_method("TimeUtils", D_METHOD("get_func_time_seconds", "meth
 ClassDB::bind_static_method("TimeUtils", D_METHOD("is_frame_out_of_time", "max_frame_frac"), &TimeUtils::is_frame_out_of_time, DEFVAL(0.95));
 ClassDB::bind_static_method("TimeUtils", D_METHOD("check_func_time", "function", "include_arguments", "include_object", "include_stack"), &TimeUtils::check_func_time, DEFVAL(false), DEFVAL(false), DEFVAL(false));
 ClassDB::bind_static_method("TimeUtils", D_METHOD("get_time_since_physics_frame_usec"), &TimeUtils::get_time_since_physics_frame_usec);
+ClassDB::bind_method(D_METHOD("set_process_time_usec", "value"), &TimeUtils::set_process_time_usec);
+ClassDB::bind_method(D_METHOD("get_process_time_usec"), &TimeUtils::get_process_time_usec);
+ADD_PROPERTY(PropertyInfo(Variant::INT, "process_time_usec"), "set_process_time_usec", "get_process_time_usec"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_prev_process_time_usec", "value"), &TimeUtils::set_prev_process_time_usec);
+ClassDB::bind_method(D_METHOD("get_prev_process_time_usec"), &TimeUtils::get_prev_process_time_usec);
+ADD_PROPERTY(PropertyInfo(Variant::INT, "prev_process_time_usec"), "set_prev_process_time_usec", "get_prev_process_time_usec"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_process_delta_time_usec", "value"), &TimeUtils::set_process_delta_time_usec);
+ClassDB::bind_method(D_METHOD("get_process_delta_time_usec"), &TimeUtils::get_process_delta_time_usec);
+ADD_PROPERTY(PropertyInfo(Variant::INT, "process_delta_time_usec"), "set_process_delta_time_usec", "get_process_delta_time_usec"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_process_delta_time_float", "value"), &TimeUtils::set_process_delta_time_float);
+ClassDB::bind_method(D_METHOD("get_process_delta_time_float"), &TimeUtils::get_process_delta_time_float);
+ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "process_delta_time_float"), "set_process_delta_time_float", "get_process_delta_time_float"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_deferred_process_time_usec", "value"), &TimeUtils::set_deferred_process_time_usec);
+ClassDB::bind_method(D_METHOD("get_deferred_process_time_usec"), &TimeUtils::get_deferred_process_time_usec);
+ADD_PROPERTY(PropertyInfo(Variant::INT, "deferred_process_time_usec"), "set_deferred_process_time_usec", "get_deferred_process_time_usec"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_idle_process_time_usec", "value"), &TimeUtils::set_idle_process_time_usec);
+ClassDB::bind_method(D_METHOD("get_idle_process_time_usec"), &TimeUtils::get_idle_process_time_usec);
+ADD_PROPERTY(PropertyInfo(Variant::INT, "idle_process_time_usec"), "set_idle_process_time_usec", "get_idle_process_time_usec"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_physics_time_usec", "value"), &TimeUtils::set_physics_time_usec);
+ClassDB::bind_method(D_METHOD("get_physics_time_usec"), &TimeUtils::get_physics_time_usec);
+ADD_PROPERTY(PropertyInfo(Variant::INT, "physics_time_usec"), "set_physics_time_usec", "get_physics_time_usec"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_prev_physics_time_usec", "value"), &TimeUtils::set_prev_physics_time_usec);
+ClassDB::bind_method(D_METHOD("get_prev_physics_time_usec"), &TimeUtils::get_prev_physics_time_usec);
+ADD_PROPERTY(PropertyInfo(Variant::INT, "prev_physics_time_usec"), "set_prev_physics_time_usec", "get_prev_physics_time_usec"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_physics_delta_time_usec", "value"), &TimeUtils::set_physics_delta_time_usec);
+ClassDB::bind_method(D_METHOD("get_physics_delta_time_usec"), &TimeUtils::get_physics_delta_time_usec);
+ADD_PROPERTY(PropertyInfo(Variant::INT, "physics_delta_time_usec"), "set_physics_delta_time_usec", "get_physics_delta_time_usec"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_physics_start_time_usec", "value"), &TimeUtils::set_physics_start_time_usec);
+ClassDB::bind_method(D_METHOD("get_physics_start_time_usec"), &TimeUtils::get_physics_start_time_usec);
+ADD_PROPERTY(PropertyInfo(Variant::INT, "physics_start_time_usec"), "set_physics_start_time_usec", "get_physics_start_time_usec"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_deferred_physics_time_usec", "value"), &TimeUtils::set_deferred_physics_time_usec);
+ClassDB::bind_method(D_METHOD("get_deferred_physics_time_usec"), &TimeUtils::get_deferred_physics_time_usec);
+ADD_PROPERTY(PropertyInfo(Variant::INT, "deferred_physics_time_usec"), "set_deferred_physics_time_usec", "get_deferred_physics_time_usec"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_idle_physics_time_usec", "value"), &TimeUtils::set_idle_physics_time_usec);
+ClassDB::bind_method(D_METHOD("get_idle_physics_time_usec"), &TimeUtils::get_idle_physics_time_usec);
+ADD_PROPERTY(PropertyInfo(Variant::INT, "idle_physics_time_usec"), "set_idle_physics_time_usec", "get_idle_physics_time_usec"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_interpfrac", "value"), &TimeUtils::set_interpfrac);
+ClassDB::bind_method(D_METHOD("get_interpfrac"), &TimeUtils::get_interpfrac);
+ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "interpfrac"), "set_interpfrac", "get_interpfrac"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_time_thread", "value"), &TimeUtils::set_time_thread);
+ClassDB::bind_method(D_METHOD("get_time_thread"), &TimeUtils::get_time_thread);
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "time_thread"), "set_time_thread", "get_time_thread"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_current_time_thread", "value"), &TimeUtils::set_current_time_thread);
+ClassDB::bind_method(D_METHOD("get_current_time_thread"), &TimeUtils::get_current_time_thread);
+ADD_PROPERTY(PropertyInfo(Variant::INT, "current_time_thread"), "set_current_time_thread", "get_current_time_thread"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_last_time_thread", "value"), &TimeUtils::set_last_time_thread);
+ClassDB::bind_method(D_METHOD("get_last_time_thread"), &TimeUtils::get_last_time_thread);
+ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "last_time_thread"), "set_last_time_thread", "get_last_time_thread"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_delta_time_thread", "value"), &TimeUtils::set_delta_time_thread);
+ClassDB::bind_method(D_METHOD("get_delta_time_thread"), &TimeUtils::get_delta_time_thread);
+ADD_PROPERTY(PropertyInfo(Variant::INT, "delta_time_thread"), "set_delta_time_thread", "get_delta_time_thread"); // unfinished and u should prolly change this
 }
