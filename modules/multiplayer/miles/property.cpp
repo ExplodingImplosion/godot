@@ -1,164 +1,32 @@
-#include "property.h"
-Ref<Property> Property::make_new(StringName p_name, Variant::Type p_type) {
-	Ref<Property> property; property.instantiate();
-    property->name = p_name; property->type = p_type;
-    // assert name isnt empty and type isnt nil
-    property->setup();
-    return property;
+#include property.h
+void Property::_init(StringName name, int type) {
+	
 }
-
-Property::NetworkType get_net_type(Variant::Type type) {
-    switch (type){
-		case Variant::Type::NIL:
-			return Property::NetworkType::TYPE_NIL;
-		case Variant::Type::INT:
-			return Property::NetworkType::TYPE_INT;
-		case Variant::Type::FLOAT:
-			return Property::NetworkType::TYPE_FLOAT;
-		case Variant::Type::BOOL:
-			return Property::NetworkType::TYPE_BOOL;
-		case Variant::Type::STRING:
-			return Property::NetworkType::TYPE_STRING;
-		case Variant::Type::VECTOR2:
-			return Property::NetworkType::TYPE_VECTOR2;
-		case Variant::Type::VECTOR2I:
-			return Property::NetworkType::TYPE_VECTOR2I;
-		case Variant::Type::RECT2:
-			return Property::NetworkType::TYPE_RECT2;
-		case Variant::Type::RECT2I:
-			return Property::NetworkType::TYPE_RECT2I;
-		case Variant::Type::VECTOR3:
-			return Property::NetworkType::TYPE_VECTOR3;
-		case Variant::Type::VECTOR3I:
-			return Property::NetworkType::TYPE_VECTOR3I;
-		case Variant::Type::TRANSFORM2D:
-			return Property::NetworkType::TYPE_TRANSFORM2D;
-		case Variant::Type::VECTOR4:
-			return Property::NetworkType::TYPE_VECTOR4;
-		case Variant::Type::VECTOR4I:
-			return Property::NetworkType::TYPE_VECTOR4I;
-		case Variant::Type::PLANE:
-			return Property::NetworkType::TYPE_PLANE;
-		case Variant::Type::QUATERNION:
-			return Property::NetworkType::TYPE_QUATERNION;
-		case Variant::Type::BASIS:
-			return Property::NetworkType::TYPE_BASIS;
-		case Variant::Type::TRANSFORM3D:
-			return Property::NetworkType::TYPE_TRANSFORM3D;
-		case Variant::Type::PROJECTION:
-			return Property::NetworkType::TYPE_PROJECTION;
-		case Variant::Type::COLOR:
-			return Property::NetworkType::TYPE_COLOR;
-		case Variant::Type::STRING_NAME:
-			return Property::NetworkType::TYPE_STRING_NAME;
-		case Variant::Type::NODE_PATH:
-			return Property::NetworkType::TYPE_NODE_PATH;
-		case Variant::Type::RID:
-			return Property::NetworkType::TYPE_RID;
-		case Variant::Type::OBJECT:
-			return Property::NetworkType::TYPE_OBJECT;
-		case Variant::Type::CALLABLE:
-			return Property::NetworkType::TYPE_CALLABLE;
-		case Variant::Type::SIGNAL:
-			return Property::NetworkType::TYPE_SIGNAL;
-		case Variant::Type::DICTIONARY:
-			return Property::NetworkType::TYPE_DICTIONARY;
-		case Variant::Type::ARRAY:
-			return Property::NetworkType::TYPE_ARRAY;
-		case Variant::Type::PACKED_BYTE_ARRAY:
-			return Property::NetworkType::TYPE_PACKED_BYTE_ARRAY;
-		case Variant::Type::PACKED_INT32_ARRAY:
-			return Property::NetworkType::TYPE_PACKED_INT32_ARRAY;
-		case Variant::Type::PACKED_INT64_ARRAY:
-			return Property::NetworkType::TYPE_PACKED_INT64_ARRAY;
-		case Variant::Type::PACKED_FLOAT32_ARRAY:
-			return Property::NetworkType::TYPE_PACKED_FLOAT32_ARRAY;
-		case Variant::Type::PACKED_FLOAT64_ARRAY:
-			return Property::NetworkType::TYPE_PACKED_FLOAT64_ARRAY;
-		case Variant::Type::PACKED_STRING_ARRAY:
-			return Property::NetworkType::TYPE_PACKED_STRING_ARRAY;
-		case Variant::Type::PACKED_VECTOR2_ARRAY:
-			return Property::NetworkType::TYPE_PACKED_VECTOR2_ARRAY;
-		case Variant::Type::PACKED_VECTOR3_ARRAY:
-			return Property::NetworkType::TYPE_PACKED_VECTOR3_ARRAY;
-		case Variant::Type::PACKED_COLOR_ARRAY:
-			return Property::NetworkType::TYPE_PACKED_COLOR_ARRAY;
-		case Variant::Type::PACKED_VECTOR4_ARRAY:
-			return Property::NetworkType::TYPE_PACKED_VECTOR4_ARRAY;
-		TYPE_MAX:
-            ERR_FAIL_COND_V(true, Property::NetworkType::TYPE_NIL);
-            return Property::NetworkType::TYPE_NIL;
-			// Console.get_assertfail_msg(false,"Invalid type %s supplied."%type_string(type))
-		default:
-            ERR_FAIL_COND_V(true, Property::NetworkType::TYPE_NIL);
-            return Property::NetworkType::TYPE_NIL;
-			// Console.get_assertfail_msg(false,"Invalid type %s supplied."%type_string(type))
-    }
-}
-
 void Property::setup() {
-	network_type = get_net_type(type);
-    max_bits = max_bits_per_level[precision_level];
-    encode_type = get_encode_type(network_type, sub_property_index, precision_level);
-    if (! Property::is_interpolatable(type) && interp_type == InterpType::INTERPOLATE) {
-        // If in editor, defer
-        // WARN_PRINT(
-        //     vformat(
-        //         "Property %s (%s) is of non-interpolatable type %s and is set to interpolate. Changing interp type to discrete latest.",
-        //         name,resource_path,type_string(type)
-        //     )
-        // );
-        interp_type = InterpType::DISCRETE_LATEST;
-    }
-    if (encode_type == NetworkType::TYPE_ARRAY && value_type == nullptr) {
-        value_type = Property::make_new(StringName(""),Variant::Type::NIL);
-    }
+	
 }
-bool Property::is_interpolatable(Variant::Type type) {
-	switch (type){
-		case Variant::Type::INT:
-			return true;
-		case Variant::Type::FLOAT:
-			return true;
-		case Variant::Type::VECTOR2:
-			return true;
-		case Variant::Type::VECTOR3:
-			return true;
-		case Variant::Type::VECTOR4:
-			return true;
-		case Variant::Type::COLOR:
-			return true;
-		case Variant::Type::QUATERNION:
-			return true;
-		case Variant::Type::BASIS:
-			return true;
-		case Variant::Type::TRANSFORM2D:
-			return true;
-		case Variant::Type::TRANSFORM3D:
-			return true;
-		default:
-			return false;
-    }
+bool Property::is_interpolatable(int type) {
+	
 }
 String Property::_to_string() {
-	return "Coming soon";
-}
-void Property::get_property(Object* node) {
 	
 }
-Node* Property::property_to_node(int property) {
+void Property::get_property(Object node) {
 	
 }
-int Property::node_to_property(Object* node) {
+Node Property::property_to_node(int property) {
 	
 }
-void Property::set_property(Ref<Property> property, Object* node) {
+int Property::node_to_property(Object node) {
 	
 }
-void Property::set_property_interpolated(Ref<Property> property, Object* node, float weight) {
+void Property::set_property(void property, Object node) {
 	
 }
-void Property::interpolate_property(Ref<Property> current_property, Ref<Property> prev_property, Object* node, float weight) {
+void Property::set_property_interpolated(void property, Object node, float weight) {
+	
+}
+void Property::interpolate_property(void current_property, void prev_property, Object node, float weight) {
 	
 }
 int Property::get_visibility(int node_owner_id, int node_team, int receiver_id, int hostility_mask) {
@@ -170,16 +38,16 @@ int Property::get_visibility_by_clients(int owner_id, int receiver_id) {
 int Property::get_visibility_by_team(int owner_id, int owner_team, int receiver_id) {
 	
 }
-int Property::get_visibility_by_node(Node* node, int receiver_id, int hostility_mask) {
+int Property::get_visibility_by_node(Node node, int receiver_id, int hostility_mask) {
 	
 }
 bool Property::get_visible(int owner_id, int receiver_id) {
 	
 }
-void Property::encode(Ref<Property> property, StreamPeerBuffer buffer) {
+void Property::encode(void property, StreamPeerBitBuffer buffer) {
 	
 }
-void Property::decode(StreamPeerBuffer buffer) {
+void Property::decode(StreamPeerBitBuffer buffer) {
 	
 }
 int Property::get_encode_type(int type, int sub_property_index, int precision_level) {
@@ -206,104 +74,98 @@ String Property::get_type_func(String buffer_name, String property_value_name) {
 String Property::set_type_func(String buffer_name, String property_value_name) {
 	
 }
-String Property::get_compute_encoder(int offset, int input_offset, int bool_offset, int input_bool_offset) {
-	
-}
-String Property::get_compute_decoder(int offset, int input_offset) {
-	
-}
 StringName Property::get_name() {
-	
+	return name;
 }
-StringName Property::set_name(StringName p_name) {
-	
+void Property::set_name(StringName p_name) {
+	name = p_name;
 }
 int Property::get_type() {
-	
+	return type;
 }
-int Property::set_type(int p_type) {
-	
+void Property::set_type(int p_type) {
+	type = p_type;
 }
 int Property::get_precision_level() {
-	
+	return precision_level;
 }
-int Property::set_precision_level(int p_precision_level) {
-	
+void Property::set_precision_level(int p_precision_level) {
+	precision_level = p_precision_level;
 }
 int Property::get_sub_property_index() {
-	
+	return sub_property_index;
 }
-int Property::set_sub_property_index(int p_sub_property_index) {
-	
+void Property::set_sub_property_index(int p_sub_property_index) {
+	sub_property_index = p_sub_property_index;
 }
 int Property::get_interp_type() {
-	
+	return interp_type;
 }
-int Property::set_interp_type(int p_interp_type) {
-	
+void Property::set_interp_type(int p_interp_type) {
+	interp_type = p_interp_type;
 }
 int Property::get_visibility_type() {
-	
+	return visibility_type;
 }
-int Property::set_visibility_type(int p_visibility_type) {
-	
+void Property::set_visibility_type(int p_visibility_type) {
+	visibility_type = p_visibility_type;
 }
 bool Property::get_physical() {
-	
+	return physical;
 }
-bool Property::set_physical(bool p_physical) {
-	
+void Property::set_physical(bool p_physical) {
+	physical = p_physical;
 }
 bool Property::get_rotation() {
-	
+	return rotation;
 }
-bool Property::set_rotation(bool p_rotation) {
-	
+void Property::set_rotation(bool p_rotation) {
+	rotation = p_rotation;
 }
 bool Property::get_recent_only() {
-	
+	return recent_only;
 }
-bool Property::set_recent_only(bool p_recent_only) {
-	
+void Property::set_recent_only(bool p_recent_only) {
+	recent_only = p_recent_only;
 }
 int Property::get_network_type() {
-	
+	return network_type;
 }
-int Property::set_network_type(int p_network_type) {
-	
+void Property::set_network_type(int p_network_type) {
+	network_type = p_network_type;
 }
 int Property::get_max_bits() {
-	
+	return max_bits;
 }
-int Property::set_max_bits(int p_max_bits) {
-	
+void Property::set_max_bits(int p_max_bits) {
+	max_bits = p_max_bits;
 }
 int Property::get_size_bytes() {
-	
+	return size_bytes;
 }
-int Property::set_size_bytes(int p_size_bytes) {
-	
+void Property::set_size_bytes(int p_size_bytes) {
+	size_bytes = p_size_bytes;
 }
 int Property::get_encode_type() {
-	
+	return encode_type;
 }
-int Property::set_encode_type(int p_encode_type) {
-	
+void Property::set_encode_type(int p_encode_type) {
+	encode_type = p_encode_type;
 }
 Property Property::get_value_type() {
-	
+	return value_type;
 }
-Property Property::set_value_type(Property p_value_type) {
-	
+void Property::set_value_type(Property p_value_type) {
+	value_type = p_value_type;
 }
 Property Property::get_key_type() {
-	
+	return key_type;
 }
-Property Property::set_key_type(Property p_key_type) {
-	
+void Property::set_key_type(Property p_key_type) {
+	key_type = p_key_type;
 }
 void Property::_bind_methods(){
-ClassDB::bind_static_method("Property", D_METHOD("make_new", "name", "type"), &Property::make_new);
+ClassDB::bind_method(D_METHOD("_init", "name", "type"), &Property::_init);
 ClassDB::bind_method(D_METHOD("setup"), &Property::setup);
 ClassDB::bind_static_method("Property", D_METHOD("is_interpolatable", "type"), &Property::is_interpolatable);
 ClassDB::bind_method(D_METHOD("_to_string"), &Property::_to_string);
@@ -328,53 +190,51 @@ ClassDB::bind_method(D_METHOD("get_interpolator", "prev_value", "current_value",
 ClassDB::bind_method(D_METHOD("get_getter", "assignment", "node_name"), &Property::get_getter);
 ClassDB::bind_method(D_METHOD("get_type_func", "buffer_name", "property_value_name"), &Property::get_type_func);
 ClassDB::bind_method(D_METHOD("set_type_func", "buffer_name", "property_value_name"), &Property::set_type_func);
-ClassDB::bind_method(D_METHOD("get_compute_encoder", "offset", "input_offset", "bool_offset", "input_bool_offset"), &Property::get_compute_encoder);
-ClassDB::bind_method(D_METHOD("get_compute_decoder", "offset", "input_offset"), &Property::get_compute_decoder);
 ClassDB::bind_method(D_METHOD("set_name", "value"), &Property::set_name);
 ClassDB::bind_method(D_METHOD("get_name"), &Property::get_name);
-ADD_PROPERTY(PropertyInfo(Variant::STRING_NAME, "name"), "set_name," "get_name"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::STRING_NAME, "name"), "set_name", "get_name"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_type", "value"), &Property::set_type);
 ClassDB::bind_method(D_METHOD("get_type"), &Property::get_type);
-ADD_PROPERTY(PropertyInfo(Variant::INT, "type", 2, "Type Nil:0,Type Bool:1,Type Int:2,Type Float:3,Type String:4,Type Vector 2:5,Type Vector 2i:6,Type Rect 2:7,Type Rect 2i:8,Type Vector 3:9,Type Vector 3i:10,Type Transform 2d:11,Type Vector 4:12,Type Vector 4i:13,Type Plane:14,Type Quaternion:15,Type Aabb:16,Type Basis:17,Type Transform 3d:18,Type Projection:19,Type Color:20,Type String Name:21,Type Node* Path:22,Type Rid:23,Type Object:24,Type Callable:25,Type Signal:26,Type Dictionary:27,Type Array:28,Type Packed Byte Array:29,Type Packed Int 32 Array:30,Type Packed Int 64 Array:31,Type Packed Float 32 Array:32,Type Packed Float 64 Array:33,Type Packed String Array:34,Type Packed Vector 2 Array:35,Type Packed Vector 3 Array:36,Type Packed Color Array:37,Type Packed Vector 4 Array:38,Type Max:39", 69638), "set_type," "get_type"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "type", PropertyHint(2), "Type Nil:0,Type Bool:1,Type Int:2,Type Float:3,Type String:4,Type Vector 2:5,Type Vector 2i:6,Type Rect 2:7,Type Rect 2i:8,Type Vector 3:9,Type Vector 3i:10,Type Transform 2d:11,Type Vector 4:12,Type Vector 4i:13,Type Plane:14,Type Quaternion:15,Type Aabb:16,Type Basis:17,Type Transform 3d:18,Type Projection:19,Type Color:20,Type String Name:21,Type Node Path:22,Type Rid:23,Type Object:24,Type Callable:25,Type Signal:26,Type Dictionary:27,Type Array:28,Type Packed Byte Array:29,Type Packed Int 32 Array:30,Type Packed Int 64 Array:31,Type Packed Float 32 Array:32,Type Packed Float 64 Array:33,Type Packed String Array:34,Type Packed Vector 2 Array:35,Type Packed Vector 3 Array:36,Type Packed Color Array:37,Type Packed Vector 4 Array:38,Type Max:39", 69638), "set_type", "get_type"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_precision_level", "value"), &Property::set_precision_level);
 ClassDB::bind_method(D_METHOD("get_precision_level"), &Property::get_precision_level);
-ADD_PROPERTY(PropertyInfo(Variant::INT, "precision_level", 2, "Default:0,Max:1,Half:2,Byte:3,U 32:4,U 64:5,U 16:6,U 8:7,Dynamic:8,U Dynamic:9,Enum:10", 69638), "set_precision_level," "get_precision_level"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "precision_level", PropertyHint(2), "Default:0,Max:1,Half:2,Byte:3,U 32:4,U 64:5,U 16:6,U 8:7,Dynamic:8,U Dynamic:9,Enum:10", 69638), "set_precision_level", "get_precision_level"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_sub_property_index", "value"), &Property::set_sub_property_index);
 ClassDB::bind_method(D_METHOD("get_sub_property_index"), &Property::get_sub_property_index);
-ADD_PROPERTY(PropertyInfo(Variant::INT, "sub_property_index", 2, "None:-1,X:0,Y:1,Z:2,W:3", 69638), "set_sub_property_index," "get_sub_property_index"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "sub_property_index", PropertyHint(2), "None:-1,X:0,Y:1,Z:2,W:3", 69638), "set_sub_property_index", "get_sub_property_index"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_interp_type", "value"), &Property::set_interp_type);
 ClassDB::bind_method(D_METHOD("get_interp_type"), &Property::get_interp_type);
-ADD_PROPERTY(PropertyInfo(Variant::INT, "interp_type", 2, "Interpolate:0,Discrete Latest:1,Discrete Previous:2", 69638), "set_interp_type," "get_interp_type"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "interp_type", PropertyHint(2), "Interpolate:0,Discrete Latest:1,Discrete Previous:2", 69638), "set_interp_type", "get_interp_type"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_visibility_type", "value"), &Property::set_visibility_type);
 ClassDB::bind_method(D_METHOD("get_visibility_type"), &Property::get_visibility_type);
-ADD_PROPERTY(PropertyInfo(Variant::INT, "visibility_type", 2, "All:0,Owner Only:1,Team Only:2,Vis Type Max:3", 69638), "set_visibility_type," "get_visibility_type"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "visibility_type", PropertyHint(2), "All:0,Owner Only:1,Team Only:2,Vis Type Max:3", 69638), "set_visibility_type", "get_visibility_type"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_physical", "value"), &Property::set_physical);
 ClassDB::bind_method(D_METHOD("get_physical"), &Property::get_physical);
-ADD_PROPERTY(PropertyInfo(Variant::BOOL, "physical"), "set_physical," "get_physical"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::BOOL, "physical"), "set_physical", "get_physical"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_rotation", "value"), &Property::set_rotation);
 ClassDB::bind_method(D_METHOD("get_rotation"), &Property::get_rotation);
-ADD_PROPERTY(PropertyInfo(Variant::BOOL, "rotation"), "set_rotation," "get_rotation"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::BOOL, "rotation"), "set_rotation", "get_rotation"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_recent_only", "value"), &Property::set_recent_only);
 ClassDB::bind_method(D_METHOD("get_recent_only"), &Property::get_recent_only);
-ADD_PROPERTY(PropertyInfo(Variant::BOOL, "recent_only"), "set_recent_only," "get_recent_only"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::BOOL, "recent_only"), "set_recent_only", "get_recent_only"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_network_type", "value"), &Property::set_network_type);
 ClassDB::bind_method(D_METHOD("get_network_type"), &Property::get_network_type);
-ADD_PROPERTY(PropertyInfo(Variant::INT, "network_type"), "set_network_type," "get_network_type"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "network_type"), "set_network_type", "get_network_type"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_max_bits", "value"), &Property::set_max_bits);
 ClassDB::bind_method(D_METHOD("get_max_bits"), &Property::get_max_bits);
-ADD_PROPERTY(PropertyInfo(Variant::INT, "max_bits"), "set_max_bits," "get_max_bits"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "max_bits"), "set_max_bits", "get_max_bits"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_size_bytes", "value"), &Property::set_size_bytes);
 ClassDB::bind_method(D_METHOD("get_size_bytes"), &Property::get_size_bytes);
-ADD_PROPERTY(PropertyInfo(Variant::INT, "size_bytes"), "set_size_bytes," "get_size_bytes"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "size_bytes"), "set_size_bytes", "get_size_bytes"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_encode_type", "value"), &Property::set_encode_type);
 ClassDB::bind_method(D_METHOD("get_encode_type"), &Property::get_encode_type);
-ADD_PROPERTY(PropertyInfo(Variant::INT, "encode_type"), "set_encode_type," "get_encode_type"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "encode_type"), "set_encode_type", "get_encode_type"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_value_type", "value"), &Property::set_value_type);
 ClassDB::bind_method(D_METHOD("get_value_type"), &Property::get_value_type);
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "value_type", 17, "Property", 4102), "set_value_type," "get_value_type"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "value_type", PropertyHint(17), "Property", 4102), "set_value_type", "get_value_type"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_key_type", "value"), &Property::set_key_type);
 ClassDB::bind_method(D_METHOD("get_key_type"), &Property::get_key_type);
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "key_type", 17, "Property", 4102), "set_key_type," "get_key_type"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "key_type", PropertyHint(17), "Property", 4102), "set_key_type", "get_key_type"); // unfinished and u should prolly change this
 BIND_ENUM_CONSTANT(TYPE_NIL);
 BIND_ENUM_CONSTANT(TYPE_INT);
 BIND_ENUM_CONSTANT(INT_FLAG);

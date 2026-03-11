@@ -12,10 +12,10 @@ void WorldStateConfirmationPacket::_execute(int _sender_id) {
 	
 }
 int WorldStateConfirmationPacket::get_u32_confirmation_frame_num() {
-	
+	return u32_confirmation_frame_num;
 }
-int WorldStateConfirmationPacket::set_u32_confirmation_frame_num(int p_u32_confirmation_frame_num) {
-	
+void WorldStateConfirmationPacket::set_u32_confirmation_frame_num(int p_u32_confirmation_frame_num) {
+	u32_confirmation_frame_num = p_u32_confirmation_frame_num;
 }
 void WorldStateConfirmationPacket::_bind_methods(){
 ClassDB::bind_static_method("WorldStateConfirmationPacket", D_METHOD("send", "confirmation_frame_num"), &WorldStateConfirmationPacket::send);
@@ -24,5 +24,5 @@ ClassDB::bind_static_method("WorldStateConfirmationPacket", D_METHOD("is_script_
 ClassDB::bind_method(D_METHOD("_execute", "_sender_id"), &WorldStateConfirmationPacket::_execute);
 ClassDB::bind_method(D_METHOD("set_u32_confirmation_frame_num", "value"), &WorldStateConfirmationPacket::set_u32_confirmation_frame_num);
 ClassDB::bind_method(D_METHOD("get_u32_confirmation_frame_num"), &WorldStateConfirmationPacket::get_u32_confirmation_frame_num);
-ADD_PROPERTY(PropertyInfo(Variant::INT, "u32_confirmation_frame_num"), "set_u32_confirmation_frame_num," "get_u32_confirmation_frame_num"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "u32_confirmation_frame_num"), "set_u32_confirmation_frame_num", "get_u32_confirmation_frame_num"); // unfinished and u should prolly change this
 }

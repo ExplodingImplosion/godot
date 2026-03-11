@@ -21,4 +21,5 @@ static void remove_client(int id);
 static PackedInt32Array get_ready_clients();
 static bool are_clients_friendly(int cid1, int cid2);
 static void tick(Node history_saver);
+static void _bind_methods();
 };

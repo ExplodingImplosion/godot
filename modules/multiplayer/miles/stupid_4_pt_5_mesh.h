@@ -7,5 +7,6 @@ void _init(CollisionShape3d collider, bool interp);
 void _physics_process(float _delta);
 void update_transform();
 CollisionShape3d get_parent_collider();
-CollisionShape3d set_parent_collider(CollisionShape3d p_parent_collider);
+void set_parent_collider(CollisionShape3d p_parent_collider);
+static void _bind_methods();
 };

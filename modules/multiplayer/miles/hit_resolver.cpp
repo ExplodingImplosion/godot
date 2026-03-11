@@ -18,22 +18,22 @@ void HitResolver::request_hit(int player_id, Node requester, Callable callable, 
 	
 }
 Node3d HitResolver::get_mp_level() {
-	
+	return mp_level;
 }
-Node3d HitResolver::set_mp_level(Node3d p_mp_level) {
-	
+void HitResolver::set_mp_level(Node3d p_mp_level) {
+	mp_level = p_mp_level;
 }
 Array HitResolver::get_hit_requests() {
-	
+	return hit_requests;
 }
-Array HitResolver::set_hit_requests(Array p_hit_requests) {
-	
+void HitResolver::set_hit_requests(Array p_hit_requests) {
+	hit_requests = p_hit_requests;
 }
 Dictionary HitResolver::get_hit_map() {
-	
+	return hit_map;
 }
-Dictionary HitResolver::set_hit_map(Dictionary p_hit_map) {
-	
+void HitResolver::set_hit_map(Dictionary p_hit_map) {
+	hit_map = p_hit_map;
 }
 void HitResolver::_bind_methods(){
 ClassDB::bind_static_method("HitResolver", D_METHOD("is_valid_hit_resolution_subject", "node"), &HitResolver::is_valid_hit_resolution_subject);
@@ -44,13 +44,13 @@ ClassDB::bind_method(D_METHOD("resolve_hits"), &HitResolver::resolve_hits);
 ClassDB::bind_method(D_METHOD("request_hit", "player_id", "requester", "callable", "bounding_boxes", "subtick"), &HitResolver::request_hit);
 ClassDB::bind_method(D_METHOD("set_mp_level", "value"), &HitResolver::set_mp_level);
 ClassDB::bind_method(D_METHOD("get_mp_level"), &HitResolver::get_mp_level);
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "mp_level"), "set_mp_level," "get_mp_level"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "mp_level"), "set_mp_level", "get_mp_level"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_hit_requests", "value"), &HitResolver::set_hit_requests);
 ClassDB::bind_method(D_METHOD("get_hit_requests"), &HitResolver::get_hit_requests);
-ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "hit_requests", 31, "RefCounted", 4096), "set_hit_requests," "get_hit_requests"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "hit_requests", PropertyHint(31), "RefCounted", 4096), "set_hit_requests", "get_hit_requests"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_hit_map", "value"), &HitResolver::set_hit_map);
 ClassDB::bind_method(D_METHOD("get_hit_map"), &HitResolver::get_hit_map);
-ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "hit_map", 38, "int;RefCounted", 4096), "set_hit_map," "get_hit_map"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "hit_map", PropertyHint(38), "int;RefCounted", 4096), "set_hit_map", "get_hit_map"); // unfinished and u should prolly change this
 BIND_ENUM_CONSTANT(SINGLETONS);
 BIND_ENUM_CONSTANT(REGULAR);
 BIND_ENUM_CONSTANT(BOUNDING_BOX);

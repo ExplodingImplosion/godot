@@ -2,7 +2,6 @@
 #include network_packet.h
 #include compression.h
 #include network.h
-#include stream_peer_bit_buffer.h
 #include multiplayer_level.h
 #include multiplayer_session.h
 #include packet_type_collection.h
@@ -31,4 +30,5 @@ const int TIMES_COMPRESSED = 1;
 const int PACKET_BEGIN_UNCOMPRESSED = 2;
 const int PACKET_SIZE_INDICATOR_BEGIN = 2;
 const int PACKET_SIZE_INDICATOR_BYTES = 2;
+static void _bind_methods();
 };

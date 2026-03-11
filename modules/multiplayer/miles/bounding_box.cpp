@@ -42,40 +42,40 @@ Array BoundingBox::get_area_intersections(Area3d area) {
 	
 }
 MeshInstance3d BoundingBox::get_mesh() {
-	
+	return mesh;
 }
-MeshInstance3d BoundingBox::set_mesh(MeshInstance3d p_mesh) {
-	
+void BoundingBox::set_mesh(MeshInstance3d p_mesh) {
+	mesh = p_mesh;
 }
 Array BoundingBox::get_states() {
-	
+	return states;
 }
-Array BoundingBox::set_states(Array p_states) {
-	
+void BoundingBox::set_states(Array p_states) {
+	states = p_states;
 }
 int BoundingBox::get_state_idx() {
-	
+	return state_idx;
 }
-int BoundingBox::set_state_idx(int p_state_idx) {
-	
+void BoundingBox::set_state_idx(int p_state_idx) {
+	state_idx = p_state_idx;
 }
 int BoundingBox::get_num_states() {
-	
+	return num_states;
 }
-int BoundingBox::set_num_states(int p_num_states) {
-	
+void BoundingBox::set_num_states(int p_num_states) {
+	num_states = p_num_states;
 }
 CollisionShape3d BoundingBox::get_collider() {
-	
+	return collider;
 }
-CollisionShape3d BoundingBox::set_collider(CollisionShape3d p_collider) {
-	
+void BoundingBox::set_collider(CollisionShape3d p_collider) {
+	collider = p_collider;
 }
 BoxShape3d BoundingBox::get_shape() {
-	
+	return shape;
 }
-BoxShape3d BoundingBox::set_shape(BoxShape3d p_shape) {
-	
+void BoundingBox::set_shape(BoxShape3d p_shape) {
+	shape = p_shape;
 }
 void BoundingBox::_bind_methods(){
 ClassDB::bind_method(D_METHOD("_init"), &BoundingBox::_init);
@@ -94,20 +94,20 @@ ClassDB::bind_static_method("BoundingBox", D_METHOD("get_characterbody_intersect
 ClassDB::bind_static_method("BoundingBox", D_METHOD("get_area_intersections", "area"), &BoundingBox::get_area_intersections);
 ClassDB::bind_method(D_METHOD("set_mesh", "value"), &BoundingBox::set_mesh);
 ClassDB::bind_method(D_METHOD("get_mesh"), &BoundingBox::get_mesh);
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "mesh", 34, "MeshInstance3D", 4102), "set_mesh," "get_mesh"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "mesh", PropertyHint(34), "MeshInstance3D", 4102), "set_mesh", "get_mesh"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_states", "value"), &BoundingBox::set_states);
 ClassDB::bind_method(D_METHOD("get_states"), &BoundingBox::get_states);
-ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "states", 31, "AABB", 4096), "set_states," "get_states"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "states", PropertyHint(31), "AABB", 4096), "set_states", "get_states"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_state_idx", "value"), &BoundingBox::set_state_idx);
 ClassDB::bind_method(D_METHOD("get_state_idx"), &BoundingBox::get_state_idx);
-ADD_PROPERTY(PropertyInfo(Variant::INT, "state_idx"), "set_state_idx," "get_state_idx"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "state_idx"), "set_state_idx", "get_state_idx"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_num_states", "value"), &BoundingBox::set_num_states);
 ClassDB::bind_method(D_METHOD("get_num_states"), &BoundingBox::get_num_states);
-ADD_PROPERTY(PropertyInfo(Variant::INT, "num_states"), "set_num_states," "get_num_states"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "num_states"), "set_num_states", "get_num_states"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_collider", "value"), &BoundingBox::set_collider);
 ClassDB::bind_method(D_METHOD("get_collider"), &BoundingBox::get_collider);
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "collider"), "set_collider," "get_collider"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "collider"), "set_collider", "get_collider"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_shape", "value"), &BoundingBox::set_shape);
 ClassDB::bind_method(D_METHOD("get_shape"), &BoundingBox::get_shape);
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "shape"), "set_shape," "get_shape"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "shape"), "set_shape", "get_shape"); // unfinished and u should prolly change this
 }

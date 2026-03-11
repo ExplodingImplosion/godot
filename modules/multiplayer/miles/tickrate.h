@@ -19,4 +19,5 @@ static void change_time_scale(float scale);
 static void assign_time_scale();
 static int get_jitter_proof_buffer_size();
 static void adjust_for_buffer_size(int buffer_size);
+static void _bind_methods();
 };

@@ -2,7 +2,6 @@
 #include multiplayer_session.h
 #include serializer.h
 #include serialized_node_collection.h
-#include stream_peer_bit_buffer.h
 #include fuckup.h
 #include quack_multiplayer.h
 
@@ -17,7 +16,8 @@ void _init(Array serialized_nodes, int frame_num);
 PackedByteArray get_delta(RefCounted prev_frame, int receiver_id, int hostility_mask);
 void decode_delta(PackedByteArray delta, int frame_num, int delta_frame_num);
 int get_num();
-int set_num(int p_num);
+void set_num(int p_num);
 Dictionary get_serializations();
-Dictionary set_serializations(Dictionary p_serializations);
+void set_serializations(Dictionary p_serializations);
+static void _bind_methods();
 };

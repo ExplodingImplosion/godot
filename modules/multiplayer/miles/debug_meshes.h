@@ -15,4 +15,5 @@ static MeshInstance3d spawn_colldier_debug_mesh(CollisionShape3d collider, float
 static MeshInstance3d spawn_recolored_debug_mesh(Mesh mesh, Color color, Transform3d transform, float time);
 static MeshInstance3d spawn_recolored_colldier_debug_mesh(CollisionShape3d collider, Color color, float time);
 static void spawn_debug_mesh_child(CollisionShape3d collider, bool interp);
+static void _bind_methods();
 };

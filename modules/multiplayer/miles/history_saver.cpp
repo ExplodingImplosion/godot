@@ -30,28 +30,28 @@ void HistorySaver::add_recent_frame(RefCounted frame) {
 	
 }
 Array HistorySaver::get_recent_frames() {
-	
+	return recent_frames;
 }
-Array HistorySaver::set_recent_frames(Array p_recent_frames) {
-	
+void HistorySaver::set_recent_frames(Array p_recent_frames) {
+	recent_frames = p_recent_frames;
 }
 RefCounted HistorySaver::get_history() {
-	
+	return history;
 }
-RefCounted HistorySaver::set_history(RefCounted p_history) {
-	
+void HistorySaver::set_history(RefCounted p_history) {
+	history = p_history;
 }
 Node3d HistorySaver::get_level() {
-	
+	return level;
 }
-Node3d HistorySaver::set_level(Node3d p_level) {
-	
+void HistorySaver::set_level(Node3d p_level) {
+	level = p_level;
 }
 int HistorySaver::get_recent_frame_idx() {
-	
+	return recent_frame_idx;
 }
-int HistorySaver::set_recent_frame_idx(int p_recent_frame_idx) {
-	
+void HistorySaver::set_recent_frame_idx(int p_recent_frame_idx) {
+	recent_frame_idx = p_recent_frame_idx;
 }
 void HistorySaver::_bind_methods(){
 ClassDB::bind_method(D_METHOD("_init", "mp_level"), &HistorySaver::_init);
@@ -66,14 +66,14 @@ ClassDB::bind_method(D_METHOD("get_frame_clamped", "frame_num"), &HistorySaver::
 ClassDB::bind_method(D_METHOD("add_recent_frame", "frame"), &HistorySaver::add_recent_frame);
 ClassDB::bind_method(D_METHOD("set_recent_frames", "value"), &HistorySaver::set_recent_frames);
 ClassDB::bind_method(D_METHOD("get_recent_frames"), &HistorySaver::get_recent_frames);
-ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "recent_frames", 31, "RefCounted", 4096), "set_recent_frames," "get_recent_frames"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "recent_frames", PropertyHint(31), "RefCounted", 4096), "set_recent_frames", "get_recent_frames"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_history", "value"), &HistorySaver::set_history);
 ClassDB::bind_method(D_METHOD("get_history"), &HistorySaver::get_history);
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "history"), "set_history," "get_history"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "history"), "set_history", "get_history"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_level", "value"), &HistorySaver::set_level);
 ClassDB::bind_method(D_METHOD("get_level"), &HistorySaver::get_level);
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "level"), "set_level," "get_level"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "level"), "set_level", "get_level"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_recent_frame_idx", "value"), &HistorySaver::set_recent_frame_idx);
 ClassDB::bind_method(D_METHOD("get_recent_frame_idx"), &HistorySaver::get_recent_frame_idx);
-ADD_PROPERTY(PropertyInfo(Variant::INT, "recent_frame_idx"), "set_recent_frame_idx," "get_recent_frame_idx"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "recent_frame_idx"), "set_recent_frame_idx", "get_recent_frame_idx"); // unfinished and u should prolly change this
 }

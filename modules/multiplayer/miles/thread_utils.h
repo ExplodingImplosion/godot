@@ -15,5 +15,6 @@ static void _static_init();
 static void setup_cleanup();
 static void add_locked_thread(Object object, Callable callable, bool high_priority, String description);
 static void cleanup_locked_thread(Object object, bool clear);
+static void _bind_methods();
 };
 VARIANT_ENUM_CAST(ThreadUtils::CheckMode);

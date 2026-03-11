@@ -8,4 +8,5 @@ public:
 void _ready();
 void on_owner_exit_tree(Node node_owner);
 static CollisionShape3d get_parent_collider_component(CollisionObject3d collider);
+static void _bind_methods();
 };

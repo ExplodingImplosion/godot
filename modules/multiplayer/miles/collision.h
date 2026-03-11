@@ -30,6 +30,7 @@ static bool is_in_layer(int layers, int layer);
 static void scale_shape(Shape3d shape, float scale);
 static Vector3 get_shape_extents(Shape3d shape);
 static Vector3 get_center_of_mass(CollisionObject3d object);
+static void _bind_methods();
 };
 VARIANT_ENUM_CAST(Collision::LayerIndex);
 VARIANT_ENUM_CAST(Collision::Layer);

@@ -10,5 +10,6 @@ void _execute(int _sender_id);
 static bool is_script_valid_packet(GdScript script);
 void _execute(int _sender_id);
 int get_u8_player_index();
-int set_u8_player_index(int p_u8_player_index);
+void set_u8_player_index(int p_u8_player_index);
+static void _bind_methods();
 };

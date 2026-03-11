@@ -1,7 +1,6 @@
 #include serializer.h
 #include quack_multiplayer.h
 #include multiplayer_level.h
-#include stream_peer_bit_buffer.h
 #include network_packet.h
 #include multiplayer_session.h
 #include network.h
@@ -38,6 +37,7 @@ void on_node_spawned(Node serializer);
 void on_node_deleted(Node serializer);
 void _exit_tree();
 Node get_history_saver();
-Node set_history_saver(Node p_history_saver);
+void set_history_saver(Node p_history_saver);
+static void _bind_methods();
 };
 VARIANT_ENUM_CAST(MultiplayerLevel::PhysicsPriority);

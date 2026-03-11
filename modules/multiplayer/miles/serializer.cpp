@@ -53,80 +53,80 @@ void Serializer::interpolate(Array current_properties, Array prev_properties) {
 void Serializer::receive_instant_update(Array properties) {
 	
 }
-void Serializer::decode_nodes(StreamPeerBuffer buffer) {
+void Serializer::decode_nodes(StreamPeerBitBuffer buffer) {
 	
 }
-void Serializer::delta_decode_nodes(StreamPeerBuffer buffer) {
+void Serializer::delta_decode_nodes(StreamPeerBitBuffer buffer) {
 	
 }
-void Serializer::decode(StreamPeerBuffer buffer, int vis_type) {
+void Serializer::decode(StreamPeerBitBuffer buffer, int vis_type) {
 	
 }
-void Serializer::decode_delta(StreamPeerBuffer buffer, int vis_type) {
+void Serializer::decode_delta(StreamPeerBitBuffer buffer, int vis_type) {
 	
 }
 RefCounted Serializer::get_serialization_info(PackedScene scene, int scene_id, SceneState state) {
 	
 }
 Array Serializer::get_serialization_properties() {
-	
+	return serialization_properties;
 }
-Array Serializer::set_serialization_properties(Array p_serialization_properties) {
-	
+void Serializer::set_serialization_properties(Array p_serialization_properties) {
+	serialization_properties = p_serialization_properties;
 }
 Array Serializer::get_nodes() {
-	
+	return nodes;
 }
-Array Serializer::set_nodes(Array p_nodes) {
-	
+void Serializer::set_nodes(Array p_nodes) {
+	nodes = p_nodes;
 }
 Dictionary Serializer::get_test_dict() {
-	
+	return test_dict;
 }
-Dictionary Serializer::set_test_dict(Dictionary p_test_dict) {
-	
+void Serializer::set_test_dict(Dictionary p_test_dict) {
+	test_dict = p_test_dict;
 }
 float Serializer::get_update_frequency() {
-	
+	return update_frequency;
 }
-float Serializer::set_update_frequency(float p_update_frequency) {
-	
+void Serializer::set_update_frequency(float p_update_frequency) {
+	update_frequency = p_update_frequency;
 }
 float Serializer::get_update_time_left() {
-	
+	return update_time_left;
 }
-float Serializer::set_update_time_left(float p_update_time_left) {
-	
+void Serializer::set_update_time_left(float p_update_time_left) {
+	update_time_left = p_update_time_left;
 }
 bool Serializer::get_updating() {
-	
+	return updating;
 }
-bool Serializer::set_updating(bool p_updating) {
-	
+void Serializer::set_updating(bool p_updating) {
+	updating = p_updating;
 }
 int Serializer::get_uid() {
-	
+	return uid;
 }
-int Serializer::set_uid(int p_uid) {
-	
+void Serializer::set_uid(int p_uid) {
+	uid = p_uid;
 }
 int Serializer::get_scene_id() {
-	
+	return scene_id;
 }
-int Serializer::set_scene_id(int p_scene_id) {
-	
+void Serializer::set_scene_id(int p_scene_id) {
+	scene_id = p_scene_id;
 }
 bool Serializer::get_has_serialized() {
-	
+	return has_serialized;
 }
-bool Serializer::set_has_serialized(bool p_has_serialized) {
-	
+void Serializer::set_has_serialized(bool p_has_serialized) {
+	has_serialized = p_has_serialized;
 }
 RefCounted Serializer::get_serialized() {
-	
+	return serialized;
 }
-RefCounted Serializer::set_serialized(RefCounted p_serialized) {
-	
+void Serializer::set_serialized(RefCounted p_serialized) {
+	serialized = p_serialized;
 }
 void Serializer::_bind_methods(){
 ClassDB::bind_static_method("Serializer", D_METHOD("get_uid_by_node", "node"), &Serializer::get_uid_by_node);
@@ -154,34 +154,34 @@ ClassDB::bind_method(D_METHOD("decode_delta", "buffer", "vis_type"), &Serializer
 ClassDB::bind_static_method("Serializer", D_METHOD("get_serialization_info", "scene", "scene_id", "state"), &Serializer::get_serialization_info);
 ClassDB::bind_method(D_METHOD("set_serialization_properties", "value"), &Serializer::set_serialization_properties);
 ClassDB::bind_method(D_METHOD("get_serialization_properties"), &Serializer::get_serialization_properties);
-ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "serialization_properties", 23, "24/17:NetworkedNode", 4102), "set_serialization_properties," "get_serialization_properties"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "serialization_properties", PropertyHint(23), "24/17:NetworkedNode", 4102), "set_serialization_properties", "get_serialization_properties"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_nodes", "value"), &Serializer::set_nodes);
 ClassDB::bind_method(D_METHOD("get_nodes"), &Serializer::get_nodes);
-ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "nodes", 23, "24/34:Node", 4102), "set_nodes," "get_nodes"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "nodes", PropertyHint(23), "24/34:Node", 4102), "set_nodes", "get_nodes"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_test_dict", "value"), &Serializer::set_test_dict);
 ClassDB::bind_method(D_METHOD("get_test_dict"), &Serializer::get_test_dict);
-ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "test_dict", 23, "24/34:Node;24/17:NetworkedNode", 4102), "set_test_dict," "get_test_dict"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "test_dict", PropertyHint(23), "24/34:Node;24/17:NetworkedNode", 4102), "set_test_dict", "get_test_dict"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_update_frequency", "value"), &Serializer::set_update_frequency);
 ClassDB::bind_method(D_METHOD("get_update_frequency"), &Serializer::get_update_frequency);
-ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "update_frequency"), "set_update_frequency," "get_update_frequency"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "update_frequency"), "set_update_frequency", "get_update_frequency"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_update_time_left", "value"), &Serializer::set_update_time_left);
 ClassDB::bind_method(D_METHOD("get_update_time_left"), &Serializer::get_update_time_left);
-ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "update_time_left"), "set_update_time_left," "get_update_time_left"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "update_time_left"), "set_update_time_left", "get_update_time_left"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_updating", "value"), &Serializer::set_updating);
 ClassDB::bind_method(D_METHOD("get_updating"), &Serializer::get_updating);
-ADD_PROPERTY(PropertyInfo(Variant::BOOL, "updating"), "set_updating," "get_updating"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::BOOL, "updating"), "set_updating", "get_updating"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_uid", "value"), &Serializer::set_uid);
 ClassDB::bind_method(D_METHOD("get_uid"), &Serializer::get_uid);
-ADD_PROPERTY(PropertyInfo(Variant::INT, "uid"), "set_uid," "get_uid"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "uid"), "set_uid", "get_uid"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_scene_id", "value"), &Serializer::set_scene_id);
 ClassDB::bind_method(D_METHOD("get_scene_id"), &Serializer::get_scene_id);
-ADD_PROPERTY(PropertyInfo(Variant::INT, "scene_id"), "set_scene_id," "get_scene_id"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::INT, "scene_id"), "set_scene_id", "get_scene_id"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_has_serialized", "value"), &Serializer::set_has_serialized);
 ClassDB::bind_method(D_METHOD("get_has_serialized"), &Serializer::get_has_serialized);
-ADD_PROPERTY(PropertyInfo(Variant::BOOL, "has_serialized"), "set_has_serialized," "get_has_serialized"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::BOOL, "has_serialized"), "set_has_serialized", "get_has_serialized"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_serialized", "value"), &Serializer::set_serialized);
 ClassDB::bind_method(D_METHOD("get_serialized"), &Serializer::get_serialized);
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "serialized"), "set_serialized," "get_serialized"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "serialized"), "set_serialized", "get_serialized"); // unfinished and u should prolly change this
 BIND_ENUM_CONSTANT(SINGLETONS);
 BIND_ENUM_CONSTANT(REGULAR);
 BIND_ENUM_CONSTANT(BOUNDING_BOX);

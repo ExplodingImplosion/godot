@@ -54,22 +54,22 @@ int Team::get_node_team_id(Node node) {
 	
 }
 int Team::get_team_id() {
-	
+	return team_id;
 }
-int Team::set_team_id(int p_team_id) {
-	
+void Team::set_team_id(int p_team_id) {
+	team_id = p_team_id;
 }
 StringName Team::get_group_name() {
-	
+	return group_name;
 }
-StringName Team::set_group_name(StringName p_group_name) {
-	
+void Team::set_group_name(StringName p_group_name) {
+	group_name = p_group_name;
 }
 Node Team::get_parent() {
-	
+	return parent;
 }
-Node Team::set_parent(Node p_parent) {
-	
+void Team::set_parent(Node p_parent) {
+	parent = p_parent;
 }
 void Team::_bind_methods(){
 ClassDB::bind_static_method("Team", D_METHOD("get_nodes_with_teams"), &Team::get_nodes_with_teams);
@@ -92,15 +92,15 @@ ClassDB::bind_static_method("Team", D_METHOD("teams_are_friendly", "team1", "tea
 ClassDB::bind_static_method("Team", D_METHOD("get_node_team_id", "node"), &Team::get_node_team_id);
 ClassDB::bind_method(D_METHOD("set_team_id", "value"), &Team::set_team_id);
 ClassDB::bind_method(D_METHOD("get_team_id"), &Team::get_team_id);
-ADD_PROPERTY(PropertyInfo(Variant::INT, "team_id", 6, "
+ADD_PROPERTY(PropertyInfo(Variant::INT, "team_id", PropertyHint(6), "
 Always Hostile,
 Team 1,
 Team 2,
-", 4102), "set_team_id," "get_team_id"); // unfinished and u should prolly change this
+", 4102), "set_team_id", "get_team_id"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_group_name", "value"), &Team::set_group_name);
 ClassDB::bind_method(D_METHOD("get_group_name"), &Team::get_group_name);
-ADD_PROPERTY(PropertyInfo(Variant::STRING_NAME, "group_name"), "set_group_name," "get_group_name"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::STRING_NAME, "group_name"), "set_group_name", "get_group_name"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_parent", "value"), &Team::set_parent);
 ClassDB::bind_method(D_METHOD("get_parent"), &Team::get_parent);
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "parent"), "set_parent," "get_parent"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "parent"), "set_parent", "get_parent"); // unfinished and u should prolly change this
 }
