@@ -1,19 +1,19 @@
-#include client.h
-#include player.h
-#include multiplayer_level.h
-#include frame.h
-#include replay.h
-#include teams.h
-#include owner_id.h
-#include network.h
-#include network_packet.h
-#include world_state_packet.h
-#include ready_packet.h
-#include info_packet.h
-#include packet_sender.h
-#include input_packet.h
-#include world_state_confirmation_packet.h
-#include multiplayer_session.h
+#include "client".h
+#include "player".h
+#include "multiplayer_level".h
+#include "frame".h
+#include "replay".h
+#include "teams".h
+#include "owner_id".h
+#include "network".h
+#include "network_packet".h
+#include "world_state_packet".h
+#include "ready_packet".h
+#include "info_packet".h
+#include "packet_sender".h
+#include "input_packet".h
+#include "world_state_confirmation_packet".h
+#include "multiplayer_session".h
 
 class Client: public RefCounted {
 GDCLASS(Client, RefCounted);
@@ -114,4 +114,5 @@ void set_max_receive_bandwidth(int p_max_receive_bandwidth);
 int get_max_send_bandwidth();
 void set_max_send_bandwidth(int p_max_send_bandwidth);
 static void _bind_methods();
+Client();~Client();
 };

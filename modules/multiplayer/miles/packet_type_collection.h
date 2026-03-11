@@ -17,4 +17,5 @@ void set_debug_name_list(PackedStringArray p_debug_name_list);
 int get_num_types();
 void set_num_types(int p_num_types);
 static void _bind_methods();
+PacketTypeCollection();~PacketTypeCollection();
 };

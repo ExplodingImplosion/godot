@@ -1,8 +1,9 @@
-#include quack_multiplayer.h
+#include "quack_multiplayer".h
 
 class NetworkedNode: public Resource {
 GDCLASS(NetworkedNode, Resource);
 public:
+static Dictionary types;
 bool ready;
 bool owner;
 String owner_scene_path;
@@ -101,6 +102,8 @@ void decode_array(Array array, StreamPeerBitBuffer buffer, int vis_type);
 void decode_array_iter(Array array, StreamPeerBitBuffer buffer, PackedByteArray iter);
 void decode_delta_array(Array array, StreamPeerBitBuffer buffer, int vis_type);
 void decode_delta_array_iter(Array array, StreamPeerBitBuffer buffer, PackedByteArray iter);
+static Dictionary get_types();
+static void set_types(Dictionary p_types);
 bool get_ready();
 void set_ready(bool p_ready);
 bool get_owner();
@@ -142,6 +145,7 @@ void set_get_plist_func(Callable p_get_plist_func);
 Callable get_get_plist_short_func();
 void set_get_plist_short_func(Callable p_get_plist_short_func);
 static void _bind_methods();
+NetworkedNode();~NetworkedNode();
 };
 VARIANT_ENUM_CAST(NetworkedNode::VisType);
 VARIANT_ENUM_CAST(NetworkedNode::StatusFlags);

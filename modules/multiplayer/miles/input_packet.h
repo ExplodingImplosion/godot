@@ -18,4 +18,5 @@ void set_u8_num_inputs(int p_u8_num_inputs);
 PackedByteArray get_inputs();
 void set_inputs(PackedByteArray p_inputs);
 static void _bind_methods();
+InputPacket();~InputPacket();
 };

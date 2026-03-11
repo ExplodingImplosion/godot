@@ -1,8 +1,8 @@
-#include quack_multiplayer.h
-#include multiplayer_session.h
-#include team_component.h
-#include owner_id.h
-#include serializer.h
+#include "quack_multiplayer".h
+#include "multiplayer_session".h
+#include "team_component".h
+#include "owner_id".h
+#include "serializer".h
 
 class Property: public Resource {
 GDCLASS(Property, Resource);
@@ -172,6 +172,7 @@ void set_value_type(Property p_value_type);
 Property get_key_type();
 void set_key_type(Property p_key_type);
 static void _bind_methods();
+Property();~Property();
 };
 VARIANT_ENUM_CAST(Property::NetworkType);
 VARIANT_ENUM_CAST(Property::PrecisionLevel);

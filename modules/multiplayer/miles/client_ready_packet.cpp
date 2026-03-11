@@ -1,4 +1,10 @@
 #include "client_ready_packet.h"
+ClientReadyPacket::ClientReadyPacket(){
+	
+}
+ClientReadyPacket::~ClientReadyPacket(){
+	
+}
 void ClientReadyPacket::_execute(int sender_id) {
 	
 }

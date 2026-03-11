@@ -47,4 +47,5 @@ void set_frame_deleted(int p_frame_deleted);
 int get_visibility();
 void set_visibility(int p_visibility);
 static void _bind_methods();
+SerializedNodeCollection();~SerializedNodeCollection();
 };

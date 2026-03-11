@@ -1,4 +1,10 @@
 #include "serializer.h"
+Serializer::Serializer(){
+	
+}
+Serializer::~Serializer(){
+	
+}
 int Serializer::get_uid_by_node(Node node) {
 	
 }
@@ -67,6 +73,30 @@ void Serializer::decode_delta(StreamPeerBitBuffer buffer, int vis_type) {
 }
 RefCounted Serializer::get_serialization_info(PackedScene scene, int scene_id, SceneState state) {
 	
+}
+static Dictionary Serializer::get_component_list() {
+	return component_list;
+}
+static void Serializer::set_component_list(Dictionary p_component_list) {
+	component_list = p_component_list;
+}
+static RefCounted Serializer::get_component_tracker() {
+	return component_tracker;
+}
+static void Serializer::set_component_tracker(RefCounted p_component_tracker) {
+	component_tracker = p_component_tracker;
+}
+static Dictionary Serializer::get_uid_map() {
+	return uid_map;
+}
+static void Serializer::set_uid_map(Dictionary p_uid_map) {
+	uid_map = p_uid_map;
+}
+static int Serializer::get_uid_index() {
+	return uid_index;
+}
+static void Serializer::set_uid_index(int p_uid_index) {
+	uid_index = p_uid_index;
 }
 Array Serializer::get_serialization_properties() {
 	return serialization_properties;
@@ -141,7 +171,7 @@ ClassDB::bind_method(D_METHOD("_enter_tree"), &Serializer::_enter_tree);
 ClassDB::bind_method(D_METHOD("on_owner_exit_tree", "node_owner"), &Serializer::on_owner_exit_tree);
 ClassDB::bind_method(D_METHOD("_ready"), &Serializer::_ready);
 ClassDB::bind_method(D_METHOD("nodes_are_valid"), &Serializer::nodes_are_valid);
-ClassDB::bind_method(D_METHOD("update_physical_properties", "properties", "weight", "notify_transform_changed"), &Serializer::update_physical_properties);
+ClassDB::bind_method(D_METHOD("update_physical_properties", "properties", "weight", "notify_transform_changed"), &Serializer::update_physical_properties, DEFVAL(1.0), DEFVAL(true));
 ClassDB::bind_method(D_METHOD("receive_update", "properties"), &Serializer::receive_update);
 ClassDB::bind_method(D_METHOD("receive_update_interpolated", "properties"), &Serializer::receive_update_interpolated);
 ClassDB::bind_method(D_METHOD("receive_interpolation_update", "properties"), &Serializer::receive_interpolation_update);
@@ -149,9 +179,21 @@ ClassDB::bind_method(D_METHOD("interpolate", "current_properties", "prev_propert
 ClassDB::bind_method(D_METHOD("receive_instant_update", "properties"), &Serializer::receive_instant_update);
 ClassDB::bind_method(D_METHOD("decode_nodes", "buffer"), &Serializer::decode_nodes);
 ClassDB::bind_method(D_METHOD("delta_decode_nodes", "buffer"), &Serializer::delta_decode_nodes);
-ClassDB::bind_method(D_METHOD("decode", "buffer", "vis_type"), &Serializer::decode);
+ClassDB::bind_method(D_METHOD("decode", "buffer", "vis_type"), &Serializer::decode, DEFVAL(0));
 ClassDB::bind_method(D_METHOD("decode_delta", "buffer", "vis_type"), &Serializer::decode_delta);
-ClassDB::bind_static_method("Serializer", D_METHOD("get_serialization_info", "scene", "scene_id", "state"), &Serializer::get_serialization_info);
+ClassDB::bind_static_method("Serializer", D_METHOD("get_serialization_info", "scene", "scene_id", "state"), &Serializer::get_serialization_info, DEFVAL(<null>));
+ClassDB::bind_method(D_METHOD("set_component_list", "value"), &Serializer::set_component_list);
+ClassDB::bind_method(D_METHOD("get_component_list"), &Serializer::get_component_list);
+ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "component_list", PropertyHint(38), "Node;Node", 4096), "set_component_list", "get_component_list"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_component_tracker", "value"), &Serializer::set_component_tracker);
+ClassDB::bind_method(D_METHOD("get_component_tracker"), &Serializer::get_component_tracker);
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "component_tracker"), "set_component_tracker", "get_component_tracker"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_uid_map", "value"), &Serializer::set_uid_map);
+ClassDB::bind_method(D_METHOD("get_uid_map"), &Serializer::get_uid_map);
+ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "uid_map", PropertyHint(38), "int;Node", 4096), "set_uid_map", "get_uid_map"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_uid_index", "value"), &Serializer::set_uid_index);
+ClassDB::bind_method(D_METHOD("get_uid_index"), &Serializer::get_uid_index);
+ADD_PROPERTY(PropertyInfo(Variant::INT, "uid_index"), "set_uid_index", "get_uid_index"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_serialization_properties", "value"), &Serializer::set_serialization_properties);
 ClassDB::bind_method(D_METHOD("get_serialization_properties"), &Serializer::get_serialization_properties);
 ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "serialization_properties", PropertyHint(23), "24/17:NetworkedNode", 4102), "set_serialization_properties", "get_serialization_properties"); // unfinished and u should prolly change this

@@ -28,4 +28,5 @@ void set_u32_max_receive_bandwidth(int p_u32_max_receive_bandwidth);
 int get_u32_max_send_bandwidth();
 void set_u32_max_send_bandwidth(int p_u32_max_send_bandwidth);
 static void _bind_methods();
+ClientInfoPacket();~ClientInfoPacket();
 };

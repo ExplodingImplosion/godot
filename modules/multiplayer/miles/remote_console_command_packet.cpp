@@ -1,4 +1,10 @@
 #include "remote_console_command_packet.h"
+RemoteConsoleCommandPacket::RemoteConsoleCommandPacket(){
+	
+}
+RemoteConsoleCommandPacket::~RemoteConsoleCommandPacket(){
+	
+}
 void RemoteConsoleCommandPacket::send(String input) {
 	
 }

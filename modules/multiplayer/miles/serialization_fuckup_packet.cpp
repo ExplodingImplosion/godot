@@ -1,4 +1,10 @@
 #include "serialization_fuckup_packet.h"
+SerializationFuckupPacket::SerializationFuckupPacket(){
+	
+}
+SerializationFuckupPacket::~SerializationFuckupPacket(){
+	
+}
 void SerializationFuckupPacket::send(int fuckup) {
 	
 }

@@ -1,9 +1,9 @@
-#include recent_frame.h
-#include multiplayer_session.h
-#include serializer.h
-#include serialized_node_collection.h
-#include fuckup.h
-#include quack_multiplayer.h
+#include "recent_frame".h
+#include "multiplayer_session".h
+#include "serializer".h
+#include "serialized_node_collection".h
+#include "fuckup".h
+#include "quack_multiplayer".h
 
 class RecentFrame: public RefCounted {
 GDCLASS(RecentFrame, RefCounted);
@@ -20,4 +20,5 @@ void set_num(int p_num);
 Dictionary get_serializations();
 void set_serializations(Dictionary p_serializations);
 static void _bind_methods();
+RecentFrame();~RecentFrame();
 };

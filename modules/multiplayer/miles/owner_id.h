@@ -1,12 +1,13 @@
-#include owner_id.h
-#include serializer.h
-#include sesh.h
-#include client.h
-#include player.h
+#include "owner_id".h
+#include "serializer".h
+#include "sesh".h
+#include "client".h
+#include "player".h
 
 class OwnerId: public Node {
 GDCLASS(OwnerId, Node);
 public:
+static Dictionary component_list;
 int owner_id;
 StringName group_name;
 Node parent;
@@ -27,6 +28,8 @@ static int get_node_owner_id(Node node);
 static RefCounted get_node_client_owner(Node node);
 static RefCounted get_node_player_owner(Node node);
 RefCounted get_player_owner();
+static Dictionary get_component_list();
+static void set_component_list(Dictionary p_component_list);
 int get_owner_id();
 void set_owner_id(int p_owner_id);
 StringName get_group_name();
@@ -34,4 +37,5 @@ void set_group_name(StringName p_group_name);
 Node get_parent();
 void set_parent(Node p_parent);
 static void _bind_methods();
+OwnerId();~OwnerId();
 };

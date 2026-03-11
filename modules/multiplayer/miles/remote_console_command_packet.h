@@ -13,4 +13,5 @@ void _execute(int _sender_id);
 String get_input();
 void set_input(String p_input);
 static void _bind_methods();
+RemoteConsoleCommandPacket();~RemoteConsoleCommandPacket();
 };

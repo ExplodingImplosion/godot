@@ -1,4 +1,10 @@
 #include "packet_type_collection.h"
+PacketTypeCollection::PacketTypeCollection(){
+	
+}
+PacketTypeCollection::~PacketTypeCollection(){
+	
+}
 RefCounted PacketTypeCollection::get_packet_type(GdScript script) {
 	
 }

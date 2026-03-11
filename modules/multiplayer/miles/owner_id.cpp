@@ -1,4 +1,10 @@
 #include "owner_id.h"
+OwnerId::OwnerId(){
+	
+}
+OwnerId::~OwnerId(){
+	
+}
 StringName OwnerId::get_group_name() {
 	
 }
@@ -50,6 +56,12 @@ RefCounted OwnerId::get_node_player_owner(Node node) {
 RefCounted OwnerId::get_player_owner() {
 	
 }
+static Dictionary OwnerId::get_component_list() {
+	return component_list;
+}
+static void OwnerId::set_component_list(Dictionary p_component_list) {
+	component_list = p_component_list;
+}
 int OwnerId::get_owner_id() {
 	return owner_id;
 }
@@ -86,6 +98,9 @@ ClassDB::bind_static_method("OwnerId", D_METHOD("get_node_owner_id", "node"), &O
 ClassDB::bind_static_method("OwnerId", D_METHOD("get_node_client_owner", "node"), &OwnerId::get_node_client_owner);
 ClassDB::bind_static_method("OwnerId", D_METHOD("get_node_player_owner", "node"), &OwnerId::get_node_player_owner);
 ClassDB::bind_method(D_METHOD("get_player_owner"), &OwnerId::get_player_owner);
+ClassDB::bind_method(D_METHOD("set_component_list", "value"), &OwnerId::set_component_list);
+ClassDB::bind_method(D_METHOD("get_component_list"), &OwnerId::get_component_list);
+ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "component_list", PropertyHint(38), "Node;Node", 4096), "set_component_list", "get_component_list"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_owner_id", "value"), &OwnerId::set_owner_id);
 ClassDB::bind_method(D_METHOD("get_owner_id"), &OwnerId::get_owner_id);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "owner_id"), "set_owner_id", "get_owner_id"); // unfinished and u should prolly change this

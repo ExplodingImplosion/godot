@@ -1,4 +1,10 @@
 #include "team.h"
+Team::Team(){
+	
+}
+Team::~Team(){
+	
+}
 Array Team::get_nodes_with_teams() {
 	
 }
@@ -53,6 +59,12 @@ bool Team::teams_are_friendly(int team1, int team2) {
 int Team::get_node_team_id(Node node) {
 	
 }
+static Dictionary Team::get_component_list() {
+	return component_list;
+}
+static void Team::set_component_list(Dictionary p_component_list) {
+	component_list = p_component_list;
+}
 int Team::get_team_id() {
 	return team_id;
 }
@@ -90,6 +102,9 @@ ClassDB::bind_static_method("Team", D_METHOD("nodes_are_on_same_team", "node1", 
 ClassDB::bind_static_method("Team", D_METHOD("all_nodes_are_on_same_team", "array"), &Team::all_nodes_are_on_same_team);
 ClassDB::bind_static_method("Team", D_METHOD("teams_are_friendly", "team1", "team2"), &Team::teams_are_friendly);
 ClassDB::bind_static_method("Team", D_METHOD("get_node_team_id", "node"), &Team::get_node_team_id);
+ClassDB::bind_method(D_METHOD("set_component_list", "value"), &Team::set_component_list);
+ClassDB::bind_method(D_METHOD("get_component_list"), &Team::get_component_list);
+ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "component_list", PropertyHint(38), "Node;Node", 4096), "set_component_list", "get_component_list"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_team_id", "value"), &Team::set_team_id);
 ClassDB::bind_method(D_METHOD("get_team_id"), &Team::get_team_id);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "team_id", PropertyHint(6), "

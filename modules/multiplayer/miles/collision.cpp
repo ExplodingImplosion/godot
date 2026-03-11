@@ -1,14 +1,20 @@
 #include "collision.h"
+Collision::Collision(){
+	
+}
+Collision::~Collision(){
+	
+}
 bool Collision::is_in_layer(int layers, int layer) {
 	
 }
-void Collision::scale_shape(Shape3d shape, float scale) {
+void Collision::scale_shape(Shape3D shape, float scale) {
 	
 }
-Vector3 Collision::get_shape_extents(Shape3d shape) {
+Vector3 Collision::get_shape_extents(Shape3D shape) {
 	
 }
-Vector3 Collision::get_center_of_mass(CollisionObject3d object) {
+Vector3 Collision::get_center_of_mass(CollisionObject3D object) {
 	
 }
 void Collision::_bind_methods(){

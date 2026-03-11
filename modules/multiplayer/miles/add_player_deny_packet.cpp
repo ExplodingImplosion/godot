@@ -1,4 +1,10 @@
 #include "add_player_deny_packet.h"
+AddPlayerDenyPacket::AddPlayerDenyPacket(){
+	
+}
+AddPlayerDenyPacket::~AddPlayerDenyPacket(){
+	
+}
 void AddPlayerDenyPacket::_execute(int _sender_id) {
 	
 }

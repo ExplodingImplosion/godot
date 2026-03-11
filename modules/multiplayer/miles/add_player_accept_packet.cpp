@@ -1,4 +1,10 @@
 #include "add_player_accept_packet.h"
+AddPlayerAcceptPacket::AddPlayerAcceptPacket(){
+	
+}
+AddPlayerAcceptPacket::~AddPlayerAcceptPacket(){
+	
+}
 void AddPlayerAcceptPacket::_execute(int _sender_id) {
 	
 }

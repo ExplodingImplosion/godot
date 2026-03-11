@@ -1,4 +1,4 @@
-#include byte_utils.h
+#include "byte_utils".h
 
 class Compression: public RefCounted {
 GDCLASS(Compression, RefCounted);
@@ -18,4 +18,5 @@ static PackedByteArray repeated_compress(PackedByteArray bytes, int compression_
 static void add_compression(PackedByteArray final, int offset, int compressed_size, bool big);
 static PackedByteArray repeated_decompress(PackedByteArray bytes, int compression_mode, bool big);
 static void _bind_methods();
+Compression();~Compression();
 };

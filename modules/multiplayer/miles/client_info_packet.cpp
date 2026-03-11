@@ -1,4 +1,10 @@
 #include "client_info_packet.h"
+ClientInfoPacket::ClientInfoPacket(){
+	
+}
+ClientInfoPacket::~ClientInfoPacket(){
+	
+}
 RefCounted ClientInfoPacket::create(RefCounted client) {
 	
 }

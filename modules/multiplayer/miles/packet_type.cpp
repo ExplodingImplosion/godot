@@ -1,4 +1,10 @@
 #include "packet_type.h"
+PacketType::PacketType(){
+	
+}
+PacketType::~PacketType(){
+	
+}
 String PacketType::_to_string() {
 	
 }
@@ -25,6 +31,30 @@ void PacketType::send_packet_to_server(RefCounted packet) {
 }
 void PacketType::send_packet_to_client(int id, RefCounted packet) {
 	
+}
+static RefCounted PacketType::get_client_packets() {
+	return client_packets;
+}
+static void PacketType::set_client_packets(RefCounted p_client_packets) {
+	client_packets = p_client_packets;
+}
+static RefCounted PacketType::get_server_packets() {
+	return server_packets;
+}
+static void PacketType::set_server_packets(RefCounted p_server_packets) {
+	server_packets = p_server_packets;
+}
+static Array PacketType::get_collection_list() {
+	return collection_list;
+}
+static void PacketType::set_collection_list(Array p_collection_list) {
+	collection_list = p_collection_list;
+}
+static bool PacketType::get_ready() {
+	return ready;
+}
+static void PacketType::set_ready(bool p_ready) {
+	ready = p_ready;
 }
 GdScript PacketType::get_packet_class() {
 	return packet_class;
@@ -65,13 +95,25 @@ void PacketType::set_send_mode(int p_send_mode) {
 void PacketType::_bind_methods(){
 ClassDB::bind_method(D_METHOD("_to_string"), &PacketType::_to_string);
 ClassDB::bind_static_method("PacketType", D_METHOD("setup_packet_map"), &PacketType::setup_packet_map);
-ClassDB::bind_method(D_METHOD("_init", "script"), &PacketType::_init);
+ClassDB::bind_method(D_METHOD("_init", "script"), &PacketType::_init, DEFVAL(<null>));
 ClassDB::bind_static_method("PacketType", D_METHOD("is_valid_packet_property", "info"), &PacketType::is_valid_packet_property);
 ClassDB::bind_method(D_METHOD("packet_encode", "packet"), &PacketType::packet_encode);
 ClassDB::bind_method(D_METHOD("packet_decode", "packet"), &PacketType::packet_decode);
-ClassDB::bind_static_method("PacketType", D_METHOD("decode", "sender_id", "packet", "collection"), &PacketType::decode);
+ClassDB::bind_static_method("PacketType", D_METHOD("decode", "sender_id", "packet", "collection"), &PacketType::decode, DEFVAL(<null>));
 ClassDB::bind_static_method("PacketType", D_METHOD("send_packet_to_server", "packet"), &PacketType::send_packet_to_server);
 ClassDB::bind_static_method("PacketType", D_METHOD("send_packet_to_client", "id", "packet"), &PacketType::send_packet_to_client);
+ClassDB::bind_method(D_METHOD("set_client_packets", "value"), &PacketType::set_client_packets);
+ClassDB::bind_method(D_METHOD("get_client_packets"), &PacketType::get_client_packets);
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "client_packets"), "set_client_packets", "get_client_packets"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_server_packets", "value"), &PacketType::set_server_packets);
+ClassDB::bind_method(D_METHOD("get_server_packets"), &PacketType::get_server_packets);
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "server_packets"), "set_server_packets", "get_server_packets"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_collection_list", "value"), &PacketType::set_collection_list);
+ClassDB::bind_method(D_METHOD("get_collection_list"), &PacketType::get_collection_list);
+ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "collection_list", PropertyHint(31), "RefCounted", 4096), "set_collection_list", "get_collection_list"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_ready", "value"), &PacketType::set_ready);
+ClassDB::bind_method(D_METHOD("get_ready"), &PacketType::get_ready);
+ADD_PROPERTY(PropertyInfo(Variant::BOOL, "ready"), "set_ready", "get_ready"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_packet_class", "value"), &PacketType::set_packet_class);
 ClassDB::bind_method(D_METHOD("get_packet_class"), &PacketType::get_packet_class);
 ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "packet_class"), "set_packet_class", "get_packet_class"); // unfinished and u should prolly change this

@@ -1,5 +1,5 @@
-#include client.h
-#include player.h
+#include "client".h
+#include "player".h
 
 class Player: public RefCounted {
 GDCLASS(Player, RefCounted);
@@ -9,7 +9,7 @@ int id;
 int idx;
 int team;
 bool spectating;
-Camera3d camera;
+Camera3D camera;
 String action_suffix;
 Array input_buffer;
 Vector2 aim_angle;
@@ -27,8 +27,8 @@ int get_team();
 void set_team(int p_team);
 bool get_spectating();
 void set_spectating(bool p_spectating);
-Camera3d get_camera();
-void set_camera(Camera3d p_camera);
+Camera3D get_camera();
+void set_camera(Camera3D p_camera);
 String get_action_suffix();
 void set_action_suffix(String p_action_suffix);
 Array get_input_buffer();
@@ -36,4 +36,5 @@ void set_input_buffer(Array p_input_buffer);
 Vector2 get_aim_angle();
 void set_aim_angle(Vector2 p_aim_angle);
 static void _bind_methods();
+Player();~Player();
 };

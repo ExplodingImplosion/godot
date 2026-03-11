@@ -1,4 +1,10 @@
 #include "quack_multiplayer.h"
+QuackMultiplayer::QuackMultiplayer(){
+	
+}
+QuackMultiplayer::~QuackMultiplayer(){
+	
+}
 bool QuackMultiplayer::register_scene(String path, int idx) {
 	
 }
@@ -38,22 +44,22 @@ bool QuackMultiplayer::is_net_updated_this_frame(Dictionary property_info) {
 bool QuackMultiplayer::is_valid_net_var(Dictionary property_info) {
 	
 }
-void QuackMultiplayer::set_node_position_on_ready(Node3d node, Vector3 position) {
+void QuackMultiplayer::set_node_position_on_ready(Node3D node, Vector3 position) {
 	
 }
-void QuackMultiplayer::set_node_position_on_tree_entered(Node3d node, Vector3 position) {
+void QuackMultiplayer::set_node_position_on_tree_entered(Node3D node, Vector3 position) {
 	
 }
-void QuackMultiplayer::set_node_rotation_on_ready(Node3d node, Vector3 rotation) {
+void QuackMultiplayer::set_node_rotation_on_ready(Node3D node, Vector3 rotation) {
 	
 }
-void QuackMultiplayer::set_node_rotation_on_tree_entered(Node3d node, Vector3 rotation) {
+void QuackMultiplayer::set_node_rotation_on_tree_entered(Node3D node, Vector3 rotation) {
 	
 }
-void QuackMultiplayer::set_node_transform_on_ready(Node3d node, Vector3 position, Vector3 rotation) {
+void QuackMultiplayer::set_node_transform_on_ready(Node3D node, Vector3 position, Vector3 rotation) {
 	
 }
-void QuackMultiplayer::set_node_transform_on_tree_entered(Node3d node, Vector3 position, Vector3 rotation) {
+void QuackMultiplayer::set_node_transform_on_tree_entered(Node3D node, Vector3 position, Vector3 rotation) {
 	
 }
 int QuackMultiplayer::get_net_type(int type) {
@@ -71,10 +77,34 @@ bool QuackMultiplayer::is_non_numerical(int type) {
 int QuackMultiplayer::get_property_size_by_type(int type) {
 	
 }
+static Dictionary QuackMultiplayer::get_scene_registry() {
+	return scene_registry;
+}
+static void QuackMultiplayer::set_scene_registry(Dictionary p_scene_registry) {
+	scene_registry = p_scene_registry;
+}
+static Array QuackMultiplayer::get_scenes() {
+	return scenes;
+}
+static void QuackMultiplayer::set_scenes(Array p_scenes) {
+	scenes = p_scenes;
+}
+static bool QuackMultiplayer::get_ready() {
+	return ready;
+}
+static void QuackMultiplayer::set_ready(bool p_ready) {
+	ready = p_ready;
+}
+static Dictionary QuackMultiplayer::get_NetworkTypeAssertLmao() {
+	return NetworkTypeAssertLmao;
+}
+static void QuackMultiplayer::set_NetworkTypeAssertLmao(Dictionary p_NetworkTypeAssertLmao) {
+	NetworkTypeAssertLmao = p_NetworkTypeAssertLmao;
+}
 void QuackMultiplayer::_bind_methods(){
 ClassDB::bind_static_method("QuackMultiplayer", D_METHOD("register_scene", "path", "idx"), &QuackMultiplayer::register_scene);
 ClassDB::bind_static_method("QuackMultiplayer", D_METHOD("register_scenes"), &QuackMultiplayer::register_scenes);
-ClassDB::bind_static_method("QuackMultiplayer", D_METHOD("get_scene_paths", "path"), &QuackMultiplayer::get_scene_paths);
+ClassDB::bind_static_method("QuackMultiplayer", D_METHOD("get_scene_paths", "path"), &QuackMultiplayer::get_scene_paths, DEFVAL("res://gameplay"));
 ClassDB::bind_static_method("QuackMultiplayer", D_METHOD("register_all_scripts"), &QuackMultiplayer::register_all_scripts);
 ClassDB::bind_static_method("QuackMultiplayer", D_METHOD("add_networked_property", "property_info", "property_names", "property_types"), &QuackMultiplayer::add_networked_property);
 ClassDB::bind_static_method("QuackMultiplayer", D_METHOD("is_script_predicted", "script"), &QuackMultiplayer::is_script_predicted);
@@ -96,6 +126,18 @@ ClassDB::bind_static_method("QuackMultiplayer", D_METHOD("is_int_type", "type"),
 ClassDB::bind_static_method("QuackMultiplayer", D_METHOD("is_float_type", "type"), &QuackMultiplayer::is_float_type);
 ClassDB::bind_static_method("QuackMultiplayer", D_METHOD("is_non_numerical", "type"), &QuackMultiplayer::is_non_numerical);
 ClassDB::bind_static_method("QuackMultiplayer", D_METHOD("get_property_size_by_type", "type"), &QuackMultiplayer::get_property_size_by_type);
+ClassDB::bind_method(D_METHOD("set_scene_registry", "value"), &QuackMultiplayer::set_scene_registry);
+ClassDB::bind_method(D_METHOD("get_scene_registry"), &QuackMultiplayer::get_scene_registry);
+ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "scene_registry", PropertyHint(38), "String;int", 4096), "set_scene_registry", "get_scene_registry"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_scenes", "value"), &QuackMultiplayer::set_scenes);
+ClassDB::bind_method(D_METHOD("get_scenes"), &QuackMultiplayer::get_scenes);
+ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "scenes", PropertyHint(31), "PackedScene", 4096), "set_scenes", "get_scenes"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_ready", "value"), &QuackMultiplayer::set_ready);
+ClassDB::bind_method(D_METHOD("get_ready"), &QuackMultiplayer::get_ready);
+ADD_PROPERTY(PropertyInfo(Variant::BOOL, "ready"), "set_ready", "get_ready"); // unfinished and u should prolly change this
+ClassDB::bind_method(D_METHOD("set_NetworkTypeAssertLmao", "value"), &QuackMultiplayer::set_NetworkTypeAssertLmao);
+ClassDB::bind_method(D_METHOD("get_NetworkTypeAssertLmao"), &QuackMultiplayer::get_NetworkTypeAssertLmao);
+ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "NetworkTypeAssertLmao", PropertyHint(38), "int;String", 4096), "set_NetworkTypeAssertLmao", "get_NetworkTypeAssertLmao"); // unfinished and u should prolly change this
 BIND_ENUM_CONSTANT(TYPE_NIL);
 BIND_ENUM_CONSTANT(TYPE_INT);
 BIND_ENUM_CONSTANT(INT_FLAG);

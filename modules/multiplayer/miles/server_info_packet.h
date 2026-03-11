@@ -23,4 +23,5 @@ void set_u8_max_spectators(int p_u8_max_spectators);
 int get_u16_tickrate();
 void set_u16_tickrate(int p_u16_tickrate);
 static void _bind_methods();
+ServerInfoPacket();~ServerInfoPacket();
 };

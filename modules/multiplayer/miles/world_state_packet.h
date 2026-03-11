@@ -25,4 +25,5 @@ void set_u32_acked_signature(int p_u32_acked_signature);
 PackedByteArray get_contents();
 void set_contents(PackedByteArray p_contents);
 static void _bind_methods();
+WorldStatePacket();~WorldStatePacket();
 };

@@ -12,4 +12,5 @@ void _execute(int _sender_id);
 int get_u32_confirmation_frame_num();
 void set_u32_confirmation_frame_num(int p_u32_confirmation_frame_num);
 static void _bind_methods();
+WorldStateConfirmationPacket();~WorldStateConfirmationPacket();
 };

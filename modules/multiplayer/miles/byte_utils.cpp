@@ -1,4 +1,10 @@
 #include "byte_utils.h"
+ByteUtils::ByteUtils(){
+	
+}
+ByteUtils::~ByteUtils(){
+	
+}
 int ByteUtils::get_byte_change_to_set_bitflag_in_bytes(int bit_index, bool on, PackedByteArray bytes) {
 	
 }
@@ -239,9 +245,9 @@ ClassDB::bind_static_method("ByteUtils", D_METHOD("clamp_u16", "value"), &ByteUt
 ClassDB::bind_static_method("ByteUtils", D_METHOD("get_compressed", "bytes", "mode", "size_indicator_bytes"), &ByteUtils::get_compressed);
 ClassDB::bind_static_method("ByteUtils", D_METHOD("get_decompressed", "bytes", "mode", "size_indicator_bytes"), &ByteUtils::get_decompressed);
 ClassDB::bind_static_method("ByteUtils", D_METHOD("get_pct", "num", "factor"), &ByteUtils::get_pct);
-ClassDB::bind_static_method("ByteUtils", D_METHOD("to_binary_string", "num", "Ob", "min_size"), &ByteUtils::to_binary_string);
-ClassDB::bind_static_method("ByteUtils", D_METHOD("to_binary_array", "bytes", "Ob"), &ByteUtils::to_binary_array);
-ClassDB::bind_static_method("ByteUtils", D_METHOD("array_to_binary_string", "bytes", "Ob"), &ByteUtils::array_to_binary_string);
-ClassDB::bind_static_method("ByteUtils", D_METHOD("create_bitmask", "num_bits", "on"), &ByteUtils::create_bitmask);
+ClassDB::bind_static_method("ByteUtils", D_METHOD("to_binary_string", "num", "Ob", "min_size"), &ByteUtils::to_binary_string, DEFVAL(false), DEFVAL(0));
+ClassDB::bind_static_method("ByteUtils", D_METHOD("to_binary_array", "bytes", "Ob"), &ByteUtils::to_binary_array, DEFVAL(false));
+ClassDB::bind_static_method("ByteUtils", D_METHOD("array_to_binary_string", "bytes", "Ob"), &ByteUtils::array_to_binary_string, DEFVAL(false));
+ClassDB::bind_static_method("ByteUtils", D_METHOD("create_bitmask", "num_bits", "on"), &ByteUtils::create_bitmask, DEFVAL(false));
 ClassDB::bind_static_method("ByteUtils", D_METHOD("get_bit_count", "num"), &ByteUtils::get_bit_count);
 }

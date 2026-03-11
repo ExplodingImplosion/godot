@@ -1,4 +1,10 @@
 #include "client.h"
+Client::Client(){
+	
+}
+Client::~Client(){
+	
+}
 String Client::_to_string() {
 	
 }
@@ -241,10 +247,10 @@ ClassDB::bind_method(D_METHOD("get_frame_delay"), &Client::get_frame_delay);
 ClassDB::bind_method(D_METHOD("get_network_input_delay"), &Client::get_network_input_delay);
 ClassDB::bind_method(D_METHOD("get_server_input_buffer_size"), &Client::get_server_input_buffer_size);
 ClassDB::bind_method(D_METHOD("get_total_input_delay"), &Client::get_total_input_delay);
-ClassDB::bind_method(D_METHOD("update_locally_owned_nodes", "nodes"), &Client::update_locally_owned_nodes);
+ClassDB::bind_method(D_METHOD("update_locally_owned_nodes", "nodes"), &Client::update_locally_owned_nodes, DEFVAL(<null>));
 ClassDB::bind_method(D_METHOD("predict"), &Client::predict);
 ClassDB::bind_method(D_METHOD("tick_input_buffer"), &Client::tick_input_buffer);
-ClassDB::bind_method(D_METHOD("change_input_buffer_offset", "amnt"), &Client::change_input_buffer_offset);
+ClassDB::bind_method(D_METHOD("change_input_buffer_offset", "amnt"), &Client::change_input_buffer_offset, DEFVAL(1));
 ClassDB::bind_method(D_METHOD("set_input_buffer_offset", "position"), &Client::set_input_buffer_offset);
 ClassDB::bind_method(D_METHOD("tick_player_inputs"), &Client::tick_player_inputs);
 ClassDB::bind_method(D_METHOD("tick_local"), &Client::tick_local);

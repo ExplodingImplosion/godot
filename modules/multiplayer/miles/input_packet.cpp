@@ -1,4 +1,10 @@
 #include "input_packet.h"
+InputPacket::InputPacket(){
+	
+}
+InputPacket::~InputPacket(){
+	
+}
 void InputPacket::send() {
 	
 }

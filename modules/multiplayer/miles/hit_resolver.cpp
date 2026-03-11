@@ -1,8 +1,14 @@
 #include "hit_resolver.h"
+HitResolver::HitResolver(){
+	
+}
+HitResolver::~HitResolver(){
+	
+}
 bool HitResolver::is_valid_hit_resolution_subject(Node node) {
 	
 }
-void HitResolver::_init(Node3d mp_level) {
+void HitResolver::_init(Node3D mp_level) {
 	
 }
 void HitResolver::_exit_tree() {
@@ -17,10 +23,16 @@ void HitResolver::resolve_hits() {
 void HitResolver::request_hit(int player_id, Node requester, Callable callable, Array bounding_boxes, bool subtick) {
 	
 }
-Node3d HitResolver::get_mp_level() {
+static Node HitResolver::get_hit_resolver() {
+	return hit_resolver;
+}
+static void HitResolver::set_hit_resolver(Node p_hit_resolver) {
+	hit_resolver = p_hit_resolver;
+}
+Node3D HitResolver::get_mp_level() {
 	return mp_level;
 }
-void HitResolver::set_mp_level(Node3d p_mp_level) {
+void HitResolver::set_mp_level(Node3D p_mp_level) {
 	mp_level = p_mp_level;
 }
 Array HitResolver::get_hit_requests() {
@@ -41,7 +53,10 @@ ClassDB::bind_method(D_METHOD("_init", "mp_level"), &HitResolver::_init);
 ClassDB::bind_method(D_METHOD("_exit_tree"), &HitResolver::_exit_tree);
 ClassDB::bind_method(D_METHOD("_physics_process", "_delta"), &HitResolver::_physics_process);
 ClassDB::bind_method(D_METHOD("resolve_hits"), &HitResolver::resolve_hits);
-ClassDB::bind_method(D_METHOD("request_hit", "player_id", "requester", "callable", "bounding_boxes", "subtick"), &HitResolver::request_hit);
+ClassDB::bind_method(D_METHOD("request_hit", "player_id", "requester", "callable", "bounding_boxes", "subtick"), &HitResolver::request_hit, DEFVAL(true));
+ClassDB::bind_method(D_METHOD("set_hit_resolver", "value"), &HitResolver::set_hit_resolver);
+ClassDB::bind_method(D_METHOD("get_hit_resolver"), &HitResolver::get_hit_resolver);
+ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "hit_resolver"), "set_hit_resolver", "get_hit_resolver"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_mp_level", "value"), &HitResolver::set_mp_level);
 ClassDB::bind_method(D_METHOD("get_mp_level"), &HitResolver::get_mp_level);
 ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "mp_level"), "set_mp_level", "get_mp_level"); // unfinished and u should prolly change this

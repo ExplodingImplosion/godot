@@ -1,4 +1,10 @@
 #include "change_team_deny_packet.h"
+ChangeTeamDenyPacket::ChangeTeamDenyPacket(){
+	
+}
+ChangeTeamDenyPacket::~ChangeTeamDenyPacket(){
+	
+}
 void ChangeTeamDenyPacket::_execute(int _sender_id) {
 	
 }

@@ -72,4 +72,5 @@ static String array_to_binary_string(PackedByteArray bytes, bool Ob);
 static PackedByteArray create_bitmask(int num_bits, bool on);
 static int get_bit_count(int num);
 static void _bind_methods();
+ByteUtils();~ByteUtils();
 };

@@ -2,6 +2,10 @@
 class PacketType: public RefCounted {
 GDCLASS(PacketType, RefCounted);
 public:
+static RefCounted client_packets;
+static RefCounted server_packets;
+static Array collection_list;
+static bool ready;
 GdScript packet_class;
 int id;
 NetworkedNode property_list;
@@ -28,6 +32,14 @@ RefCounted packet_decode(PackedByteArray packet);
 static RefCounted decode(int sender_id, PackedByteArray packet, RefCounted collection);
 static void send_packet_to_server(RefCounted packet);
 static void send_packet_to_client(int id, RefCounted packet);
+static RefCounted get_client_packets();
+static void set_client_packets(RefCounted p_client_packets);
+static RefCounted get_server_packets();
+static void set_server_packets(RefCounted p_server_packets);
+static Array get_collection_list();
+static void set_collection_list(Array p_collection_list);
+static bool get_ready();
+static void set_ready(bool p_ready);
 GdScript get_packet_class();
 void set_packet_class(GdScript p_packet_class);
 int get_id();
@@ -41,5 +53,6 @@ void set_compressable(bool p_compressable);
 int get_send_mode();
 void set_send_mode(int p_send_mode);
 static void _bind_methods();
+PacketType();~PacketType();
 };
 VARIANT_ENUM_CAST(PacketType::PacketReceiver);

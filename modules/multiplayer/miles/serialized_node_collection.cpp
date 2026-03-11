@@ -1,4 +1,10 @@
 #include "serialized_node_collection.h"
+SerializedNodeCollection::SerializedNodeCollection(){
+	
+}
+SerializedNodeCollection::~SerializedNodeCollection(){
+	
+}
 Node SerializedNodeCollection::spawn(Node scene) {
 	
 }
@@ -105,7 +111,7 @@ ClassDB::bind_method(D_METHOD("_to_string"), &SerializedNodeCollection::_to_stri
 ClassDB::bind_method(D_METHOD("update_interpolation", "new_property_lists"), &SerializedNodeCollection::update_interpolation);
 ClassDB::bind_method(D_METHOD("duplicate"), &SerializedNodeCollection::duplicate);
 ClassDB::bind_static_method("SerializedNodeCollection", D_METHOD("create_fresh", "uid", "scene_id", "owner_id", "team", "frame_created", "node_configs"), &SerializedNodeCollection::create_fresh);
-ClassDB::bind_method(D_METHOD("_init", "property_lists", "uid", "scene_id", "owner_id", "team", "frame_created", "node_configs", "duplicate"), &SerializedNodeCollection::_init);
+ClassDB::bind_method(D_METHOD("_init", "property_lists", "uid", "scene_id", "owner_id", "team", "frame_created", "node_configs", "duplicate"), &SerializedNodeCollection::_init, DEFVAL(true));
 ClassDB::bind_method(D_METHOD("encode_spawn", "buffer", "vis_type"), &SerializedNodeCollection::encode_spawn);
 ClassDB::bind_method(D_METHOD("decode_spawn", "buffer", "vis_type"), &SerializedNodeCollection::decode_spawn);
 ClassDB::bind_method(D_METHOD("encode_delta", "prev", "buffer", "vis_type"), &SerializedNodeCollection::encode_delta);

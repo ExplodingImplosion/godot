@@ -1,4 +1,10 @@
 #include "head_component.h"
+HeadComponent::HeadComponent(){
+	
+}
+HeadComponent::~HeadComponent(){
+	
+}
 void HeadComponent::_ready() {
 	
 }
@@ -29,22 +35,28 @@ void HeadComponent::aim(Vector2 direction) {
 void HeadComponent::_process(float delta) {
 	
 }
-CharacterBody3d HeadComponent::get_player() {
+static Dictionary HeadComponent::get_component_list() {
+	return component_list;
+}
+static void HeadComponent::set_component_list(Dictionary p_component_list) {
+	component_list = p_component_list;
+}
+CharacterBody3D HeadComponent::get_player() {
 	return player;
 }
-void HeadComponent::set_player(CharacterBody3d p_player) {
+void HeadComponent::set_player(CharacterBody3D p_player) {
 	player = p_player;
 }
-Camera3d HeadComponent::get_camera() {
+Camera3D HeadComponent::get_camera() {
 	return camera;
 }
-void HeadComponent::set_camera(Camera3d p_camera) {
+void HeadComponent::set_camera(Camera3D p_camera) {
 	camera = p_camera;
 }
-RemoteTransform3d HeadComponent::get_transformer() {
+RemoteTransform3D HeadComponent::get_transformer() {
 	return transformer;
 }
-void HeadComponent::set_transformer(RemoteTransform3d p_transformer) {
+void HeadComponent::set_transformer(RemoteTransform3D p_transformer) {
 	transformer = p_transformer;
 }
 Callable HeadComponent::get_stick_aim_func() {
@@ -76,6 +88,9 @@ ClassDB::bind_method(D_METHOD("release_mouse_control"), &HeadComponent::release_
 ClassDB::bind_method(D_METHOD("release_stick_control"), &HeadComponent::release_stick_control);
 ClassDB::bind_method(D_METHOD("aim", "direction"), &HeadComponent::aim);
 ClassDB::bind_method(D_METHOD("_process", "delta"), &HeadComponent::_process);
+ClassDB::bind_method(D_METHOD("set_component_list", "value"), &HeadComponent::set_component_list);
+ClassDB::bind_method(D_METHOD("get_component_list"), &HeadComponent::get_component_list);
+ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "component_list", PropertyHint(38), "CharacterBody3D;Node3D", 4096), "set_component_list", "get_component_list"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_player", "value"), &HeadComponent::set_player);
 ClassDB::bind_method(D_METHOD("get_player"), &HeadComponent::get_player);
 ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "player"), "set_player", "get_player"); // unfinished and u should prolly change this

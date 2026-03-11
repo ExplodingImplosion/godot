@@ -1,10 +1,14 @@
-#include quack_multiplayer.h
-#include byte_utils.h
-#include serializer.h
+#include "quack_multiplayer".h
+#include "byte_utils".h
+#include "serializer".h
 
 class QuackMultiplayer: public RefCounted {
 GDCLASS(QuackMultiplayer, RefCounted);
 public:
+static Dictionary scene_registry;
+static Array scenes;
+static bool ready;
+static Dictionary NetworkTypeAssertLmao;
 const String net_prefix = "net_";
 const String u8_prefix = "u8_";
 const String s8_prefix = "s8_";
@@ -94,17 +98,26 @@ static int get_float_type(String name);
 static bool is_script_variable(Dictionary property_info);
 static bool is_net_updated_this_frame(Dictionary property_info);
 static bool is_valid_net_var(Dictionary property_info);
-static void set_node_position_on_ready(Node3d node, Vector3 position);
-static void set_node_position_on_tree_entered(Node3d node, Vector3 position);
-static void set_node_rotation_on_ready(Node3d node, Vector3 rotation);
-static void set_node_rotation_on_tree_entered(Node3d node, Vector3 rotation);
-static void set_node_transform_on_ready(Node3d node, Vector3 position, Vector3 rotation);
-static void set_node_transform_on_tree_entered(Node3d node, Vector3 position, Vector3 rotation);
+static void set_node_position_on_ready(Node3D node, Vector3 position);
+static void set_node_position_on_tree_entered(Node3D node, Vector3 position);
+static void set_node_rotation_on_ready(Node3D node, Vector3 rotation);
+static void set_node_rotation_on_tree_entered(Node3D node, Vector3 rotation);
+static void set_node_transform_on_ready(Node3D node, Vector3 position, Vector3 rotation);
+static void set_node_transform_on_tree_entered(Node3D node, Vector3 position, Vector3 rotation);
 static int get_net_type(int type);
 static bool is_int_type(int type);
 static bool is_float_type(int type);
 static bool is_non_numerical(int type);
 static int get_property_size_by_type(int type);
+static Dictionary get_scene_registry();
+static void set_scene_registry(Dictionary p_scene_registry);
+static Array get_scenes();
+static void set_scenes(Array p_scenes);
+static bool get_ready();
+static void set_ready(bool p_ready);
+static Dictionary get_NetworkTypeAssertLmao();
+static void set_NetworkTypeAssertLmao(Dictionary p_NetworkTypeAssertLmao);
 static void _bind_methods();
+QuackMultiplayer();~QuackMultiplayer();
 };
 VARIANT_ENUM_CAST(QuackMultiplayer::NetworkType);

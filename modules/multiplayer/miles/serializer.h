@@ -1,14 +1,18 @@
-#include quack_multiplayer.h
-#include network.h
-#include serializer.h
-#include owner_id.h
-#include team.h
-#include component_tracker.h
-#include serialized_node_collection.h
+#include "quack_multiplayer".h
+#include "network".h
+#include "serializer".h
+#include "owner_id".h
+#include "team".h
+#include "component_tracker".h
+#include "serialized_node_collection".h
 
 class Serializer: public Node {
 GDCLASS(Serializer, Node);
 public:
+static Dictionary component_list;
+static RefCounted component_tracker;
+static Dictionary uid_map;
+static int uid_index;
 Array serialization_properties;
 Array nodes;
 Dictionary test_dict;
@@ -51,6 +55,14 @@ void delta_decode_nodes(StreamPeerBitBuffer buffer);
 void decode(StreamPeerBitBuffer buffer, int vis_type);
 void decode_delta(StreamPeerBitBuffer buffer, int vis_type);
 static RefCounted get_serialization_info(PackedScene scene, int scene_id, SceneState state);
+static Dictionary get_component_list();
+static void set_component_list(Dictionary p_component_list);
+static RefCounted get_component_tracker();
+static void set_component_tracker(RefCounted p_component_tracker);
+static Dictionary get_uid_map();
+static void set_uid_map(Dictionary p_uid_map);
+static int get_uid_index();
+static void set_uid_index(int p_uid_index);
 Array get_serialization_properties();
 void set_serialization_properties(Array p_serialization_properties);
 Array get_nodes();
@@ -72,5 +84,6 @@ void set_has_serialized(bool p_has_serialized);
 RefCounted get_serialized();
 void set_serialized(RefCounted p_serialized);
 static void _bind_methods();
+Serializer();~Serializer();
 };
 VARIANT_ENUM_CAST(Serializer::PhysicsPriority);

@@ -1,11 +1,17 @@
 #include "hit_request.h"
+HitRequest::HitRequest(){
+	
+}
+HitRequest::~HitRequest(){
+	
+}
 void HitRequest::merge(Node requester, Callable callable, Array bounding_boxes, bool subtick) {
 	
 }
 void HitRequest::_init(int player_id, Node requester, Callable callable, Array bounding_boxes, bool subtick) {
 	
 }
-void HitRequest::resolve(Node3d level) {
+void HitRequest::resolve(Node3D level) {
 	
 }
 void HitRequest::hitreg_debug_boxes(bool show_hitreg, Node serializer, Color color, float time) {
@@ -42,10 +48,10 @@ void HitRequest::set_subtick(bool p_subtick) {
 	subtick = p_subtick;
 }
 void HitRequest::_bind_methods(){
-ClassDB::bind_method(D_METHOD("merge", "requester", "callable", "bounding_boxes", "subtick"), &HitRequest::merge);
-ClassDB::bind_method(D_METHOD("_init", "player_id", "requester", "callable", "bounding_boxes", "subtick"), &HitRequest::_init);
+ClassDB::bind_method(D_METHOD("merge", "requester", "callable", "bounding_boxes", "subtick"), &HitRequest::merge, DEFVAL(true));
+ClassDB::bind_method(D_METHOD("_init", "player_id", "requester", "callable", "bounding_boxes", "subtick"), &HitRequest::_init, DEFVAL(true));
 ClassDB::bind_method(D_METHOD("resolve", "level"), &HitRequest::resolve);
-ClassDB::bind_static_method("HitRequest", D_METHOD("hitreg_debug_boxes", "show_hitreg", "serializer", "color", "time"), &HitRequest::hitreg_debug_boxes);
+ClassDB::bind_static_method("HitRequest", D_METHOD("hitreg_debug_boxes", "show_hitreg", "serializer", "color", "time"), &HitRequest::hitreg_debug_boxes, DEFVAL(10.0));
 ClassDB::bind_method(D_METHOD("set_player_id", "value"), &HitRequest::set_player_id);
 ClassDB::bind_method(D_METHOD("get_player_id"), &HitRequest::get_player_id);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "player_id"), "set_player_id", "get_player_id"); // unfinished and u should prolly change this

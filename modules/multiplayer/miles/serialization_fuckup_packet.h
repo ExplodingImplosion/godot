@@ -17,4 +17,5 @@ void set_u8_fuckup(int p_u8_fuckup);
 Array get_data();
 void set_data(Array p_data);
 static void _bind_methods();
+SerializationFuckupPacket();~SerializationFuckupPacket();
 };

@@ -1,4 +1,10 @@
 #include "world_state_packet.h"
+WorldStatePacket::WorldStatePacket(){
+	
+}
+WorldStatePacket::~WorldStatePacket(){
+	
+}
 RefCounted WorldStatePacket::create(int frame, int last_frame, PackedByteArray packet, int input_signature, int acked_signature) {
 	
 }

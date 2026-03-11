@@ -1,5 +1,11 @@
 #include "history_saver.h"
-void HistorySaver::_init(Node3d mp_level) {
+HistorySaver::HistorySaver(){
+	
+}
+HistorySaver::~HistorySaver(){
+	
+}
+void HistorySaver::_init(Node3D mp_level) {
 	
 }
 void HistorySaver::_exit_tree() {
@@ -41,10 +47,10 @@ RefCounted HistorySaver::get_history() {
 void HistorySaver::set_history(RefCounted p_history) {
 	history = p_history;
 }
-Node3d HistorySaver::get_level() {
+Node3D HistorySaver::get_level() {
 	return level;
 }
-void HistorySaver::set_level(Node3d p_level) {
+void HistorySaver::set_level(Node3D p_level) {
 	level = p_level;
 }
 int HistorySaver::get_recent_frame_idx() {
@@ -60,7 +66,7 @@ ClassDB::bind_method(D_METHOD("setup_replay"), &HistorySaver::setup_replay);
 ClassDB::bind_method(D_METHOD("_physics_process", "_delta"), &HistorySaver::_physics_process);
 ClassDB::bind_method(D_METHOD("serialize_frame"), &HistorySaver::serialize_frame);
 ClassDB::bind_method(D_METHOD("add_current_frame_to_history"), &HistorySaver::add_current_frame_to_history);
-ClassDB::bind_method(D_METHOD("get_recent_frame", "offset"), &HistorySaver::get_recent_frame);
+ClassDB::bind_method(D_METHOD("get_recent_frame", "offset"), &HistorySaver::get_recent_frame, DEFVAL(0));
 ClassDB::bind_method(D_METHOD("get_frame", "frame_num"), &HistorySaver::get_frame);
 ClassDB::bind_method(D_METHOD("get_frame_clamped", "frame_num"), &HistorySaver::get_frame_clamped);
 ClassDB::bind_method(D_METHOD("add_recent_frame", "frame"), &HistorySaver::add_recent_frame);

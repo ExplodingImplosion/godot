@@ -1,4 +1,10 @@
 #include "world_state_confirmation_packet.h"
+WorldStateConfirmationPacket::WorldStateConfirmationPacket(){
+	
+}
+WorldStateConfirmationPacket::~WorldStateConfirmationPacket(){
+	
+}
 void WorldStateConfirmationPacket::send(int confirmation_frame_num) {
 	
 }

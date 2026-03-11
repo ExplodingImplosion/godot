@@ -1,4 +1,10 @@
 #include "change_team_request_packet.h"
+ChangeTeamRequestPacket::ChangeTeamRequestPacket(){
+	
+}
+ChangeTeamRequestPacket::~ChangeTeamRequestPacket(){
+	
+}
 void ChangeTeamRequestPacket::_execute(int _sender_id) {
 	
 }

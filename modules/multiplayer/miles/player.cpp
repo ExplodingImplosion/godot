@@ -1,4 +1,10 @@
 #include "player.h"
+Player::Player(){
+	
+}
+Player::~Player(){
+	
+}
 void Player::_init(RefCounted client_owner, int player_index) {
 	
 }
@@ -41,10 +47,10 @@ bool Player::get_spectating() {
 void Player::set_spectating(bool p_spectating) {
 	spectating = p_spectating;
 }
-Camera3d Player::get_camera() {
+Camera3D Player::get_camera() {
 	return camera;
 }
-void Player::set_camera(Camera3d p_camera) {
+void Player::set_camera(Camera3D p_camera) {
 	camera = p_camera;
 }
 String Player::get_action_suffix() {
@@ -67,8 +73,8 @@ void Player::set_aim_angle(Vector2 p_aim_angle) {
 }
 void Player::_bind_methods(){
 ClassDB::bind_method(D_METHOD("_init", "client_owner", "player_index"), &Player::_init);
-ClassDB::bind_method(D_METHOD("get_input", "prev_frame_offset"), &Player::get_input);
-ClassDB::bind_method(D_METHOD("get_input_by_signature", "signature"), &Player::get_input_by_signature);
+ClassDB::bind_method(D_METHOD("get_input", "prev_frame_offset"), &Player::get_input, DEFVAL(0));
+ClassDB::bind_method(D_METHOD("get_input_by_signature", "signature"), &Player::get_input_by_signature, DEFVAL(<null>));
 ClassDB::bind_method(D_METHOD("apply_local_inputs"), &Player::apply_local_inputs);
 ClassDB::bind_method(D_METHOD("set_client", "value"), &Player::set_client);
 ClassDB::bind_method(D_METHOD("get_client"), &Player::get_client);

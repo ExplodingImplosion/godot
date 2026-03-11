@@ -27,10 +27,11 @@ PLAYERS = 256,
 HITBOX = 512,
 };
 static bool is_in_layer(int layers, int layer);
-static void scale_shape(Shape3d shape, float scale);
-static Vector3 get_shape_extents(Shape3d shape);
-static Vector3 get_center_of_mass(CollisionObject3d object);
+static void scale_shape(Shape3D shape, float scale);
+static Vector3 get_shape_extents(Shape3D shape);
+static Vector3 get_center_of_mass(CollisionObject3D object);
 static void _bind_methods();
+Collision();~Collision();
 };
 VARIANT_ENUM_CAST(Collision::LayerIndex);
 VARIANT_ENUM_CAST(Collision::Layer);

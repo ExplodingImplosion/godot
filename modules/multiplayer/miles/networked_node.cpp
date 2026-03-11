@@ -1,4 +1,10 @@
 #include "networked_node.h"
+NetworkedNode::NetworkedNode(){
+	
+}
+NetworkedNode::~NetworkedNode(){
+	
+}
 String NetworkedNode::_to_string() {
 	
 }
@@ -149,6 +155,12 @@ void NetworkedNode::decode_delta_array(Array array, StreamPeerBitBuffer buffer, 
 void NetworkedNode::decode_delta_array_iter(Array array, StreamPeerBitBuffer buffer, PackedByteArray iter) {
 	
 }
+static Dictionary NetworkedNode::get_types() {
+	return types;
+}
+static void NetworkedNode::set_types(Dictionary p_types) {
+	types = p_types;
+}
 bool NetworkedNode::get_ready() {
 	return ready;
 }
@@ -273,7 +285,7 @@ void NetworkedNode::_bind_methods(){
 ClassDB::bind_method(D_METHOD("_to_string"), &NetworkedNode::_to_string);
 ClassDB::bind_method(D_METHOD("_init"), &NetworkedNode::_init);
 ClassDB::bind_method(D_METHOD("setup"), &NetworkedNode::setup);
-ClassDB::bind_static_method("NetworkedNode", D_METHOD("get_function_declaration", "function_name", "function_body", "indent"), &NetworkedNode::get_function_declaration);
+ClassDB::bind_static_method("NetworkedNode", D_METHOD("get_function_declaration", "function_name", "function_body", "indent"), &NetworkedNode::get_function_declaration, DEFVAL(false));
 ClassDB::bind_method(D_METHOD("get_properties_by_type", "node", "array"), &NetworkedNode::get_properties_by_type);
 ClassDB::bind_method(D_METHOD("get_properties_by_type_hostile", "node", "array"), &NetworkedNode::get_properties_by_type_hostile);
 ClassDB::bind_method(D_METHOD("get_properties_by_type_teammate", "node", "array"), &NetworkedNode::get_properties_by_type_teammate);
@@ -310,9 +322,9 @@ ClassDB::bind_method(D_METHOD("encode_node", "node", "buffer"), &NetworkedNode::
 ClassDB::bind_static_method("NetworkedNode", D_METHOD("encode_owner_delta", "buffer"), &NetworkedNode::encode_owner_delta);
 ClassDB::bind_static_method("NetworkedNode", D_METHOD("encode_owner_spawn", "uid", "scene_id", "buffer"), &NetworkedNode::encode_owner_spawn);
 ClassDB::bind_static_method("NetworkedNode", D_METHOD("encode_owner_delete", "uid", "buffer"), &NetworkedNode::encode_owner_delete);
-ClassDB::bind_method(D_METHOD("encode_array", "array", "buffer", "vis_type"), &NetworkedNode::encode_array);
+ClassDB::bind_method(D_METHOD("encode_array", "array", "buffer", "vis_type"), &NetworkedNode::encode_array, DEFVAL(0));
 ClassDB::bind_method(D_METHOD("encode_array_iter", "array", "buffer", "iter"), &NetworkedNode::encode_array_iter);
-ClassDB::bind_method(D_METHOD("encode_delta_array", "current", "prev", "buffer", "vis_type"), &NetworkedNode::encode_delta_array);
+ClassDB::bind_method(D_METHOD("encode_delta_array", "current", "prev", "buffer", "vis_type"), &NetworkedNode::encode_delta_array, DEFVAL(0));
 ClassDB::bind_method(D_METHOD("encode_delta_array_iter", "current", "prev", "buffer", "iter"), &NetworkedNode::encode_delta_array_iter);
 ClassDB::bind_method(D_METHOD("decode", "node", "buffer"), &NetworkedNode::decode);
 ClassDB::bind_method(D_METHOD("decode_delta", "node", "buffer"), &NetworkedNode::decode_delta);
@@ -320,6 +332,9 @@ ClassDB::bind_method(D_METHOD("decode_array", "array", "buffer", "vis_type"), &N
 ClassDB::bind_method(D_METHOD("decode_array_iter", "array", "buffer", "iter"), &NetworkedNode::decode_array_iter);
 ClassDB::bind_method(D_METHOD("decode_delta_array", "array", "buffer", "vis_type"), &NetworkedNode::decode_delta_array);
 ClassDB::bind_method(D_METHOD("decode_delta_array_iter", "array", "buffer", "iter"), &NetworkedNode::decode_delta_array_iter);
+ClassDB::bind_method(D_METHOD("set_types", "value"), &NetworkedNode::set_types);
+ClassDB::bind_method(D_METHOD("get_types"), &NetworkedNode::get_types);
+ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "types", PropertyHint(38), "NetworkedNode;GDScript", 4096), "set_types", "get_types"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_ready", "value"), &NetworkedNode::set_ready);
 ClassDB::bind_method(D_METHOD("get_ready"), &NetworkedNode::get_ready);
 ADD_PROPERTY(PropertyInfo(Variant::BOOL, "ready"), "set_ready", "get_ready"); // unfinished and u should prolly change this

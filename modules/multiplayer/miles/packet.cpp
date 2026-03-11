@@ -1,4 +1,10 @@
 #include "packet.h"
+Packet::Packet(){
+	
+}
+Packet::~Packet(){
+	
+}
 bool Packet::is_script_valid_packet(GdScript script) {
 	
 }

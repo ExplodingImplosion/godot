@@ -1,4 +1,10 @@
 #include "multiplayer_level.h"
+MultiplayerLevel::MultiplayerLevel(){
+	
+}
+MultiplayerLevel::~MultiplayerLevel(){
+	
+}
 void MultiplayerLevel::_init() {
 	
 }

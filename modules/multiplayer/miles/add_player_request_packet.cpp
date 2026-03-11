@@ -1,4 +1,10 @@
 #include "add_player_request_packet.h"
+AddPlayerRequestPacket::AddPlayerRequestPacket(){
+	
+}
+AddPlayerRequestPacket::~AddPlayerRequestPacket(){
+	
+}
 void AddPlayerRequestPacket::send() {
 	
 }

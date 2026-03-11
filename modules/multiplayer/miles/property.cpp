@@ -1,4 +1,10 @@
 #include "property.h"
+Property::Property(){
+	
+}
+Property::~Property(){
+	
+}
 void Property::_init(StringName name, int type) {
 	
 }
@@ -165,7 +171,7 @@ void Property::set_key_type(Property p_key_type) {
 	key_type = p_key_type;
 }
 void Property::_bind_methods(){
-ClassDB::bind_method(D_METHOD("_init", "name", "type"), &Property::_init);
+ClassDB::bind_method(D_METHOD("_init", "name", "type"), &Property::_init, DEFVAL(StringName("")), DEFVAL(39));
 ClassDB::bind_method(D_METHOD("setup"), &Property::setup);
 ClassDB::bind_static_method("Property", D_METHOD("is_interpolatable", "type"), &Property::is_interpolatable);
 ClassDB::bind_method(D_METHOD("_to_string"), &Property::_to_string);
@@ -184,10 +190,10 @@ ClassDB::bind_method(D_METHOD("encode", "property", "buffer"), &Property::encode
 ClassDB::bind_method(D_METHOD("decode", "buffer"), &Property::decode);
 ClassDB::bind_static_method("Property", D_METHOD("get_encode_type", "type", "sub_property_index", "precision_level"), &Property::get_encode_type);
 ClassDB::bind_static_method("Property", D_METHOD("name_to_precision", "name"), &Property::name_to_precision);
-ClassDB::bind_method(D_METHOD("get_node_accessor_setter", "node_name"), &Property::get_node_accessor_setter);
-ClassDB::bind_method(D_METHOD("get_setter", "value", "node_name"), &Property::get_setter);
-ClassDB::bind_method(D_METHOD("get_interpolator", "prev_value", "current_value", "node_name"), &Property::get_interpolator);
-ClassDB::bind_method(D_METHOD("get_getter", "assignment", "node_name"), &Property::get_getter);
+ClassDB::bind_method(D_METHOD("get_node_accessor_setter", "node_name"), &Property::get_node_accessor_setter, DEFVAL("node"));
+ClassDB::bind_method(D_METHOD("get_setter", "value", "node_name"), &Property::get_setter, DEFVAL("node"));
+ClassDB::bind_method(D_METHOD("get_interpolator", "prev_value", "current_value", "node_name"), &Property::get_interpolator, DEFVAL("node"));
+ClassDB::bind_method(D_METHOD("get_getter", "assignment", "node_name"), &Property::get_getter, DEFVAL("node"));
 ClassDB::bind_method(D_METHOD("get_type_func", "buffer_name", "property_value_name"), &Property::get_type_func);
 ClassDB::bind_method(D_METHOD("set_type_func", "buffer_name", "property_value_name"), &Property::set_type_func);
 ClassDB::bind_method(D_METHOD("set_name", "value"), &Property::set_name);
