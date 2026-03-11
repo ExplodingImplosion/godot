@@ -13,7 +13,40 @@ const inline Vector3 apply_friction(bool grounded, float GROUND_DECCEL, float DE
     return vel.normalized() * speed;
 }
 
+TfMoveComponent::TfMoveComponent() {
+    JUMP_FORCE = 5.50545;
+    GROUND_DECCEL = 400.;
+    DECCEL_RAMP_UP_SPEED = .01905;
+    TERMINAL_VELOCITY = 66.675;
+    GRAVITY = 15.24;
+    GROUND_SPEED = 4.572;
+    GROUND_ACCEL = 45.72;
+    AIR_ACCEL = 20.;
+    MAX_SLIDES = 5;
+    MAX_SLOPE_ANGLE = .795;
+    SURF_FRAC = .02;
+    MIN_SURF_ANGLE = .01;
+    CAN_HOLD_FOR_JUMP = false;
+    can_hold_for_jump = 0.;
+    grounded = false;
+    just_jumped = false;
+    just_landed = false;
+    rocket_jumping = false;
+}
+
+// TfMoveComponent::~TfMoveComponent() {
+//     player = nullptr;
+// }
+
 void TfMoveComponent::move(float delta) {
+    ERR_FAIL_COND(player == nullptr);
+    ERR_FAIL_COND(!VariantUtilityFunctions::is_instance_valid(player));
+    // if (player == nullptr) {
+    //     return;
+    // }
+    // if (!VariantUtilityFunctions::is_instance_valid(player)) {
+    //     return;
+    // }
     Vector3 vel = player->get_velocity();
 	just_jumped = false;
     if (just_landed) {
@@ -49,7 +82,7 @@ void TfMoveComponent::move(float delta) {
     else {
         target_speed = AIR_SPEED;
         accel = AIR_ACCEL;
-        vel.y = VariantUtilityFunctions::move_toward(vel.y,TERMINAL_VELOCITY,GRAVITY*delta);
+        vel.y = VariantUtilityFunctions::move_toward(vel.y,-TERMINAL_VELOCITY,GRAVITY*delta);
     }
 
     add_speed = VariantUtilityFunctions::clampf(target_speed - speed, 0., accel * delta);
@@ -251,11 +284,32 @@ Vector2 TfMoveComponent::get_aim_angle() {
 void TfMoveComponent::set_aim_angle(Vector2 p_aim_angle) {
 	aim_angle = p_aim_angle;
 }
+
+void TfMoveComponent::_notification(int p_what){
+    switch (p_what) {
+        case NOTIFICATION_PARENTED: {
+            Node* parent = get_parent();
+            if (parent == nullptr) {
+                return;
+            }
+            CharacterBody3D* bruh = Object::cast_to<CharacterBody3D>(parent);
+            if (bruh != nullptr) {
+                player = bruh;
+            }
+            return;
+        }
+        case NOTIFICATION_UNPARENTED: {
+            player = nullptr;
+            return;
+        }
+    }
+}
+
 void TfMoveComponent::_bind_methods(){
 ClassDB::bind_method(D_METHOD("move", "delta"), &TfMoveComponent::move);
-ClassDB::bind_method(D_METHOD("set_player", "value"), &TfMoveComponent::set_player);
-ClassDB::bind_method(D_METHOD("get_player"), &TfMoveComponent::get_player);
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "player"), "set_player", "get_player"); // unfinished and u should prolly change this
+// ClassDB::bind_method(D_METHOD("set_player", "value"), &TfMoveComponent::set_player);
+// ClassDB::bind_method(D_METHOD("get_player"), &TfMoveComponent::get_player);
+// ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "player", PROPERTY_HINT_NODE_TYPE, "", 6U, "CharacterBody3D"), "set_player", "get_player"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_JUMP_FORCE", "value"), &TfMoveComponent::set_JUMP_FORCE);
 ClassDB::bind_method(D_METHOD("get_JUMP_FORCE"), &TfMoveComponent::get_JUMP_FORCE);
 ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "JUMP_FORCE"), "set_JUMP_FORCE", "get_JUMP_FORCE"); // unfinished and u should prolly change this
@@ -273,16 +327,16 @@ ClassDB::bind_method(D_METHOD("get_GRAVITY"), &TfMoveComponent::get_GRAVITY);
 ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "GRAVITY"), "set_GRAVITY", "get_GRAVITY"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_GROUND_SPEED", "value"), &TfMoveComponent::set_GROUND_SPEED);
 ClassDB::bind_method(D_METHOD("get_GROUND_SPEED"), &TfMoveComponent::get_GROUND_SPEED);
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "GROUND_SPEED", PropertyHint(17), "float", 4102), "set_GROUND_SPEED", "get_GROUND_SPEED"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "GROUND_SPEED"), "set_GROUND_SPEED", "get_GROUND_SPEED"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_GROUND_ACCEL", "value"), &TfMoveComponent::set_GROUND_ACCEL);
 ClassDB::bind_method(D_METHOD("get_GROUND_ACCEL"), &TfMoveComponent::get_GROUND_ACCEL);
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "GROUND_ACCEL", PropertyHint(17), "float", 4102), "set_GROUND_ACCEL", "get_GROUND_ACCEL"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "GROUND_ACCEL"), "set_GROUND_ACCEL", "get_GROUND_ACCEL"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_AIR_SPEED", "value"), &TfMoveComponent::set_AIR_SPEED);
 ClassDB::bind_method(D_METHOD("get_AIR_SPEED"), &TfMoveComponent::get_AIR_SPEED);
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "AIR_SPEED", PropertyHint(17), "float", 4102), "set_AIR_SPEED", "get_AIR_SPEED"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "AIR_SPEED"), "set_AIR_SPEED", "get_AIR_SPEED"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_AIR_ACCEL", "value"), &TfMoveComponent::set_AIR_ACCEL);
 ClassDB::bind_method(D_METHOD("get_AIR_ACCEL"), &TfMoveComponent::get_AIR_ACCEL);
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "AIR_ACCEL", PropertyHint(17), "float", 4102), "set_AIR_ACCEL", "get_AIR_ACCEL"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "AIR_ACCEL"), "set_AIR_ACCEL", "get_AIR_ACCEL"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_MAX_SLIDES", "value"), &TfMoveComponent::set_MAX_SLIDES);
 ClassDB::bind_method(D_METHOD("get_MAX_SLIDES"), &TfMoveComponent::get_MAX_SLIDES);
 ADD_PROPERTY(PropertyInfo(Variant::INT, "MAX_SLIDES"), "set_MAX_SLIDES", "get_MAX_SLIDES"); // unfinished and u should prolly change this
@@ -295,12 +349,12 @@ ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "SURF_FRAC"), "set_SURF_FRAC", "get_SU
 ClassDB::bind_method(D_METHOD("set_MIN_SURF_ANGLE", "value"), &TfMoveComponent::set_MIN_SURF_ANGLE);
 ClassDB::bind_method(D_METHOD("get_MIN_SURF_ANGLE"), &TfMoveComponent::get_MIN_SURF_ANGLE);
 ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "MIN_SURF_ANGLE"), "set_MIN_SURF_ANGLE", "get_MIN_SURF_ANGLE"); // unfinished and u should prolly change this
-ClassDB::bind_method(D_METHOD("set_CAN_HOLD_FOR_JUMP", "value"), &TfMoveComponent::set_CAN_HOLD_FOR_JUMP);
-ClassDB::bind_method(D_METHOD("get_CAN_HOLD_FOR_JUMP"), &TfMoveComponent::get_CAN_HOLD_FOR_JUMP);
-ADD_PROPERTY(PropertyInfo(Variant::BOOL, "CAN_HOLD_FOR_JUMP"), "set_CAN_HOLD_FOR_JUMP", "get_CAN_HOLD_FOR_JUMP"); // unfinished and u should prolly change this
+// ClassDB::bind_method(D_METHOD("set_CAN_HOLD_FOR_JUMP", "value"), &TfMoveComponent::set_CAN_HOLD_FOR_JUMP);
+// ClassDB::bind_method(D_METHOD("get_CAN_HOLD_FOR_JUMP"), &TfMoveComponent::get_CAN_HOLD_FOR_JUMP);
+// ADD_PROPERTY(PropertyInfo(Variant::BOOL, "CAN_HOLD_FOR_JUMP"), "set_CAN_HOLD_FOR_JUMP", "get_CAN_HOLD_FOR_JUMP"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_can_hold_for_jump", "value"), &TfMoveComponent::set_can_hold_for_jump);
 ClassDB::bind_method(D_METHOD("get_can_hold_for_jump"), &TfMoveComponent::get_can_hold_for_jump);
-ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "can_hold_for_jump"), "set_can_hold_for_jump", "get_can_hold_for_jump"); // unfinished and u should prolly change this
+ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "can_hold_for_jump"), "set_can_hold_for_jump", "get_can_hold_for_jump"); // unfinished and u should prolly change this
 ClassDB::bind_method(D_METHOD("set_grounded", "value"), &TfMoveComponent::set_grounded);
 ClassDB::bind_method(D_METHOD("get_grounded"), &TfMoveComponent::get_grounded);
 ADD_PROPERTY(PropertyInfo(Variant::BOOL, "grounded"), "set_grounded", "get_grounded"); // unfinished and u should prolly change this

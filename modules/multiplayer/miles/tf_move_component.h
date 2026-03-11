@@ -76,4 +76,9 @@ void set_input_dir(Vector2 p_input_dir);
 Vector2 get_aim_angle();
 void set_aim_angle(Vector2 p_aim_angle);
 static void _bind_methods();
+protected:
+void _notification(int p_what);
+private:
+TfMoveComponent();
+// ~TfMoveCOmponent();
 };
