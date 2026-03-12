@@ -9,8 +9,8 @@ class StreamPeerBitBuffer: public StreamPeerBuffer {
         
         virtual String _to_string() override;
         void reset();
-        void init(int with_size, int allocated_bools);
-        static Ref<StreamPeerBitBuffer> allocate(int with_size, int allocated_bools);
+        void init(uint32_t with_size, uint32_t allocated_bools);
+        static Ref<StreamPeerBitBuffer> allocate(uint32_t with_size, uint32_t allocated_bools);
         PackedByteArray export_data(bool until_position);
         void import(PackedByteArray bytes);
         PackedByteArray get_bools(bool until_position);
@@ -18,7 +18,7 @@ class StreamPeerBitBuffer: public StreamPeerBuffer {
         PackedByteArray get_non_bools(bool until_position);
         // Array get_bools_as_array();
         void ensure_bools_allocated();
-        void reallocate_bools(int amount);
+        void reallocate_bools(uint32_t amount);
         void put_bool(bool value);
         bool put_eval(bool evaluation);
         bool get_bool();
@@ -45,9 +45,9 @@ class StreamPeerBitBuffer: public StreamPeerBuffer {
         Quaternion get_quat();
         void put_color(Color color);
         Color get_color();
-        void put_udynamic(int num);
+        void put_udynamic(uint64_t num);
         int get_udynamic();
-        void put_dynamic(int num);
+        void put_dynamic(int64_t num);
         int get_dynamic();
         void put_n8(float num, float unit);
         float get_n8(float unit);
@@ -75,13 +75,13 @@ class StreamPeerBitBuffer: public StreamPeerBuffer {
         Vector2 get_rv2_half(float unit);
         void put_nv2_half(Vector2 v2, float unit);
         Vector2 get_nv2_half(float unit);
-        void put_probabalistic_enum(int value);
-        int get_probabalistic_enum(int enum_max);
-        int get_bool_position();
-        void set_bool_position(int p_bool_position);
-        int get_num_allocated_bools();
-        void set_num_allocated_bools(int p_num_allocated_bools);
-        int get_bool_bytes();
-        void set_bool_bytes(int p_bool_bytes);
+        void put_probabalistic_enum(uint64_t value);
+        uint64_t get_probabalistic_enum(uint64_t enum_max);
+        uint32_t get_bool_position();
+        void set_bool_position(uint32_t p_bool_position);
+        uint32_t get_num_allocated_bools();
+        void set_num_allocated_bools(uint32_t p_num_allocated_bools);
+        uint32_t get_bool_bytes();
+        void set_bool_bytes(uint32_t p_bool_bytes);
         static void _bind_methods();
 };
