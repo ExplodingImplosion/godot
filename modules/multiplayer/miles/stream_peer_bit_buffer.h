@@ -80,8 +80,8 @@ class StreamPeerBitBuffer: public StreamPeerBuffer {
         uint32_t get_bool_position();
         void set_bool_position(uint32_t p_bool_position);
         uint32_t get_num_allocated_bools();
-        void set_num_allocated_bools(uint32_t p_num_allocated_bools);
+        void set_num_allocated_bools(int p_num_allocated_bools);
         uint32_t get_bool_bytes();
-        void set_bool_bytes(uint32_t p_bool_bytes);
+        void set_bool_bytes(int p_bool_bytes);
         static void _bind_methods();
 };

@@ -13,9 +13,19 @@ String StreamPeerBitBuffer::_to_string() {
     );
 }
 
+// Bad naming tbh. Because it doesn't clear everything and put it back to 0, it just
+// moves pointers back to 0. This also reminds me that it would probably be better to change
+// bool_position or bool_bytes to bool_pointer or something to stay consistent with StreamPeerBuffer.
 void StreamPeerBitBuffer::reset() {
 	bool_position = 0;
     seek(bool_bytes);
+}
+
+// I don't feel like overriding clear() or anything so im just adding my own function.
+void StreamPeerBitBuffer::bit_buffer_clear() {
+    clear();
+    bool_bytes = 0;
+    num_allocated_bools = 0;
 }
 
 // GDScript doesn't let you override constructors outside of GDScript (to my knowledge), so this is a workaround.
@@ -122,7 +132,6 @@ void StreamPeerBitBuffer::reallocate_bools(uint32_t amount) {
 
     // Move all other data ahead by num_new_bytes
     Error err = _put_data(non_bools);
-    // I don't even think this is physically possible lmao
     ERR_FAIL_COND_MSG(err != OK, vformat("Yo this should never be an error, but got error %s",VariantUtilityFunctions::error_string(err)));
     
     // Go back to original pos + new bytes like nothing ever happened
@@ -131,7 +140,7 @@ void StreamPeerBitBuffer::reallocate_bools(uint32_t amount) {
 }
 
 void StreamPeerBitBuffer::put_bool(bool value) {
-    // Never overwrite byte-aligned data with booleans. Unless there's an ERR_FAIL_COND lolololol
+    // Never overwrite byte-aligned data with booleans.
 	ensure_bools_allocated();
     uint32_t idx = bool_position / 8;
     uint8_t bit = 1 << (bool_position % 8);
@@ -156,6 +165,7 @@ bool StreamPeerBitBuffer::get_bool() {
     return w[idx] & bit;
 }
 void StreamPeerBitBuffer::seek_var_pos(int position) {
+    ERR_FAIL_COND_MSG(position < 0, "Position must be greater than 0.");
 	seek(bool_bytes + position);
 }
 int StreamPeerBitBuffer::get_var_pos() {
@@ -491,7 +501,7 @@ uint32_t StreamPeerBitBuffer::get_bool_position() {
 }
 void StreamPeerBitBuffer::set_bool_position(uint32_t p_bool_position) {
 	// ERR_FAIL_COND(p_bool_position < 0);
-    ERR_FAIL_COND_MSG(p_bool_position >= num_allocated_bools,"Tried to set bool position to %s, which is greater than the number of allocated bools (%s).",p_bool_position,num_allocated_bools);
+    ERR_FAIL_COND_MSG(p_bool_position >= num_allocated_bools,vformat("Tried to set bool position to %s, which is greater than the number of allocated bools (%s).",p_bool_position,num_allocated_bools));
     bool_position = p_bool_position;
 }
 
@@ -504,8 +514,9 @@ void StreamPeerBitBuffer::set_bool_position(uint32_t p_bool_position) {
 uint32_t StreamPeerBitBuffer::get_num_allocated_bools() {
 	return num_allocated_bools;
 }
-void StreamPeerBitBuffer::set_num_allocated_bools(uint32_t p_num_allocated_bools) {
-    if (p_num_allocated_bools >= get_size() * 8) {
+void StreamPeerBitBuffer::set_num_allocated_bools(int p_num_allocated_bools) {
+    ERR_FAIL_COND_MSG(p_num_allocated_bools < 0, "0 or more bools must be allocated.");
+    if ( p_num_allocated_bools >= (get_size() * 8) ) {
         reallocate_bools(p_num_allocated_bools - num_allocated_bools);
     }
     else {
@@ -516,7 +527,8 @@ void StreamPeerBitBuffer::set_num_allocated_bools(uint32_t p_num_allocated_bools
 uint32_t StreamPeerBitBuffer::get_bool_bytes() {
 	return bool_bytes;
 }
-void StreamPeerBitBuffer::set_bool_bytes(uint32_t p_bool_bytes) {
+void StreamPeerBitBuffer::set_bool_bytes(int p_bool_bytes) {
+    ERR_FAIL_COND_MSG(p_bool_bytes < 0,"0 or more bool bytes must be allocated.");
     if (p_bool_bytes >= get_size()) {
         reallocate_bools((p_bool_bytes - bool_bytes) * 8);
     }
@@ -530,6 +542,7 @@ void StreamPeerBitBuffer::set_bool_bytes(uint32_t p_bool_bytes) {
 
 void StreamPeerBitBuffer::_bind_methods(){
     ClassDB::bind_method(D_METHOD("reset"), &StreamPeerBitBuffer::reset);
+    ClassDB::bind_method(D_METHOD("bit_buffer_clear"), &StreamPeerBitBuffer::bit_buffer_clear);
     ClassDB::bind_static_method("StreamPeerBitBuffer", D_METHOD("allocate", "with_size", "allocated_bools"), &StreamPeerBitBuffer::allocate, DEFVAL(0),DEFVAL(128));
     ClassDB::bind_method(D_METHOD("export", "until_position"), &StreamPeerBitBuffer::export_data, DEFVAL(true));
     ClassDB::bind_method(D_METHOD("import", "bytes"), &StreamPeerBitBuffer::import);
