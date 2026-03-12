@@ -122,12 +122,16 @@ void StreamPeerBitBuffer::reallocate_bools(uint32_t amount) {
     uint32_t num_new_bytes = (amount+7) / 8;
     int pos = get_position();
     int size = get_size();
+    // Grab byte-aligned data
+    PackedByteArray non_bools = get_non_bools(false);
 
+    // Set stuff to new values
     bool_bytes += num_new_bytes;
     num_allocated_bools = bool_bytes * 8;
 
-    PackedByteArray non_bools = get_non_bools(false);
+    // Make room to put data
     resize(size + num_new_bytes);
+    // Put the pointer at the new start of byte-aligned ata
     seek(bool_bytes);
 
     // Move all other data ahead by num_new_bytes
@@ -501,7 +505,7 @@ uint32_t StreamPeerBitBuffer::get_bool_position() {
 }
 void StreamPeerBitBuffer::set_bool_position(uint32_t p_bool_position) {
 	// ERR_FAIL_COND(p_bool_position < 0);
-    ERR_FAIL_COND_MSG(p_bool_position >= num_allocated_bools,vformat("Tried to set bool position to %s, which is greater than the number of allocated bools (%s).",p_bool_position,num_allocated_bools));
+    ERR_FAIL_COND_MSG(p_bool_position >= num_allocated_bools,vformat("Tried to set bool position to %s, which is greater than the maximum bool index allocated (%s).",p_bool_position,num_allocated_bools-1));
     bool_position = p_bool_position;
 }
 
@@ -602,11 +606,11 @@ void StreamPeerBitBuffer::_bind_methods(){
     ClassDB::bind_method(D_METHOD("get_rotation"), &StreamPeerBitBuffer::get_rotation);
     ClassDB::bind_method(D_METHOD("put_rotation_half", "rot"), &StreamPeerBitBuffer::put_rotation_half, DEFVAL(Math::TAU));
     ClassDB::bind_method(D_METHOD("get_rotation_half"), &StreamPeerBitBuffer::get_rotation_half);
-    ClassDB::bind_method(D_METHOD("put_nv2", "v2", "unit"), &StreamPeerBitBuffer::put_nv2, DEFVAL(Math::TAU));
+    ClassDB::bind_method(D_METHOD("put_nv2", "v2", "unit"), &StreamPeerBitBuffer::put_nv2, DEFVAL(1.));
     ClassDB::bind_method(D_METHOD("get_nv2", "unit"), &StreamPeerBitBuffer::get_nv2);
     ClassDB::bind_method(D_METHOD("put_rv2_half", "v2", "unit"), &StreamPeerBitBuffer::put_rv2_half, DEFVAL(Math::TAU));
-    ClassDB::bind_method(D_METHOD("get_rv2_half", "unit"), &StreamPeerBitBuffer::get_rv2_half);
-    ClassDB::bind_method(D_METHOD("put_nv2_half", "v2", "unit"), &StreamPeerBitBuffer::put_nv2_half, DEFVAL(Math::TAU));
+    ClassDB::bind_method(D_METHOD("get_rv2_half", "unit"), &StreamPeerBitBuffer::get_rv2_half, DEFVAL(Math::TAU));
+    ClassDB::bind_method(D_METHOD("put_nv2_half", "v2", "unit"), &StreamPeerBitBuffer::put_nv2_half, DEFVAL(1.));
     ClassDB::bind_method(D_METHOD("get_nv2_half", "unit"), &StreamPeerBitBuffer::get_nv2_half);
     ClassDB::bind_method(D_METHOD("put_probabalistic_enum", "value"), &StreamPeerBitBuffer::put_probabalistic_enum);
     ClassDB::bind_method(D_METHOD("get_probabalistic_enum", "enum_max"), &StreamPeerBitBuffer::get_probabalistic_enum);
