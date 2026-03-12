@@ -9,6 +9,7 @@ class StreamPeerBitBuffer: public StreamPeerBuffer {
         
         virtual String _to_string() override;
         void reset();
+        void bit_buffer_clear();
         void init(uint32_t with_size, uint32_t allocated_bools);
         static Ref<StreamPeerBitBuffer> allocate(uint32_t with_size, uint32_t allocated_bools);
         PackedByteArray export_data(bool until_position);
