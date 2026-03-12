@@ -1,5 +1,5 @@
-#include "player_character".h
-#include "head_component".h
+#include "player_character.h"
+#include "head_component.h"
 
 class HeadComponent: public Node3D {
 GDCLASS(HeadComponent, Node3D);

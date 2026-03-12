@@ -1,11 +1,11 @@
-#include "client".h
-#include "player".h
-#include "network".h
-#include "multiplayer_session".h
-#include "quack_multiplayer".h
-#include "history_saver".h
-#include "thread_utils".h
-#include "emitter".h
+#include "client.h"
+#include "player.h"
+#include "network.h"
+#include "multiplayer_session.h"
+#include "quack_multiplayer.h"
+#include "history_saver.h"
+#include "thread_utils.h"
+#include "emitter.h"
 
 class MultiplayerSession: public RefCounted {
 GDCLASS(MultiplayerSession, RefCounted);

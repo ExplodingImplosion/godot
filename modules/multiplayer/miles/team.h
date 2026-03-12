@@ -1,4 +1,4 @@
-#include "team_component".h
+#include "team_component.h"
 
 class Team: public Node {
 GDCLASS(Team, Node);

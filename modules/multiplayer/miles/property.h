@@ -1,8 +1,8 @@
-#include "quack_multiplayer".h
-#include "multiplayer_session".h
-#include "team_component".h
-#include "owner_id".h
-#include "serializer".h
+#include "quack_multiplayer.h"
+#include "multiplayer_session.h"
+#include "team_component.h"
+#include "owner_id.h"
+#include "serializer.h"
 
 class Property: public Resource {
 GDCLASS(Property, Resource);

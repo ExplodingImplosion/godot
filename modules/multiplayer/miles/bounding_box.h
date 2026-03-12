@@ -1,8 +1,8 @@
-#include "network_bounding_box_component".h
-#include "collision".h
-#include "collider_component".h
-#include "hit_resolver".h
-#include "debug_meshes".h
+#include "network_bounding_box_component.h"
+#include "collision.h"
+#include "collider_component.h"
+#include "hit_resolver.h"
+#include "debug_meshes.h"
 
 class BoundingBox: public StaticBody3D {
 GDCLASS(BoundingBox, StaticBody3D);

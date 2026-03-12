@@ -1,5 +1,5 @@
-#include "client".h
-#include "player".h
+#include "client.h"
+#include "player.h"
 
 class Player: public RefCounted {
 GDCLASS(Player, RefCounted);

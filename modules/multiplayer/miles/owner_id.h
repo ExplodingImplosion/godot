@@ -1,8 +1,8 @@
-#include "owner_id".h
-#include "serializer".h
-#include "sesh".h
-#include "client".h
-#include "player".h
+#include "owner_id.h"
+#include "serializer.h"
+#include "sesh.h"
+#include "client.h"
+#include "player.h"
 
 class OwnerId: public Node {
 GDCLASS(OwnerId, Node);

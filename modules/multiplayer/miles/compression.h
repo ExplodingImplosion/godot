@@ -1,4 +1,4 @@
-#include "byte_utils".h
+#include "byte_utils.h"
 
 class Compression: public RefCounted {
 GDCLASS(Compression, RefCounted);

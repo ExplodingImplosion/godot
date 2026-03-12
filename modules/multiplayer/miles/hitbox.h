@@ -1,6 +1,6 @@
-#include "collider_component".h
-#include "collision".h
-#include "hitbox".h
+#include "collider_component.h"
+#include "collision.h"
+#include "hitbox.h"
 
 class Hitbox: public StaticBody3D {
 GDCLASS(Hitbox, StaticBody3D);

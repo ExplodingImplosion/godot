@@ -1,6 +1,6 @@
-#include "quack_multiplayer".h
-#include "byte_utils".h
-#include "serializer".h
+#include "quack_multiplayer.h"
+#include "byte_utils.h"
+#include "serializer.h"
 
 class QuackMultiplayer: public RefCounted {
 GDCLASS(QuackMultiplayer, RefCounted);

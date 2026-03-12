@@ -1,4 +1,4 @@
-#include "quack_multiplayer".h
+#include "quack_multiplayer.h"
 
 class NetworkedNode: public Resource {
 GDCLASS(NetworkedNode, Resource);

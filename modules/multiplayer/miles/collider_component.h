@@ -1,5 +1,5 @@
-#include "collider_component".h
-#include "debug_meshes".h
+#include "collider_component.h"
+#include "debug_meshes.h"
 
 class ColliderComponent: public CollisionShape3D {
 GDCLASS(ColliderComponent, CollisionShape3D);

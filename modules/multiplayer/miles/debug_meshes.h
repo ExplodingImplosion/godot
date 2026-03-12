@@ -1,4 +1,4 @@
-#include "stupid_4_pt_5_mesh".h
+#include "stupid_4_pt_5_mesh.h"
 
 class DebugMeshes: public RefCounted {
 GDCLASS(DebugMeshes, RefCounted);

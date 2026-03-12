@@ -1,5 +1,5 @@
-#include "time_utils".h
-#include "settings".h
+#include "time_utils.h"
+#include "settings.h"
 
 class ThreadUtils: public RefCounted {
 GDCLASS(ThreadUtils, RefCounted);
