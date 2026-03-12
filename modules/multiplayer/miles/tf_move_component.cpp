@@ -21,6 +21,7 @@ TfMoveComponent::TfMoveComponent() {
     GRAVITY = 15.24;
     GROUND_SPEED = 4.572;
     GROUND_ACCEL = 45.72;
+    AIR_SPEED = 1.42875;
     AIR_ACCEL = 20.;
     MAX_SLIDES = 5;
     MAX_SLOPE_ANGLE = .795;
