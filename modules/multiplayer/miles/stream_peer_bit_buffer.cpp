@@ -183,7 +183,9 @@ void StreamPeerBitBuffer::put_v2(Vector2 v2) {
     put_float(v2.y);
 }
 Vector2 StreamPeerBitBuffer::get_v2() {
-	return Vector2(get_float(),get_float());
+    float x = get_float();
+    float y = get_float();
+	return Vector2(x,y);
 }
 void StreamPeerBitBuffer::put_v3(Vector3 v3) {
 	put_float(v3.x);
@@ -191,7 +193,10 @@ void StreamPeerBitBuffer::put_v3(Vector3 v3) {
 	put_float(v3.z);
 }
 Vector3 StreamPeerBitBuffer::get_v3() {
-	return Vector3(get_float(),get_float(),get_float());
+    float x = get_float();
+    float y = get_float();
+    float z = get_float();
+	return Vector3(x,y,z);
 }
 void StreamPeerBitBuffer::put_v4(Vector4 v4) {
 	put_float(v4.x);
@@ -200,19 +205,20 @@ void StreamPeerBitBuffer::put_v4(Vector4 v4) {
 	put_float(v4.w);
 }
 Vector4 StreamPeerBitBuffer::get_v4() {
-	return Vector4(
-		get_float(),
-		get_float(),
-		get_float(),
-		get_float()
-	);
+    float x = get_float();
+    float y = get_float();
+    float z = get_float();
+    float w = get_float();
+	return Vector4(x,y,z,w);
 }
 void StreamPeerBitBuffer::put_v2i(Vector2i v2) {
 	put_32(v2.x);
 	put_32(v2.y);
 }
 Vector2i StreamPeerBitBuffer::get_v2i() {
-	return Vector2i(get_32(),get_32());
+    float x = get_32();
+    float y = get_32();
+	return Vector2i(x,y);
 }
 void StreamPeerBitBuffer::put_v3i(Vector3i v3) {
 	put_32(v3.x);
@@ -220,11 +226,10 @@ void StreamPeerBitBuffer::put_v3i(Vector3i v3) {
 	put_32(v3.z);
 }
 Vector3i StreamPeerBitBuffer::get_v3i() {
-	return Vector3i(
-		get_32(),
-		get_32(),
-		get_32()
-	);
+    float x = get_32();
+    float y = get_32();
+    float z = get_32();
+	return Vector3i(x,y,z);
 }
 void StreamPeerBitBuffer::put_v4i(Vector4i v4) {
 	put_32(v4.x);
@@ -233,36 +238,31 @@ void StreamPeerBitBuffer::put_v4i(Vector4i v4) {
 	put_32(v4.w);
 }
 Vector4i StreamPeerBitBuffer::get_v4i() {
-	return Vector4i(
-		get_32(),
-		get_32(),
-		get_32(),
-		get_32()
-	);
+    float x = get_32();
+    float y = get_32();
+    float z = get_32();
+    float w = get_32();
+	return Vector4i(x,y,z,w);
 }
 void StreamPeerBitBuffer::put_r2(Rect2 r2) {
 	put_v2(r2.position);
 	put_v2(r2.size);
 }
 Rect2 StreamPeerBitBuffer::get_r2() {
-	return Rect2(
-		get_float(),
-		get_float(),
-		get_float(),
-		get_float()
-	);
+    Vector2 position = get_v2();
+    Vector2 size = get_v2();
+	return Rect2(position,size);
 }
 void StreamPeerBitBuffer::put_r2i(Rect2i r2i) {
 	put_v2i(r2i.position);
 	put_v2i(r2i.size);
 }
 Rect2i StreamPeerBitBuffer::get_r2i() {
-	return Rect2i(
-		get_32(),
-		get_32(),
-		get_32(),
-		get_32()
-	);
+    int x = get_32();
+    int y = get_32();
+    int width = get_32();
+    int height = get_32();
+	return Rect2i(x,y,width,height);
 }
 void StreamPeerBitBuffer::put_quat(Quaternion quat) {
 	put_float(quat.x);
@@ -271,12 +271,11 @@ void StreamPeerBitBuffer::put_quat(Quaternion quat) {
 	put_float(quat.w);
 }
 Quaternion StreamPeerBitBuffer::get_quat() {
-	return Quaternion(
-		get_float(),
-		get_float(),
-		get_float(),
-		get_float()
-	);
+    float x = get_float();
+    float y = get_float();
+    float z = get_float();
+    float w = get_float();
+	return Quaternion(x,y,z,w);
 }
 void StreamPeerBitBuffer::put_color(Color color) {
 	put_float(color.r);
@@ -285,12 +284,11 @@ void StreamPeerBitBuffer::put_color(Color color) {
 	put_float(color.a);
 }
 Color StreamPeerBitBuffer::get_color() {
-	return Color(
-		get_float(),
-		get_float(),
-		get_float(),
-		get_float()
-	);
+    float r = get_float();
+    float g = get_float();
+    float b = get_float();
+    float a = get_float();
+	return Color(r,g,b,a);
 }
 
 void StreamPeerBitBuffer::put_udynamic(uint64_t num) {
@@ -451,7 +449,10 @@ void StreamPeerBitBuffer::put_rotation(Vector3 rot) {
 	put_r32(rot.z);
 }
 Vector3 StreamPeerBitBuffer::get_rotation() {
-	return Vector3(get_r32(),get_r32(),get_r32());
+    float x = get_r32();
+    float y = get_r32();
+    float z = get_r32();
+	return Vector3(x,y,z);
 }
 void StreamPeerBitBuffer::put_rotation_half(Vector3 rot) {
 	put_r16(rot.x);
@@ -459,28 +460,37 @@ void StreamPeerBitBuffer::put_rotation_half(Vector3 rot) {
 	put_r16(rot.z);
 }
 Vector3 StreamPeerBitBuffer::get_rotation_half() {
-	return Vector3(get_r16(),get_r16(),get_r16());
+    float x = get_r16();
+    float y = get_r16();
+    float z = get_r16();
+	return Vector3(x,y,z);
 }
 void StreamPeerBitBuffer::put_nv2(Vector2 v2, float unit = 1.) {
 	put_n32(v2.x, unit);
 	put_n32(v2.y, unit);
 }
 Vector2 StreamPeerBitBuffer::get_nv2(float unit) {
-	return Vector2(get_n32(unit),get_n32(unit));
+    float x = get_n32(unit);
+    float y = get_n32(unit);
+	return Vector2(x,y);
 }
 void StreamPeerBitBuffer::put_rv2_half(Vector2 v2, float unit = Math::TAU) {
 	put_r16(v2.x,unit);
 	put_r16(v2.y,unit);
 }
 Vector2 StreamPeerBitBuffer::get_rv2_half(float unit = Math::TAU) {
-	return Vector2(get_r16(unit),get_r16(unit));
+    float x = get_r16(unit);
+    float y = get_r16(unit);
+	return Vector2(x,y);
 }
 void StreamPeerBitBuffer::put_nv2_half(Vector2 v2, float unit = 1.) {
 	put_n16(v2.x, unit);
 	put_n16(v2.y, unit);
 }
 Vector2 StreamPeerBitBuffer::get_nv2_half(float unit = 1.) {
-	return Vector2(get_n16(unit),get_n16(unit));
+    float x = get_n16(unit);
+    float y = get_n16(unit);
+	return Vector2(x,y);
 }
 
 // This could use more work. It currently assumes that the enum has every value from 0 - [value].
@@ -587,21 +597,21 @@ void StreamPeerBitBuffer::_bind_methods(){
     ClassDB::bind_method(D_METHOD("put_dynamic", "num"), &StreamPeerBitBuffer::put_dynamic);
     ClassDB::bind_method(D_METHOD("get_dynamic"), &StreamPeerBitBuffer::get_dynamic);
     ClassDB::bind_method(D_METHOD("put_n8", "num", "unit"), &StreamPeerBitBuffer::put_n8, DEFVAL(1.));
-    ClassDB::bind_method(D_METHOD("get_n8", "unit"), &StreamPeerBitBuffer::get_n8);
+    ClassDB::bind_method(D_METHOD("get_n8", "unit"), &StreamPeerBitBuffer::get_n8, DEFVAL(1.));
     ClassDB::bind_method(D_METHOD("put_n16", "num", "unit"), &StreamPeerBitBuffer::put_n16, DEFVAL(1.));
-    ClassDB::bind_method(D_METHOD("get_n16", "unit"), &StreamPeerBitBuffer::get_n16);
+    ClassDB::bind_method(D_METHOD("get_n16", "unit"), &StreamPeerBitBuffer::get_n16, DEFVAL(1.));
     ClassDB::bind_method(D_METHOD("put_n32", "num", "unit"), &StreamPeerBitBuffer::put_n32, DEFVAL(1.));
-    ClassDB::bind_method(D_METHOD("get_n32", "unit"), &StreamPeerBitBuffer::get_n32);
+    ClassDB::bind_method(D_METHOD("get_n32", "unit"), &StreamPeerBitBuffer::get_n32, DEFVAL(1.));
     ClassDB::bind_method(D_METHOD("put_n64", "num", "unit"), &StreamPeerBitBuffer::put_n64, DEFVAL(1.));
-    ClassDB::bind_method(D_METHOD("get_n64", "unit"), &StreamPeerBitBuffer::get_n64);
+    ClassDB::bind_method(D_METHOD("get_n64", "unit"), &StreamPeerBitBuffer::get_n64, DEFVAL(1.));
     ClassDB::bind_method(D_METHOD("put_r8", "num", "unit"), &StreamPeerBitBuffer::put_r8, DEFVAL(Math::TAU));
-    ClassDB::bind_method(D_METHOD("get_r8", "unit"), &StreamPeerBitBuffer::get_r8);
+    ClassDB::bind_method(D_METHOD("get_r8", "unit"), &StreamPeerBitBuffer::get_r8, DEFVAL(Math::TAU));
     ClassDB::bind_method(D_METHOD("put_r16", "num", "unit"), &StreamPeerBitBuffer::put_r16, DEFVAL(Math::TAU));
-    ClassDB::bind_method(D_METHOD("get_r16", "unit"), &StreamPeerBitBuffer::get_r16);
+    ClassDB::bind_method(D_METHOD("get_r16", "unit"), &StreamPeerBitBuffer::get_r16, DEFVAL(Math::TAU));
     ClassDB::bind_method(D_METHOD("put_r32", "num", "unit"), &StreamPeerBitBuffer::put_r32, DEFVAL(Math::TAU));
-    ClassDB::bind_method(D_METHOD("get_r32", "unit"), &StreamPeerBitBuffer::get_r32);
+    ClassDB::bind_method(D_METHOD("get_r32", "unit"), &StreamPeerBitBuffer::get_r32, DEFVAL(Math::TAU));
     ClassDB::bind_method(D_METHOD("put_r64", "num", "unit"), &StreamPeerBitBuffer::put_r64, DEFVAL(Math::TAU));
-    ClassDB::bind_method(D_METHOD("get_r64", "unit"), &StreamPeerBitBuffer::get_r64);
+    ClassDB::bind_method(D_METHOD("get_r64", "unit"), &StreamPeerBitBuffer::get_r64, DEFVAL(Math::TAU));
     ClassDB::bind_method(D_METHOD("put_rotation", "rot"), &StreamPeerBitBuffer::put_rotation, DEFVAL(Math::TAU));
     ClassDB::bind_method(D_METHOD("get_rotation"), &StreamPeerBitBuffer::get_rotation);
     ClassDB::bind_method(D_METHOD("put_rotation_half", "rot"), &StreamPeerBitBuffer::put_rotation_half, DEFVAL(Math::TAU));
