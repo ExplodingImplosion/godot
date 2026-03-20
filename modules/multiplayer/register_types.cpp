@@ -37,7 +37,7 @@
 #include "scene_replication_interface.h"
 #include "scene_rpc_interface.h"
 #include "miles/stream_peer_bit_buffer.h"
-#include "miles/tf_move_component.h"
+#include "miles/tf_move_body.h"
 
 #ifdef TOOLS_ENABLED
 #include "editor/multiplayer_editor_plugin.h"
@@ -51,7 +51,7 @@ void initialize_multiplayer_module(ModuleInitializationLevel p_level) {
 		GDREGISTER_CLASS(OfflineMultiplayerPeer);
 		GDREGISTER_CLASS(SceneMultiplayer);
 		GDREGISTER_CLASS(StreamPeerBitBuffer);
-		GDREGISTER_CLASS(TfMoveComponent);
+		GDREGISTER_CLASS(TFMoveBody);
 		if constexpr (GD_IS_CLASS_ENABLED(MultiplayerAPI)) {
 			MultiplayerAPI::set_default_interface("SceneMultiplayer");
 			MultiplayerDebugger::initialize();

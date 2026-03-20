@@ -39,6 +39,7 @@ class KinematicCollision3D : public RefCounted {
 	ObjectID owner_id;
 	friend class PhysicsBody3D;
 	friend class CharacterBody3D;
+	friend class TFMoveBody3D;
 	PhysicsServer3D::MotionResult result;
 
 protected:

@@ -9,7 +9,7 @@ env_mp = env_modules.Clone()
 module_obj = []
 env_mp.add_source_files(module_obj, "*.cpp")
 env_mp.add_source_files(module_obj,"miles/stream_peer_bit_buffer.cpp")
-env_mp.add_source_files(module_obj,"miles/tf_move_component.cpp")
+env_mp.add_source_files(module_obj,"miles/tf_move_body.cpp")
 
 if env.editor_build:
     env_mp.add_source_files(module_obj, "editor/*.cpp")

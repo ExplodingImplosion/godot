@@ -1,10 +1,8 @@
-// #include "player_character.h"
 #include "scene/3d/physics/character_body_3d.h"
 
-class TfMoveComponent: public Node {
-GDCLASS(TfMoveComponent, Node);
+class TFMoveBody: public CharacterBody3D {
+GDCLASS(TFMoveBody, CharacterBody3D);
 public:
-CharacterBody3D* player;
 float JUMP_FORCE;
 float GROUND_DECCEL;
 float DECCEL_RAMP_UP_SPEED;
@@ -25,12 +23,8 @@ bool just_jumped;
 bool just_landed;
 bool rocket_jumping;
 bool tryna_jump;
-Vector2 input_dir;
-Vector2 aim_angle;
-void move(float delta);
+void move(float delta, Vector2 input_dir);
 // inline Vector3 apply_friction(float delta);
-CharacterBody3D* get_player();
-void set_player(CharacterBody3D* p_player);
 float get_JUMP_FORCE();
 void set_JUMP_FORCE(float p_JUMP_FORCE);
 float get_GROUND_DECCEL();
@@ -71,14 +65,10 @@ bool get_rocket_jumping();
 void set_rocket_jumping(bool p_rocket_jumping);
 bool get_tryna_jump();
 void set_tryna_jump(bool p_tryna_jump);
-Vector2 get_input_dir();
-void set_input_dir(Vector2 p_input_dir);
-Vector2 get_aim_angle();
-void set_aim_angle(Vector2 p_aim_angle);
 static void _bind_methods();
-protected:
-void _notification(int p_what);
+// protected:
+// void _notification(int p_what);
 private:
-TfMoveComponent();
-// ~TfMoveCOmponent();
+TFMoveBody();
+// ~TFMoveBody();
 };
