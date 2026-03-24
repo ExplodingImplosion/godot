@@ -69,6 +69,15 @@ private:
 
 	Joypad joypads[Input::JOYPADS_MAX];
 	HashMap<SDL_JoystickID, int> sdl_instance_id_to_joypad_id;
+	int keyboards[Input::JOYPADS_MAX];
+	HashMap<SDL_JoystickID, int> sdl_instance_id_to_keyboard_id;
+	int mice [Input::JOYPADS_MAX];
+	HashMap<SDL_JoystickID, int> sdl_instance_id_to_mouse_id;
+
+	int get_unused_keyboard_idx();
+	int get_unused_mouse_idx();
 
 	void close_joypad(int p_pad_idx);
+	void close_keyboard(int p_pad_idx);
+	void close_mouse(int p_pad_idx);
 };

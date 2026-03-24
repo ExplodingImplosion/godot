@@ -54,6 +54,9 @@ JoypadSDL *JoypadSDL::singleton = nullptr;
 
 JoypadSDL::JoypadSDL() {
 	singleton = this;
+	for (int i = 0; i < Input::JOYPADS_MAX; i++) {
+		keyboards[i] = mice[i] = -1;
+	}
 }
 
 JoypadSDL::~JoypadSDL() {
@@ -63,6 +66,9 @@ JoypadSDL::~JoypadSDL() {
 		if (joypads[i].attached) {
 			close_joypad(i);
 		}
+		close_keyboard(i);
+		close_mouse(i);
+
 	}
 	SDL_Quit();
 	singleton = nullptr;
@@ -270,8 +276,124 @@ void JoypadSDL::process_events() {
 							sdl_event.gbutton.down);
 					break;
 			}
+		} else {
+			switch (sdl_event.type) {
+				case SDL_EVENT_KEY_DOWN: {
+					break;
+				}
+				case SDL_EVENT_KEY_UP: {
+					break;
+				}
+				case SDL_EVENT_TEXT_EDITING: {
+					break;
+				}
+				case SDL_EVENT_TEXT_INPUT: {
+					break;
+				}
+				case SDL_EVENT_KEYMAP_CHANGED: {
+					break;
+				}
+				case SDL_EVENT_KEYBOARD_ADDED: {
+					// int kb_idx = get_unused_keyboard_idx();
+					// if (kb_idx == -1) {
+					// 	print_error("A new keyboard was attached but couldn't allocate for a new id for it because keyboard limit was reached.");
+					// } else {
+					// 	keyboards.insert(kb_idx,sdl_event.kdevice.which);
+					// }
+					break;
+				}
+				case SDL_EVENT_KEYBOARD_REMOVED: {
+					// close_keyboard(sdl_instance_id_to_keyboard_id.get(sdl_event.kdevice.which));
+					break;
+				}
+				case SDL_EVENT_TEXT_EDITING_CANDIDATES: {
+					break;
+				}
+				case SDL_EVENT_MOUSE_MOTION: {
+					// print_line("holy shitttt");
+					Ref<InputEventMouseMotion> mm; mm.instantiate();
+					// Convert ns to us
+					mm->set_timestamp(sdl_event.motion.timestamp / 1000);
+					mm->set_window_id(sdl_event.motion.windowID);
+					mm->set_device(sdl_instance_id_to_mouse_id.get(sdl_event.motion.which));
+					mm->set_ctrl_pressed(false);
+					mm->set_shift_pressed(false);
+					mm->set_alt_pressed(false);
+					mm->set_meta_pressed(false);
+					mm->set_pressure(0.);
+					// input_enums.h MouseButtonMask enum is literally the exact
+					// same as SDL_mouse.h SDL_MouseButtonFlags lmfao
+					mm->set_button_mask(static_cast<MouseButtonMask>(sdl_event.motion.state));
+					Vector2 position = Vector2(sdl_event.motion.x,sdl_event.motion.y);
+					Vector2 relative = Vector2(sdl_event.motion.xrel,sdl_event.motion.yrel);
+					mm->set_position(position);
+					mm->set_global_position(position);
+					mm->set_velocity(Vector2(0,0));
+					mm->set_screen_velocity(Vector2(0,0));
+					mm->set_relative(relative);
+					mm->set_relative_screen_position(relative);
+					if (relative != Vector2(0,0)) {
+						Input::get_singleton()->parse_input_event(mm);
+					}
+					break;
+				}
+				case SDL_EVENT_MOUSE_BUTTON_DOWN: {
+					break;
+				}
+				case SDL_EVENT_MOUSE_BUTTON_UP: {
+					break;
+				}
+				case SDL_EVENT_MOUSE_WHEEL: {
+					break;
+				}
+				case SDL_EVENT_MOUSE_ADDED: {
+					// print_line("mouse added");
+					int mouse_idx = get_unused_mouse_idx();
+					if (mouse_idx == -1) {
+						print_error("A new mouse was attached but couldn't allocate for a new id for it because mouse limit was reached.");
+					} else {
+						mice[mouse_idx] = sdl_event.mdevice.which;
+						sdl_instance_id_to_mouse_id.insert(sdl_event.mdevice.which,mouse_idx);
+					}
+					break;
+				}
+				case SDL_EVENT_MOUSE_REMOVED: {
+					// print_line("mouse removed");
+					close_mouse(sdl_instance_id_to_mouse_id.get(sdl_event.mdevice.which));
+					break;
+				}
+				default: {
+					break;
+				}
+			}			
 		}
 	}
+}
+
+int JoypadSDL::get_unused_keyboard_idx() {
+	for (int i = 0; i < Input::JOYPADS_MAX; i++) {
+		if (keyboards[i] == -1) {
+			return i;
+		}
+	}
+	return -1;
+}
+int JoypadSDL::get_unused_mouse_idx() {
+	for (int i = 0; i < Input::JOYPADS_MAX; i++) {
+		if (mice[i] == -1) {
+			return i;
+		}
+	}
+	return -1;
+}
+
+void JoypadSDL::close_keyboard(int p_pad_idx){
+	int sdl_instance_idx = keyboards[p_pad_idx];
+	sdl_instance_id_to_keyboard_id.erase(sdl_instance_idx);
+}
+void JoypadSDL::close_mouse(int p_pad_idx){
+	int sdl_instance_idx = mice[p_pad_idx];
+	sdl_instance_id_to_mouse_id.erase(sdl_instance_idx);
 }
 
 void JoypadSDL::close_joypad(int p_pad_idx) {
