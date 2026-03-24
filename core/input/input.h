@@ -133,6 +133,7 @@ private:
 
 		// Cache.
 		struct ActionStateCache {
+			uint64_t time = 0;
 			bool pressed = false;
 			float strength = false;
 			float raw_strength = false;
@@ -318,6 +319,7 @@ public:
 	bool is_key_label_pressed(Key p_keycode) const;
 	bool is_mouse_button_pressed(MouseButton p_button) const;
 	bool is_joy_button_pressed(int p_device, JoyButton p_button) const;
+	uint64_t get_action_time(const StringName &p_action, bool exact = false) const;
 	bool is_action_pressed(const StringName &p_action, bool p_exact = false) const;
 	bool is_action_just_pressed(const StringName &p_action, bool p_exact = false) const;
 	bool is_action_just_released(const StringName &p_action, bool p_exact = false) const;

@@ -84,6 +84,10 @@ bool InputEvent::is_released() const {
 	return !pressed && !canceled;
 }
 
+uint64_t InputEvent::get_timestamp() const {
+	return timestamp;
+}
+
 bool InputEvent::is_echo() const {
 	return false;
 }
@@ -116,6 +120,7 @@ void InputEvent::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("is_canceled"), &InputEvent::is_canceled);
 	ClassDB::bind_method(D_METHOD("is_pressed"), &InputEvent::is_pressed);
 	ClassDB::bind_method(D_METHOD("is_released"), &InputEvent::is_released);
+	ClassDB::bind_method(D_METHOD("get_timestamp"), &InputEvent::get_timestamp);
 	ClassDB::bind_method(D_METHOD("is_echo"), &InputEvent::is_echo);
 
 	ClassDB::bind_method(D_METHOD("as_text"), &InputEvent::as_text);
@@ -681,6 +686,10 @@ Vector2 InputEventMouse::get_position() const {
 	return pos;
 }
 
+void InputEventMouse::set_timestamp(uint64_t p_timestamp) {
+	timestamp = p_timestamp;
+}
+
 void InputEventMouse::set_global_position(const Vector2 &p_global_pos) {
 	global_pos = p_global_pos;
 }
@@ -695,12 +704,15 @@ void InputEventMouse::_bind_methods() {
 
 	ClassDB::bind_method(D_METHOD("set_position", "position"), &InputEventMouse::set_position);
 	ClassDB::bind_method(D_METHOD("get_position"), &InputEventMouse::get_position);
+	
+	ClassDB::bind_method(D_METHOD("set_timestamp", "timestamp"), &InputEventMouseButton::set_timestamp);
 
 	ClassDB::bind_method(D_METHOD("set_global_position", "global_position"), &InputEventMouse::set_global_position);
 	ClassDB::bind_method(D_METHOD("get_global_position"), &InputEventMouse::get_global_position);
 
 	ADD_PROPERTY(PropertyInfo(Variant::INT, "button_mask"), "set_button_mask", "get_button_mask");
 	ADD_PROPERTY(PropertyInfo(Variant::VECTOR2, "position", PROPERTY_HINT_NONE, "suffix:px"), "set_position", "get_position");
+	ADD_PROPERTY(PropertyInfo(Variant::INT, "timestamp"), "set_timestamp", "get_timestamp");
 	ADD_PROPERTY(PropertyInfo(Variant::VECTOR2, "global_position", PROPERTY_HINT_NONE, "suffix:px"), "set_global_position", "get_global_position");
 }
 

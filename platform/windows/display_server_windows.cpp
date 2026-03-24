@@ -4361,6 +4361,7 @@ void DisplayServerWindows::window_start_drag(WindowID p_window) {
 		if (Input::get_singleton()->is_mouse_button_pressed(MouseButton(btn))) {
 			Ref<InputEventMouseButton> mb;
 			mb.instantiate();
+			// mb->set_timestamp(timestamp);
 			mb->set_window_id(p_window);
 			mb->set_pressed(false);
 			mb->set_button_index(MouseButton::LEFT);
@@ -4424,6 +4425,7 @@ void DisplayServerWindows::window_start_resize(WindowResizeEdge p_edge, WindowID
 		if (Input::get_singleton()->is_mouse_button_pressed(MouseButton(btn))) {
 			Ref<InputEventMouseButton> mb;
 			mb.instantiate();
+			// mb->set_timestamp(timestamp);
 			mb->set_window_id(p_window);
 			mb->set_pressed(false);
 			mb->set_button_index(MouseButton::LEFT);
@@ -4760,6 +4762,7 @@ LRESULT DisplayServerWindows::_handle_early_window_message(HWND hWnd, UINT uMsg,
 // The window procedure for our window class "Engine", used to handle processing of window-related system messages/events.
 // See: https://docs.microsoft.com/en-us/windows/win32/winmsg/window-procedures
 LRESULT DisplayServerWindows::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+	uint64_t timestamp = OS::get_singleton()->get_ticks_usec();
 	if (drop_events) {
 		if (user_proc) {
 			return CallWindowProcW(user_proc, hWnd, uMsg, wParam, lParam);
@@ -5056,7 +5059,7 @@ LRESULT DisplayServerWindows::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 			} else if (mouse_mode == MOUSE_MODE_CAPTURED && raw->header.dwType == RIM_TYPEMOUSE) {
 				Ref<InputEventMouseMotion> mm;
 				mm.instantiate();
-
+				mm->set_timestamp(timestamp);
 				mm->set_window_id(window_id);
 				mm->set_ctrl_pressed(mods.has_flag(WinKeyModifierMask::CTRL));
 				mm->set_shift_pressed(mods.has_flag(WinKeyModifierMask::SHIFT));
@@ -5159,6 +5162,7 @@ LRESULT DisplayServerWindows::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 					const BitField<WinKeyModifierMask> &mods = _get_mods();
 					Ref<InputEventMouseMotion> mm;
 					mm.instantiate();
+					mm->set_timestamp(timestamp);
 					mm->set_window_id(window_id);
 					mm->set_ctrl_pressed(mods.has_flag(WinKeyModifierMask::CTRL));
 					mm->set_shift_pressed(mods.has_flag(WinKeyModifierMask::SHIFT));
@@ -5262,6 +5266,7 @@ LRESULT DisplayServerWindows::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 
 			Ref<InputEventMouseButton> mb;
 			mb.instantiate();
+			mb->set_timestamp(timestamp);
 			mb->set_window_id(window_id);
 
 			BitField<MouseButtonMask> last_button_state = MouseButtonMask::NONE;
@@ -5412,6 +5417,7 @@ LRESULT DisplayServerWindows::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 
 			Ref<InputEventMouseMotion> mm;
 			mm.instantiate();
+			mm->set_timestamp(timestamp);
 
 			mm->set_window_id(window_id);
 			if (pen_info.penMask & PEN_MASK_PRESSURE) {
@@ -5554,6 +5560,7 @@ LRESULT DisplayServerWindows::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 			const BitField<WinKeyModifierMask> &mods = _get_mods();
 			Ref<InputEventMouseMotion> mm;
 			mm.instantiate();
+			mm->set_timestamp(timestamp);
 			mm->set_window_id(receiving_window_id);
 			mm->set_ctrl_pressed(mods.has_flag(WinKeyModifierMask::CTRL));
 			mm->set_shift_pressed(mods.has_flag(WinKeyModifierMask::SHIFT));
@@ -5648,6 +5655,7 @@ LRESULT DisplayServerWindows::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 		case WM_XBUTTONUP: {
 			Ref<InputEventMouseButton> mb;
 			mb.instantiate();
+			mb->set_timestamp(timestamp);
 			mb->set_window_id(window_id);
 
 			switch (uMsg) {

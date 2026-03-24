@@ -57,6 +57,7 @@ class InputEvent : public Resource {
 protected:
 	bool canceled = false;
 	bool pressed = false;
+	uint64_t timestamp = 0;
 
 	static void _bind_methods();
 
@@ -76,6 +77,7 @@ public:
 	bool is_canceled() const;
 	bool is_pressed() const;
 	bool is_released() const;
+	uint64_t get_timestamp() const;
 	virtual bool is_echo() const;
 
 	virtual String as_text() const = 0;
@@ -218,6 +220,8 @@ public:
 
 	void set_position(const Vector2 &p_pos);
 	Vector2 get_position() const;
+	
+	void set_timestamp(uint64_t timestamp);
 
 	void set_global_position(const Vector2 &p_global_pos);
 	Vector2 get_global_position() const;

@@ -120,6 +120,7 @@ void Input::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("is_key_label_pressed", "keycode"), &Input::is_key_label_pressed);
 	ClassDB::bind_method(D_METHOD("is_mouse_button_pressed", "button"), &Input::is_mouse_button_pressed);
 	ClassDB::bind_method(D_METHOD("is_joy_button_pressed", "device", "button"), &Input::is_joy_button_pressed);
+	ClassDB::bind_method(D_METHOD("get_action_time","action","exact_match"), &Input::get_action_time, DEFVAL(0));
 	ClassDB::bind_method(D_METHOD("is_action_pressed", "action", "exact_match"), &Input::is_action_pressed, DEFVAL(false));
 	ClassDB::bind_method(D_METHOD("is_action_just_pressed", "action", "exact_match"), &Input::is_action_just_pressed, DEFVAL(false));
 	ClassDB::bind_method(D_METHOD("is_action_just_released", "action", "exact_match"), &Input::is_action_just_released, DEFVAL(false));
@@ -372,6 +373,20 @@ bool Input::is_joy_button_pressed(int p_device, JoyButton p_button) const {
 	}
 
 	return joy_buttons_pressed.has(_combine_device(p_button, p_device));
+}
+
+uint64_t Input::get_action_time(const StringName &p_action, bool p_exact) const {
+	ERR_FAIL_COND_V_MSG(!InputMap::get_singleton()->has_action(p_action), false, InputMap::get_singleton()->suggest_actions(p_action));
+	if (disable_input) {
+		return 0;
+	}
+
+	HashMap<StringName, ActionState>::ConstIterator E = action_states.find(p_action);
+	if (!E) {
+		return 0;
+	}
+
+	return (p_exact ? (E->value.exact ? E->value.cache.time : 0) : E->value.cache.time);
 }
 
 bool Input::is_action_pressed(const StringName &p_action, bool p_exact) const {
@@ -953,6 +968,7 @@ void Input::_parse_input_event_impl(const Ref<InputEvent> &p_event, bool p_is_em
 		int device_id = p_event->get_device();
 		bool is_pressed = p_event->is_action_pressed(E.key, true);
 		ActionState &action_state = action_states[E.key];
+		action_state.cache.time = p_event->get_timestamp();
 
 		// Update the action's per-device state.
 		ActionState::DeviceState &device_state = action_state.device_states[device_id];
