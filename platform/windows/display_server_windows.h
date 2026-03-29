@@ -249,6 +249,7 @@ class DisplayServerWindows : public DisplayServer {
 		WindowID window_id;
 		bool alt, shift, control, meta, altgr;
 		UINT uMsg;
+		uintptr_t device_id;
 		WPARAM wParam;
 		LPARAM lParam;
 	};
@@ -257,6 +258,7 @@ class DisplayServerWindows : public DisplayServer {
 
 	KeyEvent key_event_buffer[KEY_EVENT_BUFFER_SIZE];
 	int key_event_pos;
+	uintptr_t most_recent_wm_input_device_id;
 
 	bool old_invalid;
 	int old_x, old_y;

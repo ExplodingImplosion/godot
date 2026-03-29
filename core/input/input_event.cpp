@@ -528,6 +528,7 @@ String InputEventKey::_to_string() {
 Ref<InputEventKey> InputEventKey::create_reference(Key p_keycode, bool p_physical) {
 	Ref<InputEventKey> ie;
 	ie.instantiate();
+	ie->set_device(-1);
 	if (p_physical) {
 		ie->set_physical_keycode(p_keycode & KeyModifierMask::CODE_MASK);
 	} else {

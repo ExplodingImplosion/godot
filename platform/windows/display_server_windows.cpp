@@ -5026,6 +5026,8 @@ LRESULT DisplayServerWindows::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 			}
 
 			RAWINPUT *raw = (RAWINPUT *)lpb;
+			uintptr_t device_id = (uintptr_t)raw->header.hDevice;
+			most_recent_wm_input_device_id = device_id;
 
 			const BitField<WinKeyModifierMask> &mods = _get_mods();
 			if (raw->header.dwType == RIM_TYPEKEYBOARD) {
@@ -5046,6 +5048,9 @@ LRESULT DisplayServerWindows::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 							ke.control = mods.has_flag(WinKeyModifierMask::CTRL);
 							ke.meta = mods.has_flag(WinKeyModifierMask::META);
 							ke.uMsg = WM_KEYUP;
+							ke.device_id = device_id;
+							// // AAAAAAAAAAAAAAAAAAAAAAH
+							// ke.device_id = (mouse_mode == MOUSE_MODE_CAPTURED? device_id : 0);
 							ke.window_id = window_id;
 
 							ke.wParam = VK_SHIFT;
@@ -5059,6 +5064,7 @@ LRESULT DisplayServerWindows::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 			} else if (mouse_mode == MOUSE_MODE_CAPTURED && raw->header.dwType == RIM_TYPEMOUSE) {
 				Ref<InputEventMouseMotion> mm;
 				mm.instantiate();
+				mm->set_device(device_id);
 				mm->set_timestamp(timestamp);
 				mm->set_window_id(window_id);
 				mm->set_ctrl_pressed(mods.has_flag(WinKeyModifierMask::CTRL));
@@ -5657,6 +5663,8 @@ LRESULT DisplayServerWindows::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 			mb.instantiate();
 			mb->set_timestamp(timestamp);
 			mb->set_window_id(window_id);
+			// le hac
+			mb->set_device(most_recent_wm_input_device_id);
 
 			switch (uMsg) {
 				case WM_LBUTTONDOWN: {
@@ -6020,6 +6028,9 @@ LRESULT DisplayServerWindows::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 			ke.control = mods.has_flag(WinKeyModifierMask::CTRL);
 			ke.meta = mods.has_flag(WinKeyModifierMask::META);
 			ke.uMsg = uMsg;
+			ke.device_id = most_recent_wm_input_device_id;
+			// // AAAAAAAAAAAAAAAAAAAAAAH
+			// ke.device_id = (mouse_mode == MOUSE_MODE_CAPTURED ? most_recent_wm_input_device_id : 0);
 			ke.window_id = window_id;
 
 			if (ke.uMsg == WM_SYSKEYDOWN) {
@@ -6252,6 +6263,7 @@ void DisplayServerWindows::_process_key_events() {
 					}
 
 					k->set_window_id(ke.window_id);
+					k->set_device(ke.device_id);
 					if (keycode != Key::SHIFT) {
 						k->set_shift_pressed(ke.shift);
 					}
@@ -6285,6 +6297,7 @@ void DisplayServerWindows::_process_key_events() {
 				k.instantiate();
 
 				k->set_window_id(ke.window_id);
+				k->set_device(ke.device_id);
 				k->set_pressed(ke.uMsg == WM_KEYDOWN);
 
 				bool is_oem = (ke.wParam >= 0xB8) && (ke.wParam <= 0xE6);
