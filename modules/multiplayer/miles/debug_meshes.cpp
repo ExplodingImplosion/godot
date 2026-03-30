@@ -11,23 +11,56 @@ void DebugMeshes::add_debug_boxmesh(Transform3D transform, float time, Vector3 c
 	spawn_debug_mesh(bm,transform,time);
 }
 
-MeshInstance3D* DebugMeshes::spawn_debug_raycast_mesh(RayCast3D* raycast, float time) {
-	// if (raycast_debug_mesh) {
-	// 	return raycast_debug_mesh;
-	// }
-	// else {
-	// 	Ref<StandardMaterial3D> mat; mat.instantiate();
-	// 	mat->set_shading_mode(BaseMaterial3D::SHADING_MODE_UNSHADED);
-	// 	mat->set_flag(BaseMaterial3D::FLAG_DISABLE_FOG,true);
-	// 	mat->set_cull_mode(BaseMaterial3D::CULL_DISABLED);
-	// 	mat->set_transparency(BaseMaterial3D::TRANSPARENCY_ALPHA);
-	// 	mat->set_albedo(Color(0.,1.,0.,1.));
+// void create_mat() {
+// 	RenderingServer* server = RedneringServer::get_singleton();
+// 	auto rid server->material_create();
+// 	server->material_set_param(rid,StringName("shading_mode"),BaseMaterial3D::SHADING_MODE_UNSHADED)
+// }
 
-	// }
+Ref<StandardMaterial3D> DebugMeshes::get_raycast_debug_mat() {
+	if (raycast_debug_mesh) {
+		return raycast_debug_mesh;
+	}
+	else {
+		Ref<StandardMaterial3D> mat = get_raycast_mat();
+		raycast_debug_mesh = mat;
+		return mat;
+	}
+}
+
+inline Ref<StandardMaterial3D> get_raycast_mat() {
+	Ref<StandardMaterial3D> mat; mat.instantiate();
+	mat->set_shading_mode(BaseMaterial3D::SHADING_MODE_UNSHADED);
+	mat->set_flag(StandardMaterial3D::FLAG_SRGB_VERTEX_COLOR, true);
+	mat->set_flag(StandardMaterial3D::FLAG_ALBEDO_FROM_VERTEX_COLOR, true);
+	mat->set_flag(StandardMaterial3D::FLAG_DISABLE_FOG, true);
+	mat->set_cull_mode(BaseMaterial3D::CULL_DISABLED);
+	mat->set_transparency(BaseMaterial3D::TRANSPARENCY_ALPHA);
+	return mat;
+}
+
+inline Array get_line_array(Vector3 start_pos, Vector3 target_pos, Color color) {
+	PackedVector3Array verts; verts.resize(2); verts[0] = start_pos; verts[1] = target_pos;
+	PackedColorArray colors; colors.resize(2); colors.fill(color);
+	Array array; array.resize(Mesh::ARRAY_MAX); array[Mesh::ARRAY_VERTEX] = verts; array[Mesh::ARRAY_COLOR] = colors;
+	return array;
+}
+
+MeshInstance3D* DebugMeshes::spawn_debug_raycast_mesh(RayCast3D* raycast, float time) {
+	Ref<ArrayMesh> mesh; mat.instantiate();
+	Array array = get_line_array(Vector3(0,0,0), raycast->get_target_position(),raycast->is_colliding()? Color(1,0,0,1) : Color(0,1,0,1));
+	mesh->add_surface_from_arrays(Mesh::PRIMITIVE_LINES,array);
+	mesh->surface_set_material(0,get_raycast_debug_mesh());
+	return spawn_debug_mesh(mesh,raycast->get_global_transform(),time);
 }
 
 MeshInstance3D* DebugMeshes::draw_line(Vector3 start, Vector3 end, float lifetime, Color color) {
-	
+	Ref<StandardMaterial3D> mat = get_raycast_debug_mesh();
+	Ref<ArrayMesh> mesh; mesh.instantiate();
+	Array array = get_line_array(start, end, color);
+	mesh -> add_surface_from_arrays(Mesh::PRIMITIVE_LINES,array);
+	mesh -> surface_set_material(0,mat);
+	return spawn_debug_mesh(mesh,Transform3D(0,0,0,0,0,0,0,0,0,0,0,0),lifetime);
 }
 
 MeshInstance3D* DebugMeshes::spawn_debug_mesh(Ref<Mesh> mesh, Transform3D transform, float time) {
@@ -38,6 +71,7 @@ MeshInstance3D* DebugMeshes::spawn_debug_mesh(Ref<Mesh> mesh, Transform3D transf
 	tree->get_current_scene()->add_child(node);
 	node->add_to_group(StringName("Debug Collision Shapes"));
 	tree->create_timer(time,true,true,false)->connect(StringName("timeout"),Callable(node,StringName("queue_free")),CONNECT_ONE_SHOT);
+	return node;
 }
 
 bool DebugMeshes::can_add_debug_mesh() {
@@ -49,11 +83,16 @@ bool DebugMeshes::can_add_debug_ray() {
 }
 
 MeshInstance3D* DebugMeshes::spawn_colldier_debug_mesh(CollisionShape3D* collider, float time) {
-	
+	// auto mesh = collider->shape->get_debug_mesh();
+	return spawn_debug_mesh(collider->shape->get_debug_mesh(),collider->get_global_transform(),time);
 }
 
 MeshInstance3D* DebugMeshes::spawn_recolored_debug_mesh(Ref<Mesh> mesh, Color color, Transform3D transform, float time) {
-	
+	// mesh = mesh->duplicate();
+	// auto server = RenderingServer::get_singleton();
+	// for (int i = 0; i < mesh->get_surface_count(); i++) {
+	// 	server->mesh_surface_update_attribute_region(mesh->get_rid(),i,)
+	// }
 }
 
 MeshInstance3D* DebugMeshes::spawn_recolored_colldier_debug_mesh(CollisionShape3D* collider, Color color, float time) {
