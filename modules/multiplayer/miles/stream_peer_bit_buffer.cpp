@@ -84,6 +84,30 @@ PackedByteArray StreamPeerBitBuffer::get_bools(bool until_position) {
 	return data.slice(0, until_position ? (bool_position + 7) / 8 : bool_bytes);
 }
 
+
+// void merge(Ref<StreamPeerBitBuffer> buffer) {
+//     const uint_32_t max_bool_idx = bool_position;
+//     const uint_32_t var_pos = get_var_pos();
+//     bool_position = 0;
+//     buffer->put_udynamic(max_bool_idx);
+//     buffer->put_udynamic(var_pos);
+//     for (int i = 0; i < bool_position; i++) {
+//         buffer->put_bool(get_bool());
+//     }
+//     bool_position = max_bool_idx;
+//     const auto vars = get_non_bools();
+//     const auto err = buffer->put_data(vars,vars.size());
+// }
+// static Ref<StreamPeerBitBuffer> extract(Ref<StreamPeerBitBuffer> buffer) {
+//     const auto num_bools = buffer->get_udynamic();
+//     const auto var_size = buffer->get_udynamic();
+//     const auto ret = StreamPeerBitBuffer::allocate(var_size+num_bools/8,num_bools);
+//     for (int i = 0; i < num_bools; i++) {
+//         ret->put_bool(buffer->get_bool());
+//     }
+//     const auto err = ret->put_data(buffer->get_data(___,var_size),var_size)
+// }
+
 // Basically a faster version of calling allocate() and then import(), because import() handles
 // the same stuff allocate() does.
 Ref<StreamPeerBitBuffer> StreamPeerBitBuffer::decode(PackedByteArray bytes) {
@@ -562,6 +586,8 @@ void StreamPeerBitBuffer::_bind_methods(){
     ClassDB::bind_method(D_METHOD("import", "bytes"), &StreamPeerBitBuffer::import);
     ClassDB::bind_method(D_METHOD("get_bools", "until_position"), &StreamPeerBitBuffer::get_bools, DEFVAL(true));
     ClassDB::bind_static_method("StreamPeerBitBuffer", D_METHOD("decode", "bytes"), &StreamPeerBitBuffer::decode);
+    // ClassDB::bind_method(D_METHOD("merge", "buffer"), &StreamPeerBitBuffer::merge);
+    // ClassDB::bind_static_method("StreamPeerBitBuffer", D_METHOD("extract", "buffer"), &StreamPeerBitBuffer::extract);
     ClassDB::bind_method(D_METHOD("get_non_bools", "until_position"), &StreamPeerBitBuffer::get_non_bools, DEFVAL(true));
     // ClassDB::bind_method(D_METHOD("get_bools_as_array"), &StreamPeerBitBuffer::get_bools_as_array);
     ClassDB::bind_method(D_METHOD("ensure_bools_allocated"), &StreamPeerBitBuffer::ensure_bools_allocated);

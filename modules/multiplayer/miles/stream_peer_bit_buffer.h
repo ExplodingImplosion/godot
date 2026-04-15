@@ -16,6 +16,8 @@ class StreamPeerBitBuffer: public StreamPeerBuffer {
         void import(PackedByteArray bytes);
         PackedByteArray get_bools(bool until_position);
         static Ref<StreamPeerBitBuffer> decode(PackedByteArray bytes);
+        // void merge(Ref<StreamPeerBitBuffer> buffer);
+        // static Ref<StreamPeerBitBuffer> extract(Ref<StreamPeerBitBuffer> buffer);
         PackedByteArray get_non_bools(bool until_position);
         // Array get_bools_as_array();
         void ensure_bools_allocated();
